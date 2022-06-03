@@ -1,0 +1,51 @@
+package com.day6;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Test3 {
+	public static void main(String[] args){
+Scanner sc = new Scanner(System.in);
+		
+		
+		String[] name;
+		int[] score;
+		int peopleCount = 0;
+		int[] rank = null;
+		
+		
+		do {
+			System.out.print("인원수?[1~10]");
+			peopleCount = sc.nextInt();
+			
+		} while (peopleCount < 0);
+		
+		
+		name = new String[peopleCount];
+		score = new int[peopleCount];
+		rank = new int[peopleCount];
+		
+		
+		for (int i = 0; i < peopleCount; i++) {
+			System.out.print((i + 1)+ "번째 이름?");
+			name[i] = sc.next();
+			System.out.print((i + 1) + "점수?");
+			score[i] = sc.nextInt();
+			rank[i] = 1;
+		}
+		
+		
+		
+		for (int i = 0; i < peopleCount - 1; i++) {
+			for (int j = i + 1; j < peopleCount; j++) {
+				if(score[i] < score[j]) {
+					rank[i]++;
+				}
+			}
+		}
+		
+		for (int i = 0; i < peopleCount; i++) {
+			System.out.printf("%6s %4d\n", name[i], score[i], rank[i]);
+		}
+	}
+
+}

@@ -1,0 +1,48 @@
+package com.day5;
+
+import java.util.Scanner;
+
+public class Test2 {
+	public static void main(String[] args) {
+		
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int[] months = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		
+		int y, m, nalsu, i, week;
+	
+		do {
+			System.out.print("³âµµ? ");
+			y = sc.nextInt();
+			
+		}while(y < 1);
+		
+		do {
+			
+			System.out.print("¿ù?");
+			m = sc.nextInt();
+			
+		} while (m < 1 || m > 12);
+		
+		if(y % 4 == 0 && y % 100 != 0 || y % 400 == 400) {
+			months[1] = 29;
+		}
+		
+		nalsu = (y - 1) * 365 + (y-1)/4 - (y-1)/100 + (y-1)/400;
+		
+		for(i = 0; i < m-1;i++) {
+			nalsu += months[i];
+		}
+		
+		//System.out.println(nalsu);
+		nalsu += 1;
+		
+		week = nalsu % 7;
+		
+		System.out.println(week);
+		
+		
+		
+	}
+}

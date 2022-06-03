@@ -1,0 +1,26 @@
+package com.day3;
+
+import java.io.IOException;
+
+public class Test3 {
+	public static void main(String[] args) throws IOException {
+		
+		char ch, result;
+		
+		ch = 'a';
+		//ch = '가';
+		
+		System.out.println(Integer.toString(ch));
+		
+		//System.out.println("한개의 문자?");
+		ch = (char)System.in.read();
+		
+		
+		
+		result = ch >= 65 && ch <= 90 ? (char)(ch+32) :  (ch >= 'a' && ch <= 'z' ? (char)(ch-32):ch);
+		
+		System.out.println(ch + ":" + result);
+	
+	}
+
+}

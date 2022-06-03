@@ -1,0 +1,19 @@
+package com.day4;
+
+import java.util.Scanner;
+
+public class Test1 {
+	public static void main(String[] args) {
+		
+		//반복문
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int dan;
+		
+		System.out.println("단 입력?");
+		dan = sc.nextInt();
+		
+	}
+
+}

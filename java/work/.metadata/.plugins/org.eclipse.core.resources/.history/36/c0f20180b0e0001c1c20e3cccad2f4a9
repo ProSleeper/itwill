@@ -1,0 +1,27 @@
+package com.day4;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Test8 {
+	public static void main(String[] args) throws IOException {
+		Scanner sc = new Scanner(System.in);
+		
+		int num1, num2;
+		char oper;
+		
+		System.out.println("첫 번째수?");
+		num1 = sc.nextInt();
+		
+		System.out.println("두 번째수?");
+		num1 = sc.nextInt();
+		
+		System.out.println("연산자[+,-,*,/]?");
+		oper = (char)System.in.read();
+		
+		
+		
+		
+		
+	}
+}

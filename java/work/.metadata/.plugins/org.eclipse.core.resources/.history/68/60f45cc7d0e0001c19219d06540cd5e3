@@ -1,0 +1,164 @@
+package com.example;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class Example1 extends JFrame {
+	
+	void initialize()
+	{
+		JPanel logInpanel = new JPanel();
+		JPanel joinpanel = new JPanel();
+		
+		logInPanel(logInpanel, joinpanel);
+		joinPanel(logInpanel, joinpanel);
+		
+		setVisible(true);
+		setSize(600, 400);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}
+	
+	void logInPanel(JPanel logInpanel, JPanel joinpanel)
+	{
+		JLabel id = new JLabel("ID: ");
+		JLabel pswrd = new JLabel("Password: ");
+		JTextField txtID = new JTextField(10);
+		JPasswordField txtPass = new JPasswordField(10);
+		JButton logBtn = new JButton("Log In");
+		JButton joinBtn = new JButton("Join");
+		joinBtn.setBounds(0, 0, 199, 100);
+		
+		
+		//panel.setLayout(null); // 배치관리자 설정 안함 - 절대 위치 사용
+		logInpanel.add(id);
+		logInpanel.add(txtID);
+		logInpanel.add(pswrd);
+		logInpanel.add(txtPass);
+		logInpanel.add(logBtn);
+		logInpanel.add(joinBtn);
+		
+		add(logInpanel);
+		
+		
+		logInpanel.setLayout(null);
+		
+		
+		id.setBounds(75, 10, 100, 50);
+		txtID.setBounds(95, 20, 100, 30);
+		
+		pswrd.setBounds(220, 10, 100, 50);
+		txtPass.setBounds(285, 20, 100, 30);
+		
+		logBtn.setBounds(400, 10, 100, 50);
+		joinBtn.setBounds(250, 200, 100, 50);
+		
+		logBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String id = "Dan";
+				String pass = "1234";
+				
+				if(id.equals(txtID.getText()) && pass.equals(txtPass.getText())) {
+					JOptionPane.showMessageDialog(null, "You have logged in successfully");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "You failed to log in");
+				}
+				
+			}
+		});
+		
+		
+		//조인 창 보이게 만들 부분
+		joinBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if(logInpanel.isVisible()) {
+					logInpanel.setVisible(false);
+					joinpanel.setVisible(true);
+				}
+				
+			}
+		});
+	}
+	
+	void joinPanel(JPanel logInpanel, JPanel joinpanel)
+	{
+		JLabel id = new JLabel("ID: ");
+		JLabel pswrd = new JLabel("Password: ");
+		JTextField txtID = new JTextField(10);
+		JPasswordField txtPass = new JPasswordField(10);
+		JButton logBtn = new JButton("Log In");
+		JButton joinBtn = new JButton("Join");
+		joinBtn.setBounds(0, 0, 199, 100);
+		
+		
+		//panel.setLayout(null); // 배치관리자 설정 안함 - 절대 위치 사용
+		joinpanel.add(id);
+		joinpanel.add(txtID);
+		joinpanel.add(pswrd);
+		joinpanel.add(txtPass);
+		joinpanel.add(logBtn);
+		joinpanel.add(joinBtn);
+		
+		add(joinpanel);
+		
+		
+		joinpanel.setLayout(null);
+		
+		
+		id.setBounds(75, 10, 100, 50);
+		txtID.setBounds(95, 20, 100, 30);
+		
+		pswrd.setBounds(220, 10, 100, 50);
+		txtPass.setBounds(285, 20, 100, 30);
+		
+		logBtn.setBounds(400, 10, 100, 50);
+		joinBtn.setBounds(250, 200, 100, 50);
+		
+		logBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String id = "Dan";
+				String pass = "1234";
+				
+				if(id.equals(txtID.getText()) && pass.equals(txtPass.getText())) {
+					JOptionPane.showMessageDialog(null, "You have logged in successfully");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "You failed to log in");
+				}
+				
+			}
+		});
+		
+	}
+	
+	
+	public Example1() {
+		
+		
+		
+		initialize();
+		
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		new Example1();
+	}
+
+}
