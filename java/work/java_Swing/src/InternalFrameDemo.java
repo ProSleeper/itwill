@@ -229,7 +229,7 @@ public class InternalFrameDemo extends DemoModule {
                 return insets;
             }
         };
-        p.setLayout(new GridLayout(1,2));
+        p.setLayout(new GridLayout(1,1));
 
 
         Box box = new Box(BoxLayout.Y_AXIS);
