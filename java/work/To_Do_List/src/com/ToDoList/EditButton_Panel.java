@@ -11,10 +11,10 @@ public class EditButton_Panel extends JPanel{
 	
 	JButton btn;
 	
-	public EditButton_Panel() {
+	public EditButton_Panel(JButton btn) {
 		this.setLayout(new BorderLayout());
 		
-		btn = new JButton("...");
+		this.btn = btn;
 		
 		this.add(btn, BorderLayout.EAST);
 		btn.addMouseListener(new MouseAdapter() { //클래스 이름없이 어뎁터 클래스 생성

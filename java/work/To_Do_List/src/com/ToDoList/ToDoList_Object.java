@@ -18,5 +18,22 @@ public class ToDoList_Object {
 		btn = new JButton("...");
 		
 	}
+	public void setCheckBox()
+	{
+		
+	}
+	public void setButton()
+	{
+		
+	}
+	public JCheckBox getCheckBox()
+	{
+		return cb;
+	}
+	public JButton getButton()
+	{
+		return btn;
+	}
+	
 	
 }

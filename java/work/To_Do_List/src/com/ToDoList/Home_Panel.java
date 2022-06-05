@@ -37,17 +37,14 @@ public class Home_Panel extends JPanel{
 		scrollFrame.setPreferredSize(new Dimension(800,540));
 		this.add(scrollFrame);
 	}
-	void createToDoList(){
-		ip.add(new IndicateOneToDo_Panel());
-		scrollPanel.add(ip.get(0));
-		scrollPanel.setPreferredSize(new Dimension( 437,30 + ip.size() * 57));
-	}
 	
 	public void addToDoList(ToDoList_Object tdo)
 	{
-		ip.add(new IndicateOneToDo_Panel());
-		scrollPanel.add(ip.get(ip.size() - 1));
+		IndicateOneToDo_Panel local_iotdp = new IndicateOneToDo_Panel(tdo);
+		ip.add(local_iotdp);
+		scrollPanel.add(local_iotdp);
 		scrollPanel.setPreferredSize(new Dimension( 437,30 + ip.size() * 57));
+		System.out.println(ip.size());
 		this.revalidate();
 	}
 	

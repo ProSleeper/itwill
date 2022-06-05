@@ -10,6 +10,7 @@ import java.util.Random;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Calendar_Panel extends JPanel {
@@ -27,7 +28,13 @@ public class Calendar_Panel extends JPanel {
 			public void actionPerformed(ActionEvent e){
 				Random rd = new Random();
 				//JOptionPane.showInputDialog("숫자를 입력하세요");
-				mf.createList("생성하고 있습니다." + (rd.nextInt(10) + 1));
+				String todoText = JOptionPane.showInputDialog("할일을 입력하세요");
+			
+				if(todoText != null && !todoText.equals("")) {
+					Main_Frame.createList(todoText);
+				}
+				
+				
 			}
 		});
 	}
