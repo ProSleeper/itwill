@@ -110,7 +110,7 @@ public class ListDemo extends DemoModule {
 
         // Set the preferred row count. This affects the preferredSize
         // of the JList when it's in a scrollpane.
-        list.setVisibleRowCount(22);
+        list.setVisibleRowCount(2);
 
         // Add list to a scrollpane
         JScrollPane scrollPane = new JScrollPane(list);

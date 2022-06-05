@@ -13,10 +13,8 @@ public class Calendar_Panel extends JPanel {
 	
 	public Calendar_Panel(Main_Frame mf) {
 		this.mf = mf;
-		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-		this.setLayout(new GridLayout(1,1));
-		this.setBackground(Color.white);
-		this.setBounds(480, 0, 480, 540);
+		this.setBackground(Color.black);
+		//this.setBounds(500, 500, 480, 540);
 		
 	}
 }
