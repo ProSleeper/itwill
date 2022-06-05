@@ -23,21 +23,21 @@ public class Home_Panel extends JPanel{
 		
 		
 		scrollPanelCreate();
+		
 	}
 	
 	void scrollPanelCreate(){
 		scrollPanel = new JPanel();
-		scrollPanel.setPreferredSize(new Dimension( 437,30));
 		scrollPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 3, 5));
+//		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));	//boxlayout으로 세로로 1개씩 정렬하고 싶은데 크기 고정하는 걸 모르겠다...
 		JScrollPane scrollFrame = new JScrollPane(scrollPanel);
 		scrollFrame.getVerticalScrollBar().setUnitIncrement(16);
 		scrollFrame.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollFrame.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPanel.setAutoscrolls(true);
-		scrollFrame.setPreferredSize(new Dimension(800,540));
 		this.add(scrollFrame);
 	}
-	
+
 	public void addToDoList(ToDoList_Object tdo)
 	{
 		IndicateOneToDo_Panel local_iotdp = new IndicateOneToDo_Panel(tdo);

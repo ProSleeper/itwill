@@ -19,9 +19,10 @@ public class Main_Frame extends JFrame{
 	
 	//메인프레임
 	public Main_Frame() {
+		setLayout(new GridLayout(1, 1));	//그리드레이아웃은 딱히 설정의 제한이 강력하지 않은가보다. 대충 panel붙여도 다 붙여지네
 		setVisible(true);
 		setSize(960, 540);
-		setResizable(false);
+		setResizable(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
@@ -44,9 +45,8 @@ public class Main_Frame extends JFrame{
 		mainFrame.add(hp);
 		mainFrame.add(cp);
 		
-		
-		Container cn = mainFrame.getContentPane();
-		cn.setLayout(new GridLayout(1, 2));
+		//Container cn = mainFrame.getContentPane();
+		//cn.setLayout(new GridLayout(1, 1));
 		mainFrame.setVisible(true);
 
 	}
