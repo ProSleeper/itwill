@@ -2,31 +2,21 @@ package com.ToDoList;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.LayoutManager;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.ToolTipManager;
 
 public class CheckBox_Panel extends JPanel{
 
-	BorderLayout bl = null;
 	public JCheckBox cb = null;
 	
 	public CheckBox_Panel() {
-		//this.setBackground(Color.GREEN);
-		bl = new BorderLayout();
-		this.setLayout(bl);
-		//this.setAlignmentX(Component.LEFT_ALIGNMENT );
-		cb = new JCheckBox("첫 번123132136184326381436846t46f84a6f8d46f846sd84fa6fd8468fas46fda8f4a68a4fdf째3f");
+		this.setBackground(Color.red);
+		this.setLayout(new BorderLayout());
+		cb = new JCheckBox("<HTML>1843263fas46fdadsaff6878</HTML>");	//HTML을 붙여서 그런가? 자동 줄바꿈이 되네?
+		
+		
 		cb.setToolTipText(cb.getText());
 		ToolTipManager ttm = ToolTipManager.sharedInstance();
 		ttm.setInitialDelay(100);
@@ -34,7 +24,7 @@ public class CheckBox_Panel extends JPanel{
 		
 		
 		
-		cb.setPreferredSize(new Dimension(420, 50));
+		cb.setPreferredSize(new Dimension(400, 50));
 		
 		this.add(cb, BorderLayout.WEST);
 	}

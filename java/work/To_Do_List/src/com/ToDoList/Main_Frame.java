@@ -7,39 +7,47 @@ import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import javax.swing.ToolTipManager;
 
 public class Main_Frame extends JFrame{
 		
+	static Main_Frame mainFrame;
+	static Home_Panel hp;
+	static Calendar_Panel cp;
+	static CreateToDoList_Normal ctdl;
+	
+	
 	//메인프레임
 	public Main_Frame() {
-		
-		Container cn = getContentPane();
-		cn.setLayout(new GridLayout(1, 3));
-		pack();
 		setVisible(true);
 		setSize(960, 540);
-		setResizable(true);
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
+	
+	//리스트 생성 이벤트가 발생했을 때 이 메서드를 실행해서 생성해줌
+	public static void createList(String toDoText) {
+		hp.addToDoList(ctdl.createToDoList(toDoText));
+	}
+	
+	
 
 	public static void main(String[] args) {
 		
-		Main_Frame mf = new Main_Frame();
-		Home_Panel hp = new Home_Panel(mf);
-		Calendar_Panel cp = new Calendar_Panel(mf);
-		
-		mf.add(hp);
-		mf.add(cp);
+		mainFrame = new Main_Frame();
+		hp = new Home_Panel(mainFrame);
+		cp = new Calendar_Panel(mainFrame);
+		ctdl = new CreateToDoList_Normal();
 		
 		
-		mf.setVisible(true);
+		mainFrame.add(hp);
+		mainFrame.add(cp);
 		
-		//이 객체에서 컨트롤할 패널1
-	    //Calendar_Panel cp = new Calendar_Panel(mf);
 		
-
-		//hp.initialize(mf);
+		Container cn = mainFrame.getContentPane();
+		cn.setLayout(new GridLayout(1, 2));
+		mainFrame.setVisible(true);
 
 	}
 
