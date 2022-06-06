@@ -11,8 +11,6 @@ import javax.swing.ToolTipManager;
 //ToDoList를 생성해주는 부분
 public class CreateToDoList_Normal extends ToDo {
 	
-	public boolean todo = false;
-	public Font strikeFont = null;
 	public CreateToDoList_Normal() {
 		
 		//이 부분은 나중에 생성 매니저 같은 곧으로 옮기면 됨

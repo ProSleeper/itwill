@@ -510,6 +510,7 @@ public class ButtonDemo extends DemoModule implements ChangeListener {
 
                 public void itemStateChanged(ItemEvent e) {
                     // *** pad = 0
+                	
                     int pad = -1;
                     JRadioButton rb = (JRadioButton) e.getSource();
                     String command = rb.getActionCommand();
@@ -537,6 +538,7 @@ public class ButtonDemo extends DemoModule implements ChangeListener {
     }
 
     public void stateChanged(ChangeEvent e) {
+    	
         SingleSelectionModel model = (SingleSelectionModel) e.getSource();
         if(model.getSelectedIndex() == 0) {
             currentControls = buttons;

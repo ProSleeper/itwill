@@ -7,8 +7,7 @@ import javax.swing.JCheckBox;
 
 public abstract class ToDo {
 	
-	public boolean todo = false;
-	public Font strikeFont = null;
+	
 	
 	public ToDo() {
 	}
