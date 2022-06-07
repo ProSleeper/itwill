@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.ToolTipManager;
 
+
+//이 Main_Frame을 싱글턴화 시켜서 사용하면 굳이 UIManager같은거 안만들어도 되겠지만.
+//이런 형식이 맞는 건가의 의문은 계속 존재한다.
 public class Main_Frame extends JFrame{
 		
 	static Main_Frame mainFrame;
@@ -33,7 +36,8 @@ public class Main_Frame extends JFrame{
 	}
 	
 	
-
+	
+	//싱글턴 객체가 main 함수를 가지고 있어도 되나? 안되나? 모르겠다.
 	public static void main(String[] args) {
 		
 		mainFrame = new Main_Frame();

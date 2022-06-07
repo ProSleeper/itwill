@@ -20,9 +20,7 @@ public class EditButton_Panel extends JPanel{
 		btn.addMouseListener(new MouseAdapter() { //클래스 이름없이 어뎁터 클래스 생성
 			public void mousePressed(MouseEvent e) {
 				if(e.getButton() == MouseEvent.BUTTON3)
-					System.out.println("Right Button Pressed");
 					if(e.getClickCount() == 2) {
-						System.out.println("Double");
 				    }
 			}        
 		});		

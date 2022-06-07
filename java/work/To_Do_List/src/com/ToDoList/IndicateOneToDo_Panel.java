@@ -31,7 +31,6 @@ public class IndicateOneToDo_Panel extends JPanel{
 		this.add(cp, BorderLayout.WEST);
 		this.add(ep, BorderLayout.EAST);
 		
-		System.out.println(this.getPreferredSize());
 		
 	}
 }

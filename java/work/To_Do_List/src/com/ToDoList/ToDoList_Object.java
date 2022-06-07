@@ -17,62 +17,105 @@ public class ToDoList_Object {
 	private JCheckBox cb = null;
 	private JButton btn = null;
 	
-	public boolean todo = false;
-	public Font strikeFont = null;
+	private boolean todo = false;
+	
+	private Font activeFont = null;
+	private Font completedFont = null;
 	
 	
 	public ToDoList_Object(String toDoText) {
 		
+		checkboxCreate(toDoText);
+		buttonCreate();
+		setColor(Color.WHITE);
+		
+		
+		
+		//¹è°æ»ö º¯°æ ³ªÁß¿¡ ´Ù¸¥ ºÎºÐÀ¸·Î ÀÌµ¿
+//		cb.setBackground(Color.LIGHT_GRAY);
+//		btn.setBackground(Color.LIGHT_GRAY);
+	}
+	public void setCheckBox(){
+		
+	}
+	public void setButton(){
+		
+	}
+	public JCheckBox getCheckBox(){
+		return cb;
+	}
+	public JButton getButton(){
+		return btn;
+	}
+	
+	void checkboxCreate(String toDoText) {
 		cb = new JCheckBox(toDoText);
 		cb.setToolTipText(cb.getText());
 		cb.setPreferredSize(new Dimension(420, 50));
-		btn = new JButton("...");
-		
-		strikeFont = new Font("helvetica", Font.PLAIN, 12);
-		Map attributes = strikeFont.getAttributes();
-		attributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
-		Font newFont = new Font(attributes); 
-		
 		setCheckBoxAddListner();
-		
-		cb.setFont(newFont);
-		
-		//6¿ù 7ÀÏÀº ÀÌ ºÎºÐºÎÅÍ ÁøÇà.
-		//
-		
-		cb.setBackground(Color.LIGHT_GRAY);
-		btn.setBackground(Color.LIGHT_GRAY);
+		strikeFontApply();
 	}
-	public void setCheckBox()
-	{
-		
+	
+	void buttonCreate() {
+		btn = new JButton("...");
+		//Áö±ÝÀº µüÈ÷ ÄÚµå°¡ ¾øÁö¸¸ ³ªÁß¿¡ ¹öÆ° Å¬¸¯½Ã ÇÊ¿äÇÑ ºÎºÐ ÄÚµå°¡ »ý¼ºµÉµí
+		setButtonAddListner();
 	}
-	public void setButton()
-	{
-		
+	
+	void strikeFontApply(){
+		Map attributes = new Font("helvetica", Font.PLAIN, 12).getAttributes();
+		attributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
+		completedFont = new Font(attributes);
 	}
-	public JCheckBox getCheckBox()
-	{
-		return cb;
-	}
-	public JButton getButton()
-	{
-		return btn;
-	}
+	
+	
 	
 	void setCheckBoxAddListner() {
 		cb.addActionListener(new ActionListener(){ //ÀÍ¸íÅ¬·¡½º·Î ¸®½º³Ê ÀÛ¼º
 			public void actionPerformed(ActionEvent e){
 
 				if(cb.isSelected()) {
-					System.out.println("Ã¼Å©");
+					cb.setFont(completedFont);
+					setColor(Color.LIGHT_GRAY);
 				}
 				else {
-					System.out.println("no®G");
+					cb.setFont(activeFont);
+					setColor(Color.WHITE);
 				}
-				
 			}
 		});
 	}
 	
+	void setButtonAddListner() {
+		btn.addActionListener(new ActionListener(){ //ÀÍ¸íÅ¬·¡½º·Î ¸®½º³Ê ÀÛ¼º
+			public void actionPerformed(ActionEvent e){
+				
+				String[] buttons = { "¼öÁ¤", "»èÁ¦"};
+
+				int num = JOptionPane.showOptionDialog(null, null, null, JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.DEFAULT_OPTION, null, buttons, null);
+				if(num == 0) {
+					setEditCheckBoxText();
+				}
+				else {
+					
+				}
+			}
+		});
+	}
+	
+	void setEditCheckBoxText() {
+		Object todoText = JOptionPane.showInputDialog(null, "¼öÁ¤ ÇØÁÖ¼¼¿ä", "¼öÁ¤", JOptionPane.DEFAULT_OPTION, null, null, cb.getText());
+		
+		if(todoText != null) {
+			if(!todoText.equals("")) {
+				cb.setText(todoText.toString());
+			}
+		}
+	}
+	
+	void setColor(Color color) {
+		cb.setBackground(color);
+		btn.setBackground(color);
+	}
 }

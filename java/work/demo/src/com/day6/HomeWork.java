@@ -5,7 +5,6 @@ import java.util.Random;
 
 public class HomeWork {
 
-
 	public static void valueOfMin_Max(){
 		Scanner sc = new Scanner(System.in);
 		int[] arr = new int[5];
@@ -29,7 +28,7 @@ public class HomeWork {
 		}
 
 		System.out.println("가장 큰 수는: " + max + "\n가장 작은 수는: " + min);
-
+		System.out.print("");
 	}
 
 
@@ -104,8 +103,9 @@ public class HomeWork {
 		Scanner sc = new Scanner(System.in);
 		int[] arr = new int[5];
 		int com, people;
-
-		int[][] win =  {{3,2,1},{1,3,2},{2,1,3}};
+		String buttonY = "";
+		boolean yesOrNo = true;
+		int[][] judgment =  {{3,2,1},{1,3,2},{2,1,3}};
 
 		Random rd = new Random();
 
@@ -113,28 +113,29 @@ public class HomeWork {
 		System.out.println("컴퓨터가 당신을 공격하려 합니다.");
 		System.out.println("가위바위보를 이겨서 멈추게 해야 합니다.");
 
-		while(true) {
+		while(yesOrNo) {
 			System.out.println("1:가위, 2:바위, 3:보");
 			System.out.print("번호를 입력하세요.");
 			people = sc.nextInt();
 			com = rd.nextInt(3) + 1;
 			System.out.println("컴: "+com);
 
-			if(win[people - 1][com - 1] == 3) {
+			if(judgment[people - 1][com - 1] == 3) {
 				System.out.println("비겼습니다.");
 			}
-			else if(win[people - 1][com - 1] == 1) {
+			else if(judgment[people - 1][com - 1] == 1) {
 				System.out.println("당신이 이겼습니다.");
 			}
 			else {
 				System.out.println("컴퓨터가 이겼습니다.");
 				System.out.println("당신은 죽었습니다.");
 			}
-
-
+			System.out.println("한번 더?[Y/N]");
+			buttonY = sc.next();
+			yesOrNo = (buttonY.equals("Y") || buttonY.equals("y")) ? true : false;
 		}
 
-
+		
 	}
 
 

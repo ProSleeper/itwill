@@ -1,6 +1,7 @@
 package com.ToDoList;
 
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
@@ -19,11 +20,13 @@ public class Home_Panel extends JPanel{
 	// 체크박스와 버튼을 하나의 패널로
 	public Home_Panel(Main_Frame mainFrame)  {
 		this.mainFrame = mainFrame;
+		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
-		
 		scrollPanelCreate();
-		
+		for (int i = 1; i <= 20; i++) {
+			addToDoList(new ToDoList_Object("toDoList 생성합니다. " + i + i + i + i + i + i + i + i + i + i + i));
+		}
 	}
 	
 	void scrollPanelCreate(){
@@ -44,8 +47,12 @@ public class Home_Panel extends JPanel{
 		ip.add(local_iotdp);
 		scrollPanel.add(local_iotdp);
 		scrollPanel.setPreferredSize(new Dimension( 437,30 + ip.size() * 57));
-		System.out.println(ip.size());
 		this.revalidate();
+	}
+	
+	public void DeleteToDoList(ToDoList_Object tdo)
+	{
+		System.out.println(tdo.getCheckBox().getText());
 	}
 	
 }
