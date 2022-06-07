@@ -22,8 +22,8 @@ public class IndicateOneToDo_Panel extends JPanel{
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		this.setBorder(new TitledBorder(new LineBorder(Color.black)));
 		
-		cp = new CheckBox_Panel(tdo.getCheckBox());
-		ep = new EditButton_Panel(tdo.getButton());
+		cp = new CheckBox_Panel();
+		ep = new EditButton_Panel();
 		
 	
 		

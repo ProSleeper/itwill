@@ -21,6 +21,10 @@ public class Calendar_Panel extends JPanel {
 		this.mf = mf;
 		this.setBackground(Color.black);
 		//this.setBounds(500, 500, 480, 540);
+		
+		
+		//블럭 부분은 테스트를 위한 임시 코드
+		/////////////////////////////////////////////////////////////////////////////////////////////
 		JButton btn = new JButton("생성");
 		this.add(btn);
 		
@@ -31,11 +35,10 @@ public class Calendar_Panel extends JPanel {
 				String todoText = JOptionPane.showInputDialog("할일을 입력하세요");
 			
 				if(todoText != null && !todoText.equals("")) {
-					Main_Frame.createList(todoText);
+					DataManager.getInstance().createList(todoText);
 				}
-				
-				
 			}
 		});
+		/////////////////////////////////////////////////////////////////////////////////////////////
 	}
 }

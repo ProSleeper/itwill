@@ -1,121 +1,67 @@
 package com.ToDoList;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.font.TextAttribute;
-import java.util.Map;
-import java.util.Random;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JOptionPane;
+import java.time.LocalDate;
 
 public class ToDoList_Object {
-	private JCheckBox cb = null;
-	private JButton btn = null;
 	
-	private boolean todo = false;
-	
-	private Font activeFont = null;
-	private Font completedFont = null;
+	private String text;
+	private boolean isCheck;
+	private int[] date;
+	private int type = -1;
 	
 	
 	public ToDoList_Object(String toDoText) {
 		
-		checkboxCreate(toDoText);
-		buttonCreate();
-		setColor(Color.WHITE);
+		text = toDoText;
+		isCheck = false;
+		date = new int[3];
+//		type = xx; 이 부분도 구현해야 하는데 그건 차후에
 		
-		
-		
-		//배경색 변경 나중에 다른 부분으로 이동
-//		cb.setBackground(Color.LIGHT_GRAY);
-//		btn.setBackground(Color.LIGHT_GRAY);
-	}
-	public void setCheckBox(){
-		
-	}
-	public void setButton(){
-		
-	}
-	public JCheckBox getCheckBox(){
-		return cb;
-	}
-	public JButton getButton(){
-		return btn;
+		// 현재 날짜 구하기        
+		LocalDate now = LocalDate.now();
+		date[0] = now.getYear();
+		date[1] = now.getMonthValue();
+		date[2] = now.getDayOfMonth();
 	}
 	
-	void checkboxCreate(String toDoText) {
-		cb = new JCheckBox(toDoText);
-		cb.setToolTipText(cb.getText());
-		cb.setPreferredSize(new Dimension(420, 50));
-		setCheckBoxAddListner();
-		strikeFontApply();
+	public String getText() {
+		return text;
 	}
-	
-	void buttonCreate() {
-		btn = new JButton("...");
-		//지금은 딱히 코드가 없지만 나중에 버튼 클릭시 필요한 부분 코드가 생성될듯
-		setButtonAddListner();
-	}
-	
-	void strikeFontApply(){
-		Map attributes = new Font("helvetica", Font.PLAIN, 12).getAttributes();
-		attributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
-		completedFont = new Font(attributes);
-	}
-	
-	
-	
-	void setCheckBoxAddListner() {
-		cb.addActionListener(new ActionListener(){ //익명클래스로 리스너 작성
-			public void actionPerformed(ActionEvent e){
 
-				if(cb.isSelected()) {
-					cb.setFont(completedFont);
-					setColor(Color.LIGHT_GRAY);
-				}
-				else {
-					cb.setFont(activeFont);
-					setColor(Color.WHITE);
-				}
-			}
-		});
-	}
-	
-	void setButtonAddListner() {
-		btn.addActionListener(new ActionListener(){ //익명클래스로 리스너 작성
-			public void actionPerformed(ActionEvent e){
-				
-				String[] buttons = { "수정", "삭제"};
 
-				int num = JOptionPane.showOptionDialog(null, null, null, JOptionPane.YES_NO_CANCEL_OPTION,
-						JOptionPane.DEFAULT_OPTION, null, buttons, null);
-				if(num == 0) {
-					setEditCheckBoxText();
-				}
-				else {
-					
-				}
-			}
-		});
+	public void setText(String text) {
+		this.text = text;
+	}
+
+
+	public boolean isCheck() {
+		return isCheck;
+	}
+
+
+	public void setCheck(boolean isCheck) {
+		this.isCheck = isCheck;
+	}
+
+
+	public int[] getDate() {
+		return date;
+	}
+
+
+	public void setDate(int[] date) {
+		this.date = date;
+	}
+
+
+	public int getType() {
+		return type;
+	}
+
+
+	public void setType(int type) {
+		this.type = type;
 	}
 	
-	void setEditCheckBoxText() {
-		Object todoText = JOptionPane.showInputDialog(null, "수정 해주세요", "수정", JOptionPane.DEFAULT_OPTION, null, null, cb.getText());
-		
-		if(todoText != null) {
-			if(!todoText.equals("")) {
-				cb.setText(todoText.toString());
-			}
-		}
-	}
 	
-	void setColor(Color color) {
-		cb.setBackground(color);
-		btn.setBackground(color);
-	}
 }

@@ -9,12 +9,12 @@ import javax.swing.JPanel;
 
 public class EditButton_Panel extends JPanel{
 	
-	JButton btn;
+	JButton btn = null;
 	
-	public EditButton_Panel(JButton btn) {
+	public EditButton_Panel() {
 		this.setLayout(new BorderLayout());
 		
-		this.btn = btn;
+		btn = new JButton();
 		
 		this.add(btn, BorderLayout.EAST);
 		btn.addMouseListener(new MouseAdapter() { //클래스 이름없이 어뎁터 클래스 생성

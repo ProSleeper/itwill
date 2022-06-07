@@ -17,7 +17,6 @@ public class Main_Frame extends JFrame{
 	static Main_Frame mainFrame;
 	static Home_Panel hp;
 	static Calendar_Panel cp;
-	static CreateToDoList_Normal ctdl;
 	
 	
 	//메인프레임
@@ -30,12 +29,6 @@ public class Main_Frame extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
-	//리스트 생성 이벤트가 발생했을 때 이 메서드를 실행해서 생성해줌
-	public static void createList(String toDoText) {
-		hp.addToDoList(ctdl.createToDoList(toDoText));
-	}
-	
-	
 	
 	//싱글턴 객체가 main 함수를 가지고 있어도 되나? 안되나? 모르겠다.
 	public static void main(String[] args) {
@@ -43,14 +36,10 @@ public class Main_Frame extends JFrame{
 		mainFrame = new Main_Frame();
 		hp = new Home_Panel(mainFrame);
 		cp = new Calendar_Panel(mainFrame);
-		ctdl = new CreateToDoList_Normal();
 		
 		
 		mainFrame.add(hp);
 		mainFrame.add(cp);
-		
-		//Container cn = mainFrame.getContentPane();
-		//cn.setLayout(new GridLayout(1, 1));
 		mainFrame.setVisible(true);
 
 	}

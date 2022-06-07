@@ -11,17 +11,16 @@ public class CheckBox_Panel extends JPanel{
 
 	public JCheckBox cb = null;
 	
-	public CheckBox_Panel(JCheckBox cb) {
+	public CheckBox_Panel() {
+		
 		this.setBackground(Color.red);
 		this.setLayout(new BorderLayout());
-		this.cb = cb;
-		
+		cb = new JCheckBox();
 		
 		this.cb.setToolTipText(cb.getText());
 		ToolTipManager ttm = ToolTipManager.sharedInstance();
 		ttm.setInitialDelay(100);
 		ttm.setDismissDelay(10000);
-		
 		
 		this.cb.setPreferredSize(new Dimension(400, 50));
 		

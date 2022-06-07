@@ -50,9 +50,10 @@ public class Home_Panel extends JPanel{
 		this.revalidate();
 	}
 	
-	public void DeleteToDoList(ToDoList_Object tdo)
-	{
-		System.out.println(tdo.getCheckBox().getText());
-	}
+	//삭제 코드 추후에
+//	public void DeleteToDoList(ToDoList_Object tdo)
+//	{
+//		System.out.println(tdo.getCheckBox().getText());
+//	}
 	
 }
