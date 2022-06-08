@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="C:\\Users\\ITWILL\\Downloads\\미니언즈 그림파일\\" key="selection"/>
+		<item value="k" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="j2"/>
 			<item value="D:\\Eclipse\\Java\\그림파일\\"/>
 			<item value="long"/>
 			<item value="color"/>
@@ -19,6 +20,7 @@
 			<item value="Pan"/>
 		</list>
 		<list key="replacehistory">
+			<item value="k"/>
 			<item value="C:\\Users\\ITWILL\\Downloads\\미니언즈 그림파일\\"/>
 			<item value="int"/>
 			<item value="judgment"/>

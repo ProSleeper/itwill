@@ -2,34 +2,31 @@ package com.ToDoList;
 
 import java.util.ArrayList;
 
+import javax.swing.ToolTipManager;
+
 //화면에 뿌려주는 모든 것을 관리
 public class UIManager {
-	
-	
-	private static UIManager	um = null;
-	private static DataManager	dm = null;
-	
+	private static UIManager um = null;
+	private static DataManager dm = null;
 	
 	//UIManager가 가지고 있어야 할 패널
 	//유일하게 있어야 할 패널: main, home, calender
 	//list로 가지고 있을 패널: iotd, cb, eb
 	//여기서 cb와 eb는 iotd가 가지고 있으니까 list는 iotd만 있으면 될듯
-	private Main_Frame		mainFrame = null;
-	private Home_Panel		homePanel = null;
-	private Calendar_Panel	calenderPanel = null;
+	private static Main_Frame mainFrame = null;
 	
-	ArrayList<IndicateOneToDo_Panel> iotd = null;
-	ArrayList<ToDoList_Object> tdlo = null;
+	private ToDoUIFactory tduf = null;
+	private ArrayList<IndicateOneToDo_Panel> iotd = null;
+	private ArrayList<ToDoList_Object> tdlo = null;
 	
 	//이 모든 패널들을 다 가지고 있는 게 맞나?
 	//메인 하나만 가지고 있고 나머지는 하위로 처리하도록 두는 게 나으려나?
 
 	private UIManager(){
-		mainFrame = new Main_Frame();
-		homePanel = new Home_Panel(mainFrame);
-		calenderPanel = new Calendar_Panel(mainFrame);
-		
-		tdlo = DataManager.getInstance().getData();	//DataManager에 있는 데이터를 가져옴.
+		iotd = new ArrayList<>();
+		tdlo = DataManager.getInstance().getData();	//데이터가 들어있는 ARRAYLIST가져옴.
+		tduf = new ToDoUIFactory();
+		TooltipSetting();
 		//여기서 arraylist를 callValue 인지 callRef인지 확인이 필요함.
 	}
 	
@@ -40,10 +37,20 @@ public class UIManager {
 		return um;
 	}
 	
+	public static void main(String[] args) {
+		mainFrame = new Main_Frame();
+		mainFrame.SetUI();
+	}
+	
+	public void createToDoPanel(){
+		IndicateOneToDo_Panel localTDL = tduf.createToDoList(tdlo.get(tdlo.size() - 1).getText()); 
+		iotd.add(localTDL);
+		mainFrame.getHp().addToDoList(localTDL, iotd.size());
+	}
+	
 	//dataList에 담긴 데이터를 panelList에 뿌려주는 부분을 만들면 될듯
 	private void setData(){
-//		tdlo.get
-		//
+
 	}
 	
 	private void setMainFrame(Main_Frame mainFrame) {
@@ -52,6 +59,12 @@ public class UIManager {
 	
 	private void setDataManager(DataManager dataManager) {
 			
+	}
+	
+	private void TooltipSetting(){
+		ToolTipManager ttm = ToolTipManager.sharedInstance();
+		ttm.setInitialDelay(100);
+		ttm.setDismissDelay(10000);
 	}
 	
 }

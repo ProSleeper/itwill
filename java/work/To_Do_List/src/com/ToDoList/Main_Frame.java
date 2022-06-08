@@ -14,9 +14,8 @@ import javax.swing.ToolTipManager;
 //이런 형식이 맞는 건가의 의문은 계속 존재한다.
 public class Main_Frame extends JFrame{
 		
-	static Main_Frame mainFrame;
-	static Home_Panel hp;
-	static Calendar_Panel cp;
+	private Home_Panel hp;
+	private Calendar_Panel cp;
 	
 	
 	//메인프레임
@@ -29,19 +28,29 @@ public class Main_Frame extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
+	public void SetUI() {
+		hp = new Home_Panel();
+		cp = new Calendar_Panel();
+		
+		this.add(hp);
+		this.add(cp);
+		this.setVisible(true);
+	}
 	
-	//싱글턴 객체가 main 함수를 가지고 있어도 되나? 안되나? 모르겠다.
-	public static void main(String[] args) {
-		
-		mainFrame = new Main_Frame();
-		hp = new Home_Panel(mainFrame);
-		cp = new Calendar_Panel(mainFrame);
-		
-		
-		mainFrame.add(hp);
-		mainFrame.add(cp);
-		mainFrame.setVisible(true);
+	public Home_Panel getHp() {
+		return hp;
+	}
 
+	public void setHp(Home_Panel hp) {
+		this.hp = hp;
+	}
+
+	public Calendar_Panel getCp() {
+		return cp;
+	}
+
+	public void setCp(Calendar_Panel cp) {
+		this.cp = cp;
 	}
 
 }

@@ -13,18 +13,13 @@ import javax.swing.ToolTipManager;
 
 
 //ToDoList를 생성해주는 부분
-public class ToDoListFactory extends ToDo {
+public class ToDoDataFactory {
 	
-	public ToDoListFactory() {
-		
-		//이 부분은 나중에 생성 매니저 같은 곧으로 옮기면 됨
-		ToolTipManager ttm = ToolTipManager.sharedInstance();
-		ttm.setInitialDelay(100);
-		ttm.setDismissDelay(10000);
+	public ToDoDataFactory() {
 	}
 
-	@Override
-	ToDoList_Object createToDoList(String toDoText) {
+
+	ToDoList_Object createData(String toDoText) {
 //		 return new ToDoList_Object(toDoText);
 		return null;
 	}
