@@ -9,6 +9,7 @@ public class DataManager {
 	ArrayList<ToDoList_Object> tdloList = null;
 	
 	
+	
 //	private Main_Frame mainFrame = null; 아마 여기는 팩토리 클래스가 있어야 할듯?
 
 	private DataManager() {

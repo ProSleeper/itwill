@@ -11,12 +11,12 @@ import javax.swing.JPanel;
 public class EditButton_Panel extends JPanel{
 
 	JButton btn = null;
-	CheckBox_Panel cbp = null;
+	IndicateOneToDo_Panel i_panel = null;
 
-	public EditButton_Panel(CheckBox_Panel cp) {
+	public EditButton_Panel(IndicateOneToDo_Panel i_panel) {
 		this.setLayout(new BorderLayout());
 
-		cbp = cp;
+		this.i_panel = i_panel;
 		btn = new JButton("...");
 
 		this.add(btn, BorderLayout.EAST);
@@ -24,7 +24,7 @@ public class EditButton_Panel extends JPanel{
 		btn.addMouseListener(new MouseAdapter() { //클래스 이름없이 어뎁터 클래스 생성
 			public void mousePressed(MouseEvent e) {
 				if(e.getButton() == MouseEvent.BUTTON1) {
-					setEditCheckBoxText();
+					setButtonClick();
 				}
 				else if(e.getButton() == MouseEvent.BUTTON3) {
 					if(e.getClickCount() == 2) {
@@ -35,13 +35,38 @@ public class EditButton_Panel extends JPanel{
 		});
 	}
 
+	public void setButtonClick() {
+		 String[] buttons = {"수정", "삭제"};
+	        int select = JOptionPane.showOptionDialog(null, "실행할 작업을 눌러주세요..", "수정, 삭제",
+	                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, buttons, null);
+	 
+		if(select == 0) {
+			setEditCheckBoxText();
+		}
+		else if(select == 1) {
+//			System.out.println("삭제");
+			UIManager.getInstance().toDoDelete(i_panel);
+//			
+//			this.remove(btn);
+//			this.revalidate();
+//			this.repaint();
+		}
+	}
+	
 	public void setEditCheckBoxText() {
-		Object todoText = JOptionPane.showInputDialog(null, "수정 해주세요", "수정", JOptionPane.DEFAULT_OPTION, null, null, cbp.getText());
-
+		Object todoText = JOptionPane.showInputDialog(null, "수정 해주세요", "수정", JOptionPane.YES_NO_CANCEL_OPTION, null, null, i_panel.getCp().getText());
+		
 		if(todoText != null) {
 			if(!todoText.equals("")) {
-				cbp.setText(todoText.toString());
+				i_panel.getCp().setText(todoText.toString());
 			}
 		}
 	}
 }
+
+
+
+
+
+
+

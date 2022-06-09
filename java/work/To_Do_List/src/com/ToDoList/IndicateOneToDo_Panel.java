@@ -21,7 +21,7 @@ public class IndicateOneToDo_Panel extends JPanel{
 		this.setBorder(new TitledBorder(new LineBorder(Color.black)));
 		
 		cp = new CheckBox_Panel();
-		ep = new EditButton_Panel(cp);
+		ep = new EditButton_Panel(this);
 		
 		cp.setText(toDoText);
 		
@@ -45,5 +45,3 @@ public class IndicateOneToDo_Panel extends JPanel{
 		this.ep = ep;
 	}
 }
-
-

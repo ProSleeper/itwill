@@ -7,7 +7,6 @@ import javax.swing.ToolTipManager;
 //화면에 뿌려주는 모든 것을 관리
 public class UIManager {
 	private static UIManager um = null;
-	private static DataManager dm = null;
 	
 	//UIManager가 가지고 있어야 할 패널
 	//유일하게 있어야 할 패널: main, home, calender
@@ -24,8 +23,8 @@ public class UIManager {
 
 	private UIManager(){
 		iotd = new ArrayList<>();
-		tdlo = DataManager.getInstance().getData();	//데이터가 들어있는 ARRAYLIST가져옴.
 		tduf = new ToDoUIFactory();
+		tdlo = DataManager.getInstance().getData();	//데이터가 들어있는 ARRAYLIST가져옴.
 		TooltipSetting();
 		//여기서 arraylist를 callValue 인지 callRef인지 확인이 필요함.
 	}
@@ -37,27 +36,27 @@ public class UIManager {
 		return um;
 	}
 	
-	public static void main(String[] args) {
-		mainFrame = new Main_Frame();
-		mainFrame.SetUI();
-	}
-	
 	public void createToDoPanel(){
 		IndicateOneToDo_Panel localTDL = tduf.createToDoList(tdlo.get(tdlo.size() - 1).getText()); 
 		iotd.add(localTDL);
 		mainFrame.getHp().addToDoList(localTDL, iotd.size());
 	}
 	
+	public static void main(String[] args) {
+		mainFrame = new Main_Frame();
+		mainFrame.SetUI();
+	}
+	
 	//dataList에 담긴 데이터를 panelList에 뿌려주는 부분을 만들면 될듯
-	private void setData(){
+	public void setData(){
 
 	}
 	
-	private void setMainFrame(Main_Frame mainFrame) {
+	public void setMainFrame(Main_Frame mainFrame) {
 		
 	}
 	
-	private void setDataManager(DataManager dataManager) {
+	public void setDataManager(DataManager dataManager) {
 			
 	}
 	
@@ -67,6 +66,41 @@ public class UIManager {
 		ttm.setDismissDelay(10000);
 	}
 	
+	
+	//삭제한 패널을 받아와서 지우려면, 더해서 데이터의 정보다 객체가 필요함.
+	public void toDoDelete(IndicateOneToDo_Panel delObj) {
+		//삭제 버튼을 눌렀을 때 실행될 부분
+		//실상은 추상이나 인터페이스를 쓴 콜백은 아니지만
+		//느낌은 콜백느낌
+		
+		for (int i = 0; i < iotd.size(); i++) {
+			if(iotd.get(i) == delObj) {
+			
+				//현재 붙어 있는 패널이 scroll패널이라서 거기서 지움
+				mainFrame.getHp().scpan().remove(iotd.get(i));
+				
+				iotd.remove(i);
+				tdlo.remove(i);
+				System.out.println("삭제");
+			
+				mainFrame.getHp().revalidate();
+				mainFrame.getHp().repaint();
+			}
+		}
+	}
+	
+//	public void toDoTextChange(IndicateOneToDo_Panel delObj) {
+//		//삭제 버튼을 눌렀을 때 실행될 부분
+//		//실상은 추상이나 인터페이스를 쓴 콜백은 아니지만
+//		//느낌은 콜백느낌
+//		
+//		for (int i = 0; i < iotd.size(); i++) {
+//			if(iotd.get(i) == delObj) {
+//				System.out.println("같음");
+//				System.out.println("삭제");
+//			}
+//		}
+//	}
 }
 
 

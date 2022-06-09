@@ -84,3 +84,7 @@ public class CheckBox_Panel extends JPanel{
 		}
 	}
 }
+
+
+
+
