@@ -1,5 +1,6 @@
 package com.ToDoList;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.ToolTipManager;
@@ -14,7 +15,7 @@ public class UIManager {
 	//여기서 cb와 eb는 iotd가 가지고 있으니까 list는 iotd만 있으면 될듯
 	private static Main_Frame mainFrame = null;
 	
-	private ToDoUIFactory tduf = null;
+	private ToDoUIFactory tduf = null;	//팩토리메서드 사용(딱 하나만 생성이라서 의미가 있나 싶다.)
 	private ArrayList<IndicateOneToDo_Panel> iotd = null;
 	private ArrayList<ToDoList_Object> tdlo = null;
 	
@@ -36,15 +37,9 @@ public class UIManager {
 		return um;
 	}
 	
-	public void createToDoPanel(){
-		IndicateOneToDo_Panel localTDL = tduf.createToDoList(tdlo.get(tdlo.size() - 1).getText()); 
-		iotd.add(localTDL);
-		mainFrame.getSp().addToDoList(localTDL, iotd.size());
-	}
-	
 	public static void main(String[] args) {
 		mainFrame = new Main_Frame();
-		mainFrame.SetUI();
+		HaveTestCase.test_ListCreate();
 	}
 	
 	//dataList에 담긴 데이터를 panelList에 뿌려주는 부분을 만들면 될듯
@@ -67,8 +62,16 @@ public class UIManager {
 	}
 	
 	
-	//삭제한 패널을 받아와서 지우려면, 더해서 데이터의 정보다 객체가 필요함.
-	public void toDoDelete(IndicateOneToDo_Panel delObj) {
+	public void createToDoPanel(){
+		//만들때 스크롤을 가장 아래로 내려서 최신으로 만들어 진 todolist를 보도록 차후 수정
+		IndicateOneToDo_Panel localTDL = tduf.createToDoList(tdlo.get(tdlo.size() - 1).getText()); 
+		iotd.add(localTDL);
+		mainFrame.getSp().setDrawToDoList(localTDL);
+		mainFrame.getSp().revalidate();
+		mainFrame.getSp().repaint();
+	}
+	
+	public void deleteToDoPanel(IndicateOneToDo_Panel delObj) {
 		//삭제 버튼을 눌렀을 때 실행될 부분
 		//실상은 추상이나 인터페이스를 쓴 콜백은 아니지만
 		//느낌은 콜백느낌
@@ -81,164 +84,14 @@ public class UIManager {
 				
 				iotd.remove(i);
 				tdlo.remove(i);
-				System.out.println("삭제");
-				System.out.println("panel 리스트 Size: " + iotd.size());
-				System.out.println("패널리스트 Size: " + iotd.size());
 			
-				mainFrame.getSp().revalidate();
-				mainFrame.getSp().repaint();
+				//스크롤 판정 부분을 수정해야 삭제하면 스크롤이 줄어듬
+				
+				mainFrame.getSp().setScrollEdit();
+				mainFrame.getSp().getScrollPanel().revalidate();
+				mainFrame.getSp().getScrollPanel().repaint();
+				
 			}
 		}
 	}
-
-	
-	
-
-	
-//	public void toDoTextChange(IndicateOneToDo_Panel delObj) {
-//		//삭제 버튼을 눌렀을 때 실행될 부분
-//		//실상은 추상이나 인터페이스를 쓴 콜백은 아니지만
-//		//느낌은 콜백느낌
-//		
-//		for (int i = 0; i < iotd.size(); i++) {
-//			if(iotd.get(i) == delObj) {
-//				System.out.println("같음");
-//				System.out.println("삭제");
-//			}
-//		}
-//	}
 }
-
-
-
-//원래는 ToDoList_Object 가 가지고 있던 코드. 당장은 어디에 있어야 할지 모르겠어서 일단 복사만
-//
-//
-//package com.ToDoList;
-//
-//import java.awt.Color;
-//import java.awt.Dimension;
-//import java.awt.Font;
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//import java.awt.font.TextAttribute;
-//import java.util.Map;
-//import java.util.Random;
-//
-//import javax.swing.JButton;
-//import javax.swing.JCheckBox;
-//import javax.swing.JOptionPane;
-//
-//public class ToDoList_Object {
-//	
-//	private String text;
-//	private boolean isCheck;
-//	private int[] date = null;
-//	private int type = -1;
-//	
-//	private JCheckBox cb = null;
-//	private JButton btn = null;
-//	
-//	private boolean todo = false;
-//	
-//	private Font activeFont = null;
-//	private Font completedFont = null;
-//	
-//	
-//	public ToDoList_Object(String toDoText) {
-//		
-//		checkboxCreate(toDoText);
-//		buttonCreate();
-//		setColor(Color.WHITE);
-//		
-//		
-//		
-//		//배경색 변경 나중에 다른 부분으로 이동
-////		cb.setBackground(Color.LIGHT_GRAY);
-////		btn.setBackground(Color.LIGHT_GRAY);
-//	}
-//	public void setCheckBox(){
-//		
-//	}
-//	public void setButton(){
-//		
-//	}
-//	public JCheckBox getCheckBox(){
-//		return cb;
-//	}
-//	public JButton getButton(){
-//		return btn;
-//	}
-//	
-//	void checkboxCreate(String toDoText) {
-//		cb = new JCheckBox(toDoText);
-//		cb.setToolTipText(cb.getText());
-//		cb.setPreferredSize(new Dimension(420, 50));
-//		setCheckBoxAddListner();
-//		strikeFontApply();
-//	}
-//	
-//	void buttonCreate() {
-//		btn = new JButton("...");
-//		//지금은 딱히 코드가 없지만 나중에 버튼 클릭시 필요한 부분 코드가 생성될듯
-//		setButtonAddListner();
-//	}
-//	
-//	void strikeFontApply(){
-//		Map attributes = new Font("helvetica", Font.PLAIN, 12).getAttributes();
-//		attributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
-//		completedFont = new Font(attributes);
-//	}
-//	
-//	
-//	
-//	void setCheckBoxAddListner() {
-//		cb.addActionListener(new ActionListener(){ //익명클래스로 리스너 작성
-//			public void actionPerformed(ActionEvent e){
-//
-//				if(cb.isSelected()) {
-//					cb.setFont(completedFont);
-//					setColor(Color.LIGHT_GRAY);
-//				}
-//				else {
-//					cb.setFont(activeFont);
-//					setColor(Color.WHITE);
-//				}
-//			}
-//		});
-//	}
-//	
-//	void setButtonAddListner() {
-//		btn.addActionListener(new ActionListener(){ //익명클래스로 리스너 작성
-//			public void actionPerformed(ActionEvent e){
-//				
-//				String[] buttons = { "수정", "삭제"};
-//
-//				int num = JOptionPane.showOptionDialog(null, null, null, JOptionPane.YES_NO_CANCEL_OPTION,
-//						JOptionPane.DEFAULT_OPTION, null, buttons, null);
-//				if(num == 0) {
-//					setEditCheckBoxText();
-//				}
-//				else {
-//					
-//				}
-//			}
-//		});
-//	}
-//	
-//	void setEditCheckBoxText() {
-//		Object todoText = JOptionPane.showInputDialog(null, "수정 해주세요", "수정", JOptionPane.DEFAULT_OPTION, null, null, cb.getText());
-//		
-//		if(todoText != null) {
-//			if(!todoText.equals("")) {
-//				cb.setText(todoText.toString());
-//			}
-//		}
-//	}
-//	
-//	void setColor(Color color) {
-//		cb.setBackground(color);
-//		btn.setBackground(color);
-//	}
-//}
-

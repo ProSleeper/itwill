@@ -6,12 +6,11 @@ public class ToDoUIFactory {
 	
 	public ToDoUIFactory() {
 		
-		//이 부분은 나중에 생성 매니저 같은 곧으로 옮기면 됨
+		
 		
 	}
 
-
-	//차후 매개변수로는 data를 받는 부분이 되어야 할듯
+	//현재는 아무것도 없지만 추후에 다른 listObject 종류를 만든다고 한다면 상속을 통해서 만들면 되겠다.
 	IndicateOneToDo_Panel createToDoList(String toDoText) {
 //		 return new ToDoList_Object(toDoText);
 		return new IndicateOneToDo_Panel(toDoText);

@@ -38,8 +38,6 @@ public class IndicateOneToDo_Panel extends JPanel{
 		jb = new JButton("...");
 		
 		jcb.setMaximumSize(new Dimension(Integer.MAX_VALUE, jcb.getMinimumSize().height));
-		
-		
 
 		activeFont = Assistant_Data.FontSelect("active");
 		completedFont = Assistant_Data.FontSelect("strike");
@@ -90,7 +88,7 @@ public class IndicateOneToDo_Panel extends JPanel{
 		}
 		else if(select == 1) {
 			//			System.out.println("ªË¡¶");
-			UIManager.getInstance().toDoDelete(this);
+			UIManager.getInstance().deleteToDoPanel(this);
 			//			
 			//			this.remove(btn);
 			//			this.revalidate();
