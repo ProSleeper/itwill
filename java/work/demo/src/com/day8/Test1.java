@@ -95,7 +95,6 @@ public class Test1 {
 		for (int i = 0; i < alphabet.length() ; i++) {
 			result += si.get(String.valueOf(alphabet.charAt(i)));
 		}
-		
 		System.out.println(result);
 	}
 	

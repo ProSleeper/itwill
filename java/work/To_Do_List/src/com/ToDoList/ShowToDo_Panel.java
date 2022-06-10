@@ -62,7 +62,6 @@ public class ShowToDo_Panel extends JPanel {
 		this.arraySize++;
 		scrollPanel.add(iotdp);
 		scrollPanel.setPreferredSize(new Dimension( 437,30 + this.arraySize * iotdScrollSize));
-		System.out.println(30 + this.arraySize * iotdScrollSize);
 	}
 	
 	public void setScrollEdit()

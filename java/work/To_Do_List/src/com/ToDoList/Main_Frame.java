@@ -30,10 +30,11 @@ public class Main_Frame extends JFrame{
 	public Main_Frame() {
 		SetUI();
 		createMenu();
+		setTitle("여기를 드래그하면 창을 이동할 수 있습니다.");
 		setLayout(new GridLayout(1, 1));	//그리드레이아웃은 딱히 설정의 제한이 강력하지 않은가보다. 대충 panel붙여도 다 붙여지네
 		setVisible(true);
 		setSize(960, 540);
-		setResizable(true);
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
