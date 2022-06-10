@@ -39,7 +39,7 @@ public class UIManager {
 	public void createToDoPanel(){
 		IndicateOneToDo_Panel localTDL = tduf.createToDoList(tdlo.get(tdlo.size() - 1).getText()); 
 		iotd.add(localTDL);
-		mainFrame.getHp().addToDoList(localTDL, iotd.size());
+		mainFrame.getSp().addToDoList(localTDL, iotd.size());
 	}
 	
 	public static void main(String[] args) {
@@ -77,17 +77,23 @@ public class UIManager {
 			if(iotd.get(i) == delObj) {
 			
 				//현재 붙어 있는 패널이 scroll패널이라서 거기서 지움
-				mainFrame.getHp().scpan().remove(iotd.get(i));
+				mainFrame.getSp().getScrollPanel().remove(iotd.get(i));
 				
 				iotd.remove(i);
 				tdlo.remove(i);
 				System.out.println("삭제");
+				System.out.println("panel 리스트 Size: " + iotd.size());
+				System.out.println("패널리스트 Size: " + iotd.size());
 			
-				mainFrame.getHp().revalidate();
-				mainFrame.getHp().repaint();
+				mainFrame.getSp().revalidate();
+				mainFrame.getSp().repaint();
 			}
 		}
 	}
+
+	
+	
+
 	
 //	public void toDoTextChange(IndicateOneToDo_Panel delObj) {
 //		//삭제 버튼을 눌렀을 때 실행될 부분

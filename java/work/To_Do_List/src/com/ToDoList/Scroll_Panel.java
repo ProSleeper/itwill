@@ -1,6 +1,6 @@
 package com.ToDoList;
 
-
+import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -12,28 +12,28 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-public class Home_Panel extends JPanel{
+
+public class Scroll_Panel extends JPanel {
 
 	private ArrayList<IndicateOneToDo_Panel> ip = new ArrayList<>();
-	private JPanel scrollPanel;
+	private JFrame jp;
 	
 	// 체크박스와 버튼을 하나의 패널로
-	public Home_Panel(JFrame jp) {
-		
+	public Scroll_Panel() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		scrollPanelCreate();
 	}
 	
-	public void scrollPanelCreate(){
-		scrollPanel = new JPanel();
-		scrollPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 3, 5));
+	private void scrollPanelCreate(){
+		
+		this.setLayout(new FlowLayout(FlowLayout.LEFT, 3, 5));
 //		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));	//boxlayout으로 세로로 1개씩 정렬하고 싶은데 크기 고정하는 걸 모르겠다...
-		JScrollPane scrollFrame = new JScrollPane(scrollPanel);
+		JScrollPane scrollFrame = new JScrollPane(this);
 		scrollFrame.getVerticalScrollBar().setUnitIncrement(16);
 		scrollFrame.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollFrame.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPanel.setAutoscrolls(true);
-		
+		this.setAutoscrolls(true);
+		//jp.add(scrollFrame);
 	}
 
 	//이 메서드는 todolist한개 ui를 생성해주는 부분(아직 데이터를 넣는 부분은 없다.)
@@ -52,14 +52,14 @@ public class Home_Panel extends JPanel{
 	{
 		iotdp.setPreferredSize(new Dimension((int)(this.getSize().width * 0.94), (int)(this.getSize().height * 0.10)));
 		
-		scrollPanel.add(iotdp);
-		scrollPanel.setPreferredSize(new Dimension( 437,30 + arraySize * 57));
+		this.add(iotdp);
+		this.setPreferredSize(new Dimension( 437,30 + arraySize * 57));
 		this.revalidate();
 	}
 	
 	public JPanel getScrollPanel()
 	{
-		return scrollPanel;
+		return this;
 	}
 	
 	

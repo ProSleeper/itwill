@@ -16,6 +16,7 @@ public class Main_Frame extends JFrame{
 		
 	private Home_Panel hp;
 	private Calendar_Panel cp;
+	private Scroll_Panel sp;
 	
 	
 	//메인프레임
@@ -29,11 +30,15 @@ public class Main_Frame extends JFrame{
 	}
 	
 	public void SetUI() {
-		hp = new Home_Panel();
+//		hp = new Home_Panel();
+		sp = new Scroll_Panel();
 		cp = new Calendar_Panel();
 		
-		this.add(hp);
+		
+		//this.add(hp);
+		this.add(sp);
 		this.add(cp);
+		
 		this.setVisible(true);
 	}
 	
@@ -53,4 +58,14 @@ public class Main_Frame extends JFrame{
 		this.cp = cp;
 	}
 
+	public Scroll_Panel getSp() {
+		return sp;
+	}
+
+	public void setSp(Scroll_Panel sp) {
+		this.sp = sp;
+	}
+
+
+	
 }
