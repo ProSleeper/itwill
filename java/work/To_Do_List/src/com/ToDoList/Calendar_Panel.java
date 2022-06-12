@@ -21,8 +21,8 @@ import javax.swing.JPanel;
 
 public class Calendar_Panel extends JPanel {
 
-	private final int GRID_SIZE = 700;
-	String[] week = {"일", "월","화", "수", "목", "금","토"};
+	private final int GRID_SIZE = 7;
+	String[] week = {"일", "월", "화", "수", "목", "금", "토"};
 	String[] arrow = {"<<", ">>"};
 
 
@@ -39,7 +39,7 @@ public class Calendar_Panel extends JPanel {
 		int dayInt = 1;
 		long miliseconds = System.currentTimeMillis();
 		Date date = new Date(miliseconds);
-		System.out.println(miliseconds);
+		//System.out.println(miliseconds);
 		
 //		for (int i = 0; i < GRID_SIZE; i++) {
 //			for (int j = 0; j < GRID_SIZE; j++) {
@@ -86,7 +86,7 @@ public class Calendar_Panel extends JPanel {
 	}
 		
 		Date dd = new Date();
-		System.out.println(dd.getTime());
+		//System.out.println(dd.getTime());
 
 		//		System.out.println(dd.getTime() / 1000 / 60 / 60/ 24/ 365);
 		//		System.out.println("일: " + dd.getTime() / 1000 / 60 / 60/ 24);
