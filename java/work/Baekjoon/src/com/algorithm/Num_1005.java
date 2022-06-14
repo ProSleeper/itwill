@@ -60,9 +60,7 @@ public class Num_1005 {
 
 				bDegree[rBuild]++;
 			}
-
 			target = sc.nextInt();
-
 
 			while(true) {
 				for (int i = 1; i <= bCount; i++) {
@@ -103,14 +101,11 @@ public class Num_1005 {
 						bDegree[deleteLine]--;
 					}
 					bDegree[i] = -1;
-
 				}
-				
 				sum[p] += bTime.get(bNumber);
 				queue.clear();
 			}
 		}
-
 		for (int i = 0; i < testCase; i++) {
 			System.out.println(sum[i]);
 		}

@@ -60,14 +60,14 @@ public class TimeProcess {
 		Scanner sc = new Scanner(System.in);
 		int inputHour = 0;
 		int inputMinute = 0;
-		int earlyTime = 0;
+		int varTime = 0;
 		
 		inputHour = Integer.parseInt(sc.next());
 		inputMinute = Integer.parseInt(sc.next());
-		earlyTime = Integer.parseInt(sc.next());
+		varTime = Integer.parseInt(sc.next());
 		
 		TimeP tp = new TimeP(inputHour, inputMinute);
-		tp.changeHour(earlyTime);
+		tp.changeHour(varTime);
 		tp.printTime();
 		
 	}
