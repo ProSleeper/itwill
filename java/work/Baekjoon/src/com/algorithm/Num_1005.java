@@ -6,10 +6,6 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
-class Building{
-
-}
-
 
 public class Num_1005 {
 	public static void main(String[] args) {
@@ -20,86 +16,135 @@ public class Num_1005 {
 		//건물의 건설 시간(건물의 수 만큼)
 		//건물의 조건(조건의 수 만큼)
 
-		int testCase = sc.nextInt();
-		int nOB = sc.nextInt();	//number of building
-		int nRQ = sc.nextInt(); //number of requirements
-		int nTarget = 0;
+		int testCase = sc.nextInt();	//테스트 케이스
 
+		int bCount = 0;
+		int bRequireCount = 0;
+		HashMap<Integer, Integer> bTime = new HashMap<>();
+		HashMap<Integer, ArrayList<Integer>> bAdjust = new HashMap<>();
+		ArrayList<Integer> queue = new ArrayList<>();
+		//		HashMap<Integer, Integer> bDegree = new HashMap<>();
+		int[] bDegree = null;
+		int target = 0;
 
-
-		//Integer 정점의 번호
-		//String[2] index 0은 정점이 가리키는 정점
-		//index 1은 정점을 가리키는 정점의 수
-		//모두 String으로 판단하기로 함.
-		HashMap<Integer, String[]> buildInfo = new HashMap<>();	//정점의 정보
-		HashMap<Integer, Integer> buildTime = new HashMap<>();		//정점의 건설 시간
-
-		//건설 시간 입력
-		for (int i = 0; i < nRQ; i++) {
-			int buildingNumber = i + 1;
-			int bTime = sc.nextInt();
-			buildTime.put(buildingNumber, bTime);
-			String[] temp = new String[2];
-			temp[0] = "";
-			temp[1] = "";
-			buildInfo.put(i + 1, temp);
-		}
-
-		//건설 조건 입력
-		for (int i = 0; i < nOB; i++) {
-			int buildingNumber = sc.nextInt();
-			String bRequire = String.valueOf(sc.nextInt());
-			buildInfo.get(buildingNumber)[0]+=bRequire;
-			buildInfo.get(Integer.parseInt(bRequire))[1]+="a";
-		}
+		int[] sum = new int[testCase];
 		
-		nTarget = sc.nextInt();
-
+		
+		
 		for (int p = 0; p < testCase; p++) {
-			int sum = 0;
-			HashMap<Integer, String[]> temp = null;
+			bTime.clear();
+			bAdjust.clear();
+			queue.clear();
+
+			bCount = sc.nextInt();
+			bRequireCount = sc.nextInt();
+			bDegree = new int[bCount + 1];
+
+
+			//건설 시간 입력
+			for (int i = 1; i <= bCount; i++) {
+				int inputTime = sc.nextInt();
+				bTime.put(i, inputTime);
+				bDegree[i] = 0;
+				bAdjust.put(i, new ArrayList<Integer>());
+			}
+
+			//배열로 했으니 0부터 시작
+			//모든 번호는 -1씩 ㅎ
+			for (int i = 1; i <= bRequireCount; i++)
+			{
+				Integer lBuild = sc.nextInt();
+				Integer rBuild = sc.nextInt();
+
+				bAdjust.get(lBuild).add(rBuild);
+
+				bDegree[rBuild]++;
+			}
+
+			target = sc.nextInt();
+
+
 			while(true) {
-				//입력받은 hashmap을 순회해서 현재 가리키는 선이 0이 된 건물의 정보를 새로운 hashmap에 저장하고 그걸 지워주는 부분.
-				//이렇게 한 이유는 같은 차수에 선이 0이 된 점이 많을 경우에는 한번에 처리해야 하기 때문이다.
-				temp = new HashMap<>();	//정점의 정보
-				Iterator<Entry<Integer, String[]>> entries = buildInfo.entrySet().iterator();
-				while(entries.hasNext()){
-					Entry<Integer, String[]> entry = entries.next();
-					if(entry.getValue()[1].length() == 0) {
-						temp.put(new Integer(entry.getKey()), entry.getValue().clone());
-						entries.remove();
+				for (int i = 1; i <= bCount; i++) {
+					if (bDegree[i] == 0) {
+						queue.add(i);	//여기 저장되는 i는 차수가 0인 정점
 					}
 				}
 
-				
-				//아래 부분이 나를 가리키는 선이 0개인 모든 건물을 가져와서 시간을 비교해서 최대값을 max에 저장해주고 그걸 sum에 저장해주는 부분
-				//sum에 더해지게 말고 큐를 만들어서 거기에 번호와 번호에 따른 시간을 넣어주면 될듯.
-				//물론 같은 차수(예를 들어서 2,3은 같은 차수에 0이 되니까) max에서 비교해서 높은 값의 번호와 시간을 넣어주면 될듯
-				int max = 0;
-				for (Entry<Integer, String[]> key : temp.entrySet()) {
-					//		System.out.println(key + " " + buildInfo.get(key)[1].length());
-					if(max < buildTime.get(key.getKey())) {
-						max = buildTime.get(key.getKey());
-					}
-					for (int i = 0; i < key.getValue()[0].length(); i++) {
-						Integer tempNumber = Integer.parseInt(String.valueOf(key.getValue()[0].charAt(i)));
-						int lastSize = buildInfo.get(tempNumber)[1].length();
-
-						buildInfo.get(tempNumber)[1] = buildInfo.get(tempNumber)[1].substring(0, lastSize - 1);
-
-					}
-				}
-				sum += max;
-				if(buildInfo.size() == 0) {
+				if(queue.size() == 0) {
 					break;
 				}
+
+				int max = - 1;
+				int bNumber = 0;
+				for (int i : queue) {	//차수가 0이 된 모든 정점을 돌면서 연결된 선을 없애면 된다.
+
+					//queue에 있는 값이 target(4)이라면.
+					//이 부분이 왜 필요하냐면 차수가 같고, 건설 시간이 같을때 같은 차수에서의 순서가
+					//1,4 일때 아래에서 비교하면 1이 순서상 먼저이기 때문에 따로 처리를 해줘야 한다.
+
+					if(i == target) {
+						bNumber = i;
+						bDegree[i] = -1;
+						for (int j = 0; j < bCount + 1; j++) {
+							bDegree[j] = -1;
+						}
+						break;
+					}
+
+					if (max < bTime.get(i)) {
+						max = bTime.get(i);
+						bNumber = i;
+					}
+					int arraySize = bAdjust.get(i).size();
+
+					for (int j = 0; j < arraySize; j++) {
+						int deleteLine = bAdjust.get(i).get(j);
+						bDegree[deleteLine]--;
+					}
+					bDegree[i] = -1;
+
+				}
+				
+				sum[p] += bTime.get(bNumber);
+				queue.clear();
 			}
-			System.out.println("잘 나오니?");
 		}
-		
-		//********************************** 중요
-		//큐에 넣는 부분 구현하고 testcase 수대로 입력받는 거 구현하면 될듯.
-		
-		System.out.println("잘 나오니?");
+
+		for (int i = 0; i < testCase; i++) {
+			System.out.println(sum[i]);
+		}
+
 	}
 }
+
+
+//1
+//6 6
+//10 5 1 1 9 8
+//1 2
+//1 4
+//2 3
+//4 5
+//3 6
+//5 6
+//6
+
+//정답 28
+//내 코드 32
+
+//1
+//10 5
+//1 2 3 4 5 6 7 8 9 10
+//1 6
+//2 7
+//3 8
+//4 9
+//5 10
+//6
+
+//정답 7
+//내 코드 11
+
+
+
