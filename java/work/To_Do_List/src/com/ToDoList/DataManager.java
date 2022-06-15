@@ -10,7 +10,7 @@ public class DataManager {
 
 	private DataManager() {
 		tdloList = new ArrayList<>();
-		setCalendar();
+//		setCalendar(); 나중에 달력 정보를 가지고 올 부분
 	}
 	
 	public static DataManager getInstance() {
@@ -42,44 +42,5 @@ public class DataManager {
 	public ArrayList<ToDoList_Object> getData(){
 		return tdloList;
 	}
-	
-	
-	//달력 계산해서 출력하는 부분 작성
-	void setCalendar() {
-		String day = "";
-		int dayInt = 1;
-		long miliseconds = System.currentTimeMillis();
-		Date date = new Date();
-		
-		System.out.println(miliseconds/1000);
-		int tSecond = (int) (miliseconds/1000);
-		int tMinute = tSecond / 60 % 60;
-		int tHour = tSecond / 60 / 60 % 24;
-		int tDay = tMinute / 60 / 24;
-		int tYear = tDay / 365 + 1970;
-		
-		System.out.println("초: " + tSecond);
-		System.out.println("분: " + tMinute);
-		System.out.println("시: " + tHour);
-		System.out.println("일: " + tDay);
-		System.out.println("년: " + tYear);
-		
-		//기준이 gmt라서 우리나라 시간을 구하려면 +9시간을 해줘야함.
-		
-		//System.out.println(date);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
