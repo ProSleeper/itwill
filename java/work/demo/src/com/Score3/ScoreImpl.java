@@ -145,5 +145,33 @@ public class ScoreImpl implements Score {
 
 	@Override
 	public void deleteHak() {
+		
+		System.out.print("?");//222
+		String hak = sc.next();
+		Iterator<ScoreVO> it = lists. iterator();
+		while(it.hasNext()) {
+			ScoreVO vo = it.next();
+			if(hak.equals(vo.getHak())) {
+				System.out.println(vo.toString());
+				lists.remove(vo);
+			}
+		}	
+	}
+	@Override
+	public void deleteName() {
+		
+		System.out.println("?");//2220
+		String name = sc.next();
+		Iterator<ScoreVO> it = lists. iterator();
+		while(it.hasNext()) {
+			ScoreVO vo = it.next();
+			if(name.equals(vo.getName())) {
+				lists.remove(vo);
+				System.out.println(vo.getName());
+			}
+			System.out.println("«ÿ¿ß");
+		}
 	}
 }
+
+

@@ -9,6 +9,7 @@ public interface Score {
 	
 	void print();
 	void deleteHak();
+	void deleteName();
 	
 	void searchHak();
 	

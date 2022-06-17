@@ -33,7 +33,7 @@ public class ScoreMain {
 		int ch;
 		while(true) {
 			do {
-				System.out.print("1. 입력 2. 출력 3. 학번오름차순정렬 4. 총점내림차순정렬 5. 종료: ");
+				System.out.print("1. 입력 2. 출력 3. 학번오름차순정렬 4. 총점내림차순정렬 5. 학번삭제 6. 이름삭제 7. 종료: ");
 				ch = sc.nextInt();
 			}while(ch<1);
 			switch(ch) {
@@ -49,6 +49,12 @@ public class ScoreMain {
 				break;
 			case 4:
 				ob.descSortTot(); 
+				break;
+			case 5:
+				ob.deleteHak(); 
+				break;
+			case 6:
+				ob.deleteName(); 
 				break;
 			default:
 				System.exit(0);			        		
