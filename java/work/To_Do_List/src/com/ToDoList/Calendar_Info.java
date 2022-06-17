@@ -30,11 +30,28 @@ public class Calendar_Info {
 
 	//달력 계산해서 출력하는 부분 작성
 	static void setCalendar() {
-
+			
+		//여기 계산 부분을 따로 빼서 버튼을 누를때마다 해당 월의 값을 빼주는 형식으로 하면 될듯.
+		//아마 그래야 오류가 없어서 제대로 작동할거 같다.
+		//물론 윤년 계산을 꼭 해야한다.
+		int[] MonthCount = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 		
 		long miliseconds = System.currentTimeMillis();
 		
 		int nDay = (int)(miliseconds/1000/60/60/24);
+		
+		
+		//테스트코드 
+		//1이면 버튼 누른거 0이면 안누른거
+		/*
+		int button = 1;
+		
+		if (button == 1) {
+			nDay += 31;
+		}
+		*/
+		
+		nDay += 365;
 		
 		int dayOfTheWeek = nDay;
 		
@@ -44,7 +61,7 @@ public class Calendar_Info {
 		int presentDay = 1970;
 		int countOfYear = 0;
 		
-		int[] MonthCount = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		
 		
 		while (true) {
 			countOfYear = ((presentDay % 4) != 0 || (presentDay % 100) == 0 && (presentDay % 400) != 0) ? 365 : 366; 
