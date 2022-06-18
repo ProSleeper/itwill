@@ -20,87 +20,200 @@ public class Calendar_Info {
 
 	 */
 
+
+	static int dayValue = 0;
+	static boolean leafYear = false;
+
+
 	public static void main(String[] args) {
-		setCalendar();
+		Calendar_Info ci = new Calendar_Info();
+		ci.setCalendar();
+		ci.setCalendar(dayValue);
 	}
 
-	public void initializeCalendar()
-	{
+	public void initializeCalendar(){
 	}
 
 	//달력 계산해서 출력하는 부분 작성
-	static void setCalendar() {
-			
-		//여기 계산 부분을 따로 빼서 버튼을 누를때마다 해당 월의 값을 빼주는 형식으로 하면 될듯.
-		//아마 그래야 오류가 없어서 제대로 작동할거 같다.
-		//물론 윤년 계산을 꼭 해야한다.
-		int[] MonthCount = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-		
+	void setCalendar() {
+
+
 		long miliseconds = System.currentTimeMillis();
-		
 		int nDay = (int)(miliseconds/1000/60/60/24);
-		
-		
-		//테스트코드 
-		//1이면 버튼 누른거 0이면 안누른거
-		/*
-		int button = 1;
-		
-		if (button == 1) {
-			nDay += 31;
-		}
-		*/
-		
-		nDay += 365;
-		
+		int[] MonthCount = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+
+		nDay += 1; //오늘은 날짜에 포함이 되지 않기 때문에 +1
+
 		int dayOfTheWeek = nDay;
-		
-		
-		
+
 		//이 부분이 올해 -1년까지를 뺀 올해가 몇일째인지 구하는 코드
 		int presentDay = 1970;
 		int countOfYear = 0;
-		
-		
-		
+
 		while (true) {
 			countOfYear = ((presentDay % 4) != 0 || (presentDay % 100) == 0 && (presentDay % 400) != 0) ? 365 : 366; 
-			
+
 			if(nDay < countOfYear) {
 				break;
 			}
-			
+
 			nDay -= countOfYear;
 			presentDay++;
 		}
-		
-		
+
+
 		int yearOfMonth = 0;
-		
+
 		for (yearOfMonth = 0; yearOfMonth < MonthCount.length; yearOfMonth++) {
-			
+
 			if (nDay <= MonthCount[yearOfMonth]) {
 				break;
 			}
-			
+
 			if((countOfYear % 365) == 1 && yearOfMonth == 1) {
 				//윤년
 				nDay -= 29;
 				continue;
 			}
-			
 			nDay-= MonthCount[yearOfMonth];
-		}	
-		
+		}
+
 		dayOfTheWeek = (dayOfTheWeek - nDay + 4) % 7;	//이 값은 현재 이번달의 시작 요일이 저장됨.
-		
+		dayValue = nDay;
+
 		System.out.println(dayOfTheWeek);		//월의 시작되는 요일
-		System.out.println(nDay + 1);			//오늘
+		System.out.println(nDay);			//오늘
 		System.out.println(yearOfMonth + 1);	//이번달
 		System.out.println(presentDay);			//올해
-		
+
 		System.out.println("잘 오나?");
-	
+
+	}
+	boolean CheckLeafYear(int pDay) {
+
+
+		long miliseconds = System.currentTimeMillis();
+		int nDay = (int)(miliseconds/1000/60/60/24);
+		int[] MonthCount = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+
+		nDay += 1; //오늘은 날짜에 포함이 되지 않기 때문에 +1
+
+		int dayOfTheWeek = nDay;
+
+		//이 부분이 올해 -1년까지를 뺀 올해가 몇일째인지 구하는 코드
+		int presentDay = 1970;
+		int countOfYear = 0;
+
+		while (true) {
+			countOfYear = ((presentDay % 4) != 0 || (presentDay % 100) == 0 && (presentDay % 400) != 0) ? 365 : 366; 
+
+			if(nDay < countOfYear) {
+				break;
+			}
+
+			nDay -= countOfYear;
+			presentDay++;
+		}
+
+
+		int yearOfMonth = 0;
+
+		for (yearOfMonth = 0; yearOfMonth < MonthCount.length; yearOfMonth++) {
+
+			if (nDay <= MonthCount[yearOfMonth]) {
+				break;
+			}
+
+			if((countOfYear % 365) == 1 && yearOfMonth == 1) {
+				//윤년
+				nDay -= 29;
+				continue;
+			}
+			nDay-= MonthCount[yearOfMonth];
+		}
+
+		dayOfTheWeek = (dayOfTheWeek - nDay + 4) % 7;	//이 값은 현재 이번달의 시작 요일이 저장됨.
+		dayValue = nDay;
+
+		System.out.println(dayOfTheWeek);		//월의 시작되는 요일
+		System.out.println(nDay);			//오늘
+		System.out.println(yearOfMonth + 1);	//이번달
+		System.out.println(presentDay);			//올해
+
+		System.out.println("잘 오나?");
+		return false;
+
+	}
+
+
+	//버튼을 입력 받으면 pValue값
+	void setCalendar(int pValue) {
+
+		long miliseconds = System.currentTimeMillis();
+		int nDay = (int)(miliseconds/1000/60/60/24);
+		int[] MonthCount = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+
+		//테스트코드 
+		//1이면 버튼 누른거 0이면 안누른거
+
+		int button = 1;
+
+		if (button == 1) {
+			nDay += 31;
+		}
+
+
+
+
+		nDay += 1; //오늘은 날짜에 포함이 되지 않기 때문에 +1
+		//nDay -= (pValue - 1);	//여기로 날짜 조정을 하면 될	pValu는 이번 달의 오늘까지 날짜인데 만약 18일일때 18을 빼면 전달의 마지막 날이 나오기 때문에 +1
+		nDay = nDay - pValue + 1;
+		int dayOfTheWeek = nDay;
+
+		//이 부분이 올해 -1년까지를 뺀 올해가 몇일째인지 구하는 코드
+		int presentDay = 1970; //현재 System.currentTimeMillis();로 시간 구한다. 1970년1월1일부터 현재까지의 밀리초를 반환해준다. 그래서 1970
+		int countOfYear = 0;	//윤년이면 366 평년이면 365을 저장할 변
+
+		while (true) {
+			countOfYear = ((presentDay % 4) != 0 || (presentDay % 100) == 0 && (presentDay % 400) != 0) ? 365 : 366; 
+
+			if(nDay < countOfYear) {
+				break;
+			}
+
+			nDay -= countOfYear;
+			presentDay++;
+		}
+
+
+		int yearOfMonth = 0;
+
+		for (yearOfMonth = 0; yearOfMonth < MonthCount.length; yearOfMonth++) {
+
+			if (nDay <= MonthCount[yearOfMonth]) {
+				break;
+			}
+
+			if((countOfYear % 365) == 1 && yearOfMonth == 1) {
+				//윤년
+				nDay -= 29;
+				continue;
+			}
+			nDay-= MonthCount[yearOfMonth];
+		}
+
+		dayOfTheWeek = (dayOfTheWeek - nDay + 4) % 7;	//이 값은 현재 이번달의 시작 요일이 저장됨.
+
+		System.out.println(dayOfTheWeek);		//월의 시작되는 요일
+		System.out.println(nDay);			//오늘
+		System.out.println(yearOfMonth + 1);	//이번달
+		System.out.println(presentDay);			//올해
+
+		System.out.println("잘 오나?");
+
 	}
 
 }

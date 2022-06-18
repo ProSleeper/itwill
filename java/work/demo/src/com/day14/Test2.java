@@ -9,6 +9,8 @@ public class Test2 {
 	private static String city[] = {"서울", "부산", "대구", "인천", "광주", "대전", "울산"};
 	static Vector<String> v;
 	
+	
+	
 	public static void print(){
 		for (String c : v) {
 			System.out.print(c + " ");
