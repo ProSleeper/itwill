@@ -139,6 +139,5 @@ public class ScoreImpl implements Score {
 		
 		System.out.println(hMap.get(result) + "찾았습니다.");
 		return result;
-		
 	}
 }
