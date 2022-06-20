@@ -4,18 +4,23 @@ public class SignUpVO {
 	private String id;
 	private String password;
 	private String name;
+	private String gender;
+	private String birth;
 	private String eMail;
 	private String phone;
 	private String joinDate;
 	
-	public void set(String id, String name, String password, String eMail, String phone) {
+	public void set(String id, String password, String name, String gender, String birth, String eMail, String phone, String joinDate) {
 		this.id = id;
 		this.password = password;
 		this.name = name;
+		this.gender = gender;
+		this.birth = birth;
 		this.eMail = eMail;
 		this.phone = phone;
+		this.joinDate = joinDate;
 	}
-	public void set(String password, String eMail, String phone) {
+	public void set(String password, String name, String gender, String eMail, String phone) {
 		this.password = password;
 		this.eMail = eMail;
 		this.phone = phone;
@@ -57,8 +62,21 @@ public class SignUpVO {
 		this.joinDate = pYear.toString() + "-" +  String.format("%02d", pMonth) + "-" + String.format("%02d", pDay);
 	}
 	public String toString() {
-		String str = String.format("%10s %10s %10s %10s %10s\n", id, name, eMail, phone, joinDate);
+		String str = String.format("%10s %10s %10s %10s %10s %10s\n", id, name, gender, birth, eMail, phone/*, joinDate*/);
 		return str;
+	}
+	
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
 	}
 	
 }

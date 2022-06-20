@@ -9,12 +9,14 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="queue" key="selection"/>
+		<item value="WEEK_OF_YEAR" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="WEEK_OF_YEAR"/>
+			<item value="inputVO"/>
 			<item value="400"/>
 			<item value="queue"/>
 			<item value="1"/>
@@ -28,10 +30,9 @@
 			<item value="long"/>
 			<item value="color"/>
 			<item value="win"/>
-			<item value="preloadFirstDemo"/>
-			<item value="o"/>
 		</list>
 		<list key="replacehistory">
+			<item value="inputStr"/>
 			<item value="Integer"/>
 			<item value="String"/>
 			<item value="k"/>
