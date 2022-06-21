@@ -1,5 +1,6 @@
 package com.ToDoList;
 
+import java.util.Calendar;
 
 public class Calendar_Info {
 	private static Calendar_Info ci = null;
@@ -11,18 +12,17 @@ public class Calendar_Info {
 	static private int 		curMonth = 0;		//	월 (기본값은 이번 달)
 	static private int 		curDayOfWeek = 0;	//	현재 적용된 월의 1일의 요일
 	static private int 		curDay = 0;			//	날 (기본값은 오늘)
-	
-	
+
+
 	//아래 set변수들은 계속해서 변경되는 날짜를 위해서 쓰자.
-	static private int 		setYear = 0;		//	연 (기본값은 올해)
-	static private boolean 	setIsLeaf = false;	//	연도가 윤년인지
-	static private int 		setMonth = 0;		//	월 (기본값은 이번 달)
-	static private int 		setDayOfWeek = 0;	//	현재 적용된 월의 1일의 요일
-	static private int 		setDay = 0;			//	날 (기본값은 오늘)
+	static private int 		setYear = 0;		
+	static private boolean 	setIsLeaf = false;	
+	static private int 		setMonth = 0;		
+	static private int 		setDayOfWeek = 0;	
+	static private int 		setDay = 0;			
 
 	private Calendar_Info(){
 		initializeCalendar();
-		//setCalendar(2018, 5);
 	}
 
 	public static Calendar_Info getInstance() {
@@ -46,8 +46,8 @@ public class Calendar_Info {
 		int countOfYear = 0;	//윤년이면 366 평년이면 365을 저장할 변수
 		int yearOfMonth = 0;
 		boolean isLeaf = true;
-		
-		
+
+
 		miliseconds = System.currentTimeMillis();
 		nDay = (int)(miliseconds/1000/60/60/24);
 		nDay += 1; //오늘은 날짜에 포함이 되지 않기 때문에 +1
@@ -64,7 +64,7 @@ public class Calendar_Info {
 			nDay -= countOfYear;
 			presentDay++;
 		}
-		
+
 		if ((presentDay % 4) != 0 || (presentDay % 100) == 0 && (presentDay % 400) != 0) {
 			isLeaf = false;
 		}
@@ -74,7 +74,7 @@ public class Calendar_Info {
 			if (nDay <= MonthCount[yearOfMonth] && !isLeaf || nDay <= 29 && isLeaf) {
 				break;
 			}
-			
+
 			if(yearOfMonth == 1 && isLeaf) {
 				//윤년
 				nDay -= 29;
@@ -84,14 +84,14 @@ public class Calendar_Info {
 		}
 
 		dayOfTheWeek = (dayOfTheWeek - nDay + 4) % 7;	//이 값은 현재 이번달의 시작 요일이 저장됨.
-		
+
 		curYear = presentDay;		    //	연 (기본값은 올해)
 		curIsLeaf = isLeaf;			    //	연도가 윤년인지
 		curMonth = yearOfMonth + 1;	    //	월 (기본값은 이번 달)
 		curDayOfWeek = dayOfTheWeek;    //	현재 적용된 월의 1일의 요일
 		curDay = nDay;				    //	날 (기본값은 오늘)
-		
-		
+
+
 		//바뀔 값
 		setYear = curYear;				//	연 (기본값은 올해)
 		setIsLeaf = curIsLeaf;			//	연도가 윤년인지
@@ -103,30 +103,17 @@ public class Calendar_Info {
 
 	//버튼을 누르면 1달씩 바꿔서 출력해줄 부분
 	public static void setCalendar(int pYear, int pMonth) {
-		
-		if (pMonth < 1) {
-			pMonth = 1;
-		}
-		
-		if (pMonth > 12) {
-			pMonth = 12;
-		}
-		
-		if (pYear < 1970) {
-			pYear = 1970;
-		}
-		
 		int nSetDay = (pYear - 1) * 365 + (pYear - 1) / 4 - (pYear - 1) / 100 + (pYear - 1) / 400;
 		int nSetNine = (1969) * 365 + (1969) / 4 - (1969) / 100 + (1969) / 400;
 		int yearOfDay = 0;	
 		boolean leafYear = true;
 		int dayOfTheWeek = 0;
-		
+
 		if ((pYear % 4) != 0 || (pYear % 100) == 0 && (pYear % 400) != 0) {
 			leafYear = false;
 		}
 		nSetDay -= nSetNine;
-		
+
 		for (int i = 0; i < pMonth - 1; i++) {
 			if (leafYear && i == 1) {
 				yearOfDay += 29;
@@ -134,19 +121,55 @@ public class Calendar_Info {
 			}
 			yearOfDay += MonthCount[i];
 		}
-		
+
 		nSetDay += yearOfDay;
-		
+
 		//nSetDay += 1;	//솔직히 내 생각엔 1 더해줘야 하는데 안더해주니까 제 값이 나온다. 날짜란 너무 +-1 예외가 많다.
-		
+
 		dayOfTheWeek = (nSetDay + 4) % 7;
-		
+
 		setYear = pYear;
 		setIsLeaf = leafYear;
 		setMonth = pMonth;
 		setDayOfWeek = dayOfTheWeek;
 	}
 
+	public static void nextMonth(){
+
+		int nYear = getSetYear();
+		int nMonth = getSetMonth();
+
+		nMonth += 1;
+
+		if (nMonth > 12) {
+			nMonth = 1;
+			nYear += 1;
+		}
+
+		if (nYear < 1970) {
+			nYear = 1970;
+		}
+
+		setCalendar(nYear, nMonth);
+	}
+
+	public static void prevMonth(){
+		int nYear = getSetYear();
+		int nMonth = getSetMonth();
+
+		nMonth -= 1;
+		
+		if (nMonth < 1) {
+			nMonth = 12;
+			nYear -= 1;
+		}
+
+		if (nYear < 1970) {
+			nYear = 1970;
+		}
+		
+		setCalendar(nYear, nMonth);
+	}
 
 
 	public static String monthOfMaxDay(int pMonth, int pDay)
@@ -154,7 +177,7 @@ public class Calendar_Info {
 		if((curIsLeaf || setIsLeaf) && pMonth == 2 && pDay == 29) {
 			return "29";
 		}
-		
+
 		if (MonthCount[pMonth - 1] < pDay) {
 			return "";
 		} 
