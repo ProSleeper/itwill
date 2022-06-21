@@ -14,18 +14,38 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+
+import org.omg.PortableServer.THREAD_POLICY_ID;
+import org.omg.PortableServer.ThreadPolicy;
+
+
+
 
 public class Calendar_Panel extends JPanel {
 
-	private final int GRID_SIZE = 7;
-	String[] week = {"ÀÏ", "¿ù", "È­", "¼ö", "¸ñ", "±İ", "Åä"};
+	private final int BORDERSIZE 	= 20;
+	private final int GRID_SIZE		= 7;
+	
+	
+	
+	
+	
+	
+	String[] week = {"ì¼", "ì›”", "í™”", "ìˆ˜", "ëª©", "ê¸ˆ", "í† "};
 	String[] arrow = {"<<", ">>"};
 
 	ArrayList<JButton> buttonArr = new ArrayList<>();
 	JLabel yearLabel = null;
 	JLabel monthLabel = null;
+
+	JButton returnToToday = null;
+	JButton SwapYearMonth = null;
 	JButton leftArrow = null;
 	JButton rightArrow = null;
+	
+	boolean isMoveMonth = true;
 
 	public Calendar_Panel() {
 		this.setBackground(Color.orange);
@@ -33,83 +53,152 @@ public class Calendar_Panel extends JPanel {
 		initCalendar();
 		rightButtonClick();
 		leftButtonClick();
+		swapYearMonthClick();
+		returnToTodayClick();
 	}
 
 	public void buttonClick(){
 	}
 
-	//Ä¶¸°´õ Ãâ·Â ÃÊ±âÈ­(Å°¸é Ç×»ó ¿À´ÃÀÌ ³ª¿Àµµ·Ï)
+	//ìº˜ë¦°ë” ì¶œë ¥ ì´ˆê¸°í™”(í‚¤ë©´ í•­ìƒ ì˜¤ëŠ˜ì´ ë‚˜ì˜¤ë„ë¡)
 	public void initCalendar() {
 		Calendar_Info.initializeCalendar();
 
-		//¿ù ÀÌµ¿ ¹öÆ° »ı¼º
-		leftArrow = addButton(arrow[0]);
-		this.add(new JLabel());
+		//this.add(new JLabel());
+		returnToToday = addButton("âŸ³");
+		returnToToday.setFont(new Font("helvetica", Font.BOLD, 20));
+		
 		this.add(new JLabel());
 		
-		yearLabel = new JLabel("2022³â");
+		yearLabel = new JLabel("2022ë…„");
 		yearLabel.setFont(new Font("helvetica", Font.BOLD, 17));
 		this.add(yearLabel);
-		
-		monthLabel = new JLabel("6¿ù");
+
+		monthLabel = new JLabel("6ì›”");
 		monthLabel.setFont(new Font("helvetica", Font.BOLD, 17));
 		this.add(monthLabel);
 		
-		this.add(new JLabel());
+		//ì›” ì´ë™ ë²„íŠ¼ ìƒì„±
+		leftArrow = addButton(arrow[0]);
+		SwapYearMonth = addButton("æœˆ");
+		SwapYearMonth.setBackground(Color.YELLOW);
 		rightArrow = addButton(arrow[1]);
-		//¹«½ÄÇØµµ Â÷¶ó¸® ÀÌ°Ô ´õ Á÷°üÀûÀÌ°í ¼öÁ¤ÇÏ±â ÆíÇÒµí
+		
+		//ë¬´ì‹í•´ë„ ì°¨ë¼ë¦¬ ì´ê²Œ ë” ì§ê´€ì ì´ê³  ìˆ˜ì •í•˜ê¸° í¸í• ë“¯
 
+		
 		for (int i = 0; i < GRID_SIZE; i++) {
-			addButton(week[i]);
+			addLabel(week[i]);
 		}
 
 		String viewDay = "";
-		int dayOfWeek = Calendar_Info.getCurDayOfWeek();
+		int startDayOfMonth = Calendar_Info.getCurDayOfWeek();
 		int countDay = 1;
 
-		for (int i = 1; i < GRID_SIZE; i++) {
-			for (int j = 0; j < GRID_SIZE; j++) {
-				if(dayOfWeek-- <= 0) {
-					viewDay = Calendar_Info.monthOfMaxDay(Calendar_Info.getCurMonth(), countDay++);
-				}
-				buttonArr.add(addButton(viewDay));
+		
+		boolean buttonActive = true;
+		for (int i = 0; i < GRID_SIZE * (GRID_SIZE - 1); i++) {
+		
+			if(i >= startDayOfMonth && i < Integer.parseInt(Calendar_Info.monthOfMaxDay(Calendar_Info.getCurMonth(), 50)) + startDayOfMonth) {
+				viewDay = Calendar_Info.monthOfMaxDay(Calendar_Info.getCurMonth(), countDay++);
+				buttonActive = true;
 			}
+			else {
+				viewDay = "";
+				buttonActive = false;
+			}
+			
+			JButton temp = addButton(viewDay);
+			temp.setEnabled(buttonActive);
+			buttonArr.add(temp);
+
 		}
 	}
 
 	public void setCalendar() {
-		
-		yearLabel.setText(""+(Calendar_Info.getSetYear() + "³â"));
-		monthLabel.setText(""+(Calendar_Info.getSetMonth() + "¿ù"));
+
+		yearLabel.setText(""+(Calendar_Info.getSetYear() + "ë…„"));
+		monthLabel.setText(""+(Calendar_Info.getSetMonth() + "ì›”"));
 
 		String viewDay = "";
 		int dayOfWeek = Calendar_Info.getSetDayOfWeek();
 		int countDay = 1;
 		
-		for (int i = 0; i < buttonArr.size(); i++) {
-			buttonArr.get(i).setText("");
-			if(dayOfWeek-- <= 0) {
+		boolean buttonActive = true;
+		for (int i = 0; i < GRID_SIZE * (GRID_SIZE - 1); i++) {
+		
+			if(i >= dayOfWeek && i < Integer.parseInt(Calendar_Info.monthOfMaxDay(Calendar_Info.getSetMonth(), 50)) + dayOfWeek) {
 				viewDay = Calendar_Info.monthOfMaxDay(Calendar_Info.getSetMonth(), countDay++);
-				buttonArr.get(i).setText(viewDay);
+				buttonActive = true;
 			}
+			else {
+				viewDay = "";
+				buttonActive = false;
+			}
+			buttonArr.get(i).setEnabled(buttonActive);
+			buttonArr.get(i).setText(viewDay);;
+
 		}
 	}
 
-	public void rightButtonClick() {
-		rightArrow.addMouseListener(new MouseAdapter() { //Å¬·¡½º ÀÌ¸§¾øÀÌ ¾îµªÅÍ Å¬·¡½º »ı¼º
+	public void swapYearMonthClick() {
+		SwapYearMonth.addMouseListener(new MouseAdapter() { //í´ë˜ìŠ¤ ì´ë¦„ì—†ì´ ì–´ëí„° í´ë˜ìŠ¤ ìƒì„±
 			public void mousePressed(MouseEvent e) {
 				if(e.getButton() == MouseEvent.BUTTON1) {
-					Calendar_Info.nextMonth();
+					
+					if(SwapYearMonth.getBackground() == Color.YELLOW) {
+						SwapYearMonth.setBackground(Color.cyan);
+						SwapYearMonth.setText("å¹´");
+						isMoveMonth = false;
+						return;
+					}
+					
+					SwapYearMonth.setBackground(Color.YELLOW);
+					SwapYearMonth.setText("æœˆ");
+					isMoveMonth = true;
+				}
+			}
+		});
+	}
+	
+	public void returnToTodayClick() {
+		returnToToday.addMouseListener(new MouseAdapter() { //í´ë˜ìŠ¤ ì´ë¦„ì—†ì´ ì–´ëí„° í´ë˜ìŠ¤ ìƒì„±
+			public void mousePressed(MouseEvent e) {
+				if(e.getButton() == MouseEvent.BUTTON1) {
+					Calendar_Info.setCalendar(Calendar_Info.getCurYear(), Calendar_Info.getCurMonth());
+					setCalendar();
+				}
+			}
+		});
+	}
+	
+	public void rightButtonClick() {
+		rightArrow.addMouseListener(new MouseAdapter() { //í´ë˜ìŠ¤ ì´ë¦„ì—†ì´ ì–´ëí„° í´ë˜ìŠ¤ ìƒì„±
+			public void mousePressed(MouseEvent e) {
+				if(e.getButton() == MouseEvent.BUTTON1) {
+					
+					if(isMoveMonth) {
+						Calendar_Info.nextMonth();
+					}
+					else {
+						Calendar_Info.nextYear();
+					}
+					
 					setCalendar();
 				}
 			}
 		});
 	}
 	public void leftButtonClick() {
-		leftArrow.addMouseListener(new MouseAdapter() { //Å¬·¡½º ÀÌ¸§¾øÀÌ ¾îµªÅÍ Å¬·¡½º »ı¼º
+		leftArrow.addMouseListener(new MouseAdapter() { //í´ë˜ìŠ¤ ì´ë¦„ì—†ì´ ì–´ëí„° í´ë˜ìŠ¤ ìƒì„±
 			public void mousePressed(MouseEvent e) {
 				if(e.getButton() == MouseEvent.BUTTON1) {
-					Calendar_Info.prevMonth();
+					if(isMoveMonth) {
+						Calendar_Info.prevMonth();
+					}
+					else {
+						Calendar_Info.prevYear();
+					}
 					setCalendar();
 				}
 			}
@@ -119,8 +208,18 @@ public class Calendar_Panel extends JPanel {
 	public JButton addButton(String pName) {
 		JButton jb = new JButton(pName);
 		jb.setFont(new Font("helvetica", Font.BOLD, 17));
-		this.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+		this.setBorder(BorderFactory.createEmptyBorder(BORDERSIZE, BORDERSIZE, BORDERSIZE, BORDERSIZE));
 		this.add(jb);
 		return jb;
+	}
+	
+	public void addLabel(String pName) {
+		JLabel lWeek = new JLabel(pName);
+		lWeek.setFont(new Font("helvetica", Font.BOLD, 17));
+		lWeek.setHorizontalAlignment(JLabel.CENTER);
+		lWeek.setOpaque(true);
+		lWeek.setBackground(Color.pink);
+		lWeek.setBorder(new BevelBorder(BevelBorder.RAISED));
+		this.add(lWeek);
 	}
 }

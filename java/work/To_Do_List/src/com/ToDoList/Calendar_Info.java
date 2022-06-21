@@ -171,6 +171,25 @@ public class Calendar_Info {
 		setCalendar(nYear, nMonth);
 	}
 
+	
+	public static void nextYear(){
+		int nYear = getSetYear();
+		nYear += 1;
+
+		setCalendar(nYear, getSetMonth());
+	}
+
+	public static void prevYear(){
+		int nYear = getSetYear();
+
+		nYear -= 1;
+		
+		if (nYear < 1970) {
+			nYear = 1970;
+		}
+		
+		setCalendar(nYear, getSetMonth());
+	}
 
 	public static String monthOfMaxDay(int pMonth, int pDay)
 	{
@@ -179,7 +198,7 @@ public class Calendar_Info {
 		}
 
 		if (MonthCount[pMonth - 1] < pDay) {
-			return "";
+			return String.valueOf(MonthCount[pMonth - 1]);
 		} 
 		return String.valueOf(pDay);
 	}

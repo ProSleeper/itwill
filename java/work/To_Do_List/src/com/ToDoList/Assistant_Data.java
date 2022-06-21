@@ -16,8 +16,6 @@ public class Assistant_Data {
 			return new Font("helvetica", Font.PLAIN, 16);
 		}
 	}
-	
-	
 }
 
 
