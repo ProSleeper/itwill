@@ -4,17 +4,17 @@ import java.util.Calendar;
 
 public class Calendar_Info {
 	private static Calendar_Info ci = null;
-	private static int[] MonthCount = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};	//ÀÌ°Ç À±³â °Íµµ ÇÊ¿äÇÒÁö °í¹Î
+	private static int[] MonthCount = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};	//ì´ê±´ ìœ¤ë…„ ê²ƒë„ í•„ìš”í• ì§€ ê³ ë¯¼
 
-	//¾Æ·¡ curº¯¼öµéÀº ¸Ç Ã³À½ ÃÊ±âÈ­ÇÏ°í ¿À´ÃÀ» ¾Ë ¼ö ÀÖ´Â ¿ëµµ·Î ¾²ÀÚ
-	static private int 		curYear = 0;		//	¿¬ (±âº»°ªÀº ¿ÃÇØ)
-	static private boolean 	curIsLeaf = false;	//	¿¬µµ°¡ À±³âÀÎÁö
-	static private int 		curMonth = 0;		//	¿ù (±âº»°ªÀº ÀÌ¹ø ´Ş)
-	static private int 		curDayOfWeek = 0;	//	ÇöÀç Àû¿ëµÈ ¿ùÀÇ 1ÀÏÀÇ ¿äÀÏ
-	static private int 		curDay = 0;			//	³¯ (±âº»°ªÀº ¿À´Ã)
+	//ì•„ë˜ curë³€ìˆ˜ë“¤ì€ ë§¨ ì²˜ìŒ ì´ˆê¸°í™”í•˜ê³  ì˜¤ëŠ˜ì„ ì•Œ ìˆ˜ ìˆëŠ” ìš©ë„ë¡œ ì“°ì
+	static private int 		curYear = 0;		//	ì—° (ê¸°ë³¸ê°’ì€ ì˜¬í•´)
+	static private boolean 	curIsLeaf = false;	//	ì—°ë„ê°€ ìœ¤ë…„ì¸ì§€
+	static private int 		curMonth = 0;		//	ì›” (ê¸°ë³¸ê°’ì€ ì´ë²ˆ ë‹¬)
+	static private int 		curDayOfWeek = 0;	//	í˜„ì¬ ì ìš©ëœ ì›”ì˜ 1ì¼ì˜ ìš”ì¼
+	static private int 		curDay = 0;			//	ë‚  (ê¸°ë³¸ê°’ì€ ì˜¤ëŠ˜)
 
 
-	//¾Æ·¡ setº¯¼öµéÀº °è¼ÓÇØ¼­ º¯°æµÇ´Â ³¯Â¥¸¦ À§ÇØ¼­ ¾²ÀÚ.
+	//ì•„ë˜ setë³€ìˆ˜ë“¤ì€ ê³„ì†í•´ì„œ ë³€ê²½ë˜ëŠ” ë‚ ì§œë¥¼ ìœ„í•´ì„œ ì“°ì.
 	static private int 		setYear = 0;		
 	static private boolean 	setIsLeaf = false;	
 	static private int 		setMonth = 0;		
@@ -33,24 +33,24 @@ public class Calendar_Info {
 	}
 
 
-	//¸Ç ³ªÁß¿¡ ¿Ï¼ºÇÏ¸é ¸ŞÀÎ Áö¿ì±â ½Ì±ÛÅÏÀ¸·Î °¡Á®´Ù°¡ ¾µ°ÅÀÓ
+	//ë§¨ ë‚˜ì¤‘ì— ì™„ì„±í•˜ë©´ ë©”ì¸ ì§€ìš°ê¸° ì‹±ê¸€í„´ìœ¼ë¡œ ê°€ì ¸ë‹¤ê°€ ì“¸ê±°ì„
 	public static void main(String[] args) {
-		Calendar_Info.initializeCalendar();	//´Ş·Â ÃÊ±âÈ­(±âÁØÀº ¿À´Ã)
+		Calendar_Info.initializeCalendar();	//ë‹¬ë ¥ ì´ˆê¸°í™”(ê¸°ì¤€ì€ ì˜¤ëŠ˜)
 	}
 
 	public static void initializeCalendar(){
 		long miliseconds = 0;
 		int nDay = 0;
 		int dayOfTheWeek = 0;
-		int presentDay = 1970;//ÇöÀç System.currentTimeMillis();·Î ½Ã°£ ±¸ÇÑ´Ù. 1970³â1¿ù1ÀÏºÎÅÍ ÇöÀç±îÁöÀÇ ¹Ğ¸®ÃÊ¸¦ ¹İÈ¯ÇØÁØ´Ù. ±×·¡¼­ 1970
-		int countOfYear = 0;	//À±³âÀÌ¸é 366 Æò³âÀÌ¸é 365À» ÀúÀåÇÒ º¯¼ö
+		int presentDay = 1970;//í˜„ì¬ System.currentTimeMillis();ë¡œ ì‹œê°„ êµ¬í•œë‹¤. 1970ë…„1ì›”1ì¼ë¶€í„° í˜„ì¬ê¹Œì§€ì˜ ë°€ë¦¬ì´ˆë¥¼ ë°˜í™˜í•´ì¤€ë‹¤. ê·¸ë˜ì„œ 1970
+		int countOfYear = 0;	//ìœ¤ë…„ì´ë©´ 366 í‰ë…„ì´ë©´ 365ì„ ì €ì¥í•  ë³€ìˆ˜
 		int yearOfMonth = 0;
 		boolean isLeaf = true;
 
 
 		miliseconds = System.currentTimeMillis();
 		nDay = (int)(miliseconds/1000/60/60/24);
-		nDay += 1; //¿À´ÃÀº ³¯Â¥¿¡ Æ÷ÇÔÀÌ µÇÁö ¾Ê±â ¶§¹®¿¡ +1
+		nDay += 1; //ì˜¤ëŠ˜ì€ ë‚ ì§œì— í¬í•¨ì´ ë˜ì§€ ì•Šê¸° ë•Œë¬¸ì— +1
 
 		dayOfTheWeek = nDay;
 
@@ -76,32 +76,32 @@ public class Calendar_Info {
 			}
 
 			if(yearOfMonth == 1 && isLeaf) {
-				//À±³â
+				//ìœ¤ë…„
 				nDay -= 29;
 				continue;
 			}
 			nDay-= MonthCount[yearOfMonth];
 		}
 
-		dayOfTheWeek = (dayOfTheWeek - nDay + 4) % 7;	//ÀÌ °ªÀº ÇöÀç ÀÌ¹ø´ŞÀÇ ½ÃÀÛ ¿äÀÏÀÌ ÀúÀåµÊ.
+		dayOfTheWeek = (dayOfTheWeek - nDay + 4) % 7;	//ì´ ê°’ì€ í˜„ì¬ ì´ë²ˆë‹¬ì˜ ì‹œì‘ ìš”ì¼ì´ ì €ì¥ë¨.
 
-		curYear = presentDay;		    //	¿¬ (±âº»°ªÀº ¿ÃÇØ)
-		curIsLeaf = isLeaf;			    //	¿¬µµ°¡ À±³âÀÎÁö
-		curMonth = yearOfMonth + 1;	    //	¿ù (±âº»°ªÀº ÀÌ¹ø ´Ş)
-		curDayOfWeek = dayOfTheWeek;    //	ÇöÀç Àû¿ëµÈ ¿ùÀÇ 1ÀÏÀÇ ¿äÀÏ
-		curDay = nDay;				    //	³¯ (±âº»°ªÀº ¿À´Ã)
+		curYear = presentDay;		    //	ì—° (ê¸°ë³¸ê°’ì€ ì˜¬í•´)
+		curIsLeaf = isLeaf;			    //	ì—°ë„ê°€ ìœ¤ë…„ì¸ì§€
+		curMonth = yearOfMonth + 1;	    //	ì›” (ê¸°ë³¸ê°’ì€ ì´ë²ˆ ë‹¬)
+		curDayOfWeek = dayOfTheWeek;    //	í˜„ì¬ ì ìš©ëœ ì›”ì˜ 1ì¼ì˜ ìš”ì¼
+		curDay = nDay;				    //	ë‚  (ê¸°ë³¸ê°’ì€ ì˜¤ëŠ˜)
 
 
-		//¹Ù²ğ °ª
-		setYear = curYear;				//	¿¬ (±âº»°ªÀº ¿ÃÇØ)
-		setIsLeaf = curIsLeaf;			//	¿¬µµ°¡ À±³âÀÎÁö
-		setMonth = curMonth;			//	¿ù (±âº»°ªÀº ÀÌ¹ø ´Ş)
-		setDayOfWeek = curDayOfWeek;	//	ÇöÀç Àû¿ëµÈ ¿ùÀÇ 1ÀÏÀÇ ¿äÀÏ
-		setDay = curDay;				//	³¯ (±âº»°ªÀº ¿À´Ã)
+		//ë°”ë€” ê°’
+		setYear = curYear;				//	ì—° (ê¸°ë³¸ê°’ì€ ì˜¬í•´)
+		setIsLeaf = curIsLeaf;			//	ì—°ë„ê°€ ìœ¤ë…„ì¸ì§€
+		setMonth = curMonth;			//	ì›” (ê¸°ë³¸ê°’ì€ ì´ë²ˆ ë‹¬)
+		setDayOfWeek = curDayOfWeek;	//	í˜„ì¬ ì ìš©ëœ ì›”ì˜ 1ì¼ì˜ ìš”ì¼
+		setDay = curDay;				//	ë‚  (ê¸°ë³¸ê°’ì€ ì˜¤ëŠ˜)
 	}
 
 
-	//¹öÆ°À» ´©¸£¸é 1´Ş¾¿ ¹Ù²ã¼­ Ãâ·ÂÇØÁÙ ºÎºĞ
+	//ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ 1ë‹¬ì”© ë°”ê¿”ì„œ ì¶œë ¥í•´ì¤„ ë¶€ë¶„
 	public static void setCalendar(int pYear, int pMonth) {
 		int nSetDay = (pYear - 1) * 365 + (pYear - 1) / 4 - (pYear - 1) / 100 + (pYear - 1) / 400;
 		int nSetNine = (1969) * 365 + (1969) / 4 - (1969) / 100 + (1969) / 400;
@@ -124,7 +124,7 @@ public class Calendar_Info {
 
 		nSetDay += yearOfDay;
 
-		//nSetDay += 1;	//¼ÖÁ÷È÷ ³» »ı°¢¿£ 1 ´õÇØÁà¾ß ÇÏ´Âµ¥ ¾È´õÇØÁÖ´Ï±î Á¦ °ªÀÌ ³ª¿Â´Ù. ³¯Â¥¶õ ³Ê¹« +-1 ¿¹¿Ü°¡ ¸¹´Ù.
+		//nSetDay += 1;	//ì†”ì§íˆ ë‚´ ìƒê°ì—” 1 ë”í•´ì¤˜ì•¼ í•˜ëŠ”ë° ì•ˆë”í•´ì£¼ë‹ˆê¹Œ ì œ ê°’ì´ ë‚˜ì˜¨ë‹¤. ë‚ ì§œë€ ë„ˆë¬´ +-1 ì˜ˆì™¸ê°€ ë§ë‹¤.
 
 		dayOfTheWeek = (nSetDay + 4) % 7;
 

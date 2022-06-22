@@ -10,7 +10,7 @@ class Wait implements Runnable{
 	@Override
 	public void run() {
 		try {
-			System.out.print("°í¹Î Áß");
+			System.out.print("ê³ ë¯¼ ì¤‘");
 			
 			
 			for (int i = 0; i < 20; i++) {
@@ -26,12 +26,12 @@ class Wait implements Runnable{
 
 public class SelectNumber {
 	
-	private static String[] name = {"¿À¼¼¶ó","¾È¼ö¾ğ","¾öÈñ¼º","±è¼ºÇö","À±´Ù¿µ",
-									"±èÈñÁø","ÀÌµ¿¿ì","ÃÖÀçÇõ","±èÈ«¼ö","¼­¼öÇö",
-									"À±ÀçÀÏ","Á¤¿µÁø","¹Ú¼±¹Ì","ÀüÀºÁö","·ùÃ¢ÁÖ",
-									"±è¼öÁö","ÀÌÀºÁö","¹Ú¼öÁ¤","Á¤¼º°æ","½É¹ÎÁ¤",
-									"À±Ã¤·Ã","±è¿µ¿î","¾È½Ã¿¬","ÀÌÁ¤¹Î","¹Ú¼öÁø",
-									"À±¼­Çı","Á¤¹ÎÁ¤"};
+	private static String[] name = {"ì˜¤ì„¸ë¼","ì•ˆìˆ˜ì–¸","ì—„í¬ì„±","ê¹€ì„±í˜„","ìœ¤ë‹¤ì˜",
+									"ê¹€í¬ì§„","ì´ë™ìš°","ìµœì¬í˜","ê¹€í™ìˆ˜","ì„œìˆ˜í˜„",
+									"ìœ¤ì¬ì¼","ì •ì˜ì§„","ë°•ì„ ë¯¸","ì „ì€ì§€","ë¥˜ì°½ì£¼",
+									"ê¹€ìˆ˜ì§€","ì´ì€ì§€","ë°•ìˆ˜ì •","ì •ì„±ê²½","ì‹¬ë¯¼ì •",
+									"ìœ¤ì±„ë ¨","ê¹€ì˜ìš´","ì•ˆì‹œì—°","ì´ì •ë¯¼","ë°•ìˆ˜ì§„",
+									"ìœ¤ì„œí˜œ","ì •ë¯¼ì •"};
 
 	private static HashMap<String, String> hMap = new HashMap<>();
 	
@@ -41,7 +41,7 @@ public class SelectNumber {
 		Scanner sc = new Scanner(System.in);
 		Thread t1 = new Thread(new Wait());
 		
-		System.out.print("¹ßÇ¥ÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+		System.out.print("ë°œí‘œìë¥¼ ì…ë ¥í•˜ì„¸ìš”: ");
 		int countOfPeople = sc.nextInt();
 		Random rd = new Random();
 		int randomNumber = 0;
@@ -65,11 +65,11 @@ public class SelectNumber {
 			// TODO: handle exception
 		}
 		
-		System.out.println("\n\nÃàÇÏÇÕ´Ï´Ù!!. ¹ßÇ¥ÀÚ ÀÔ´Ï´Ù.\n");
+		System.out.println("\n\nì¶•í•˜í•©ë‹ˆë‹¤!!. ë°œí‘œì ì…ë‹ˆë‹¤.\n");
 		
 		int pCount = 1;
 		for (String name : hMap.keySet()) {
-			System.out.printf("%3d¹ø ¹ßÇ¥ÀÚ :  %6s \n", pCount++ , name);
+			System.out.printf("%3dë²ˆ ë°œí‘œì :  %6s \n", pCount++ , name);
 		}
 	}
 }

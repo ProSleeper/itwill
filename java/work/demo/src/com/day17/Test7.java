@@ -22,8 +22,6 @@ class MyThread7 extends Thread{
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-
-
 			//System.out.println(getName() + " : " + i);
 			
 			if (next.isAlive()) {
@@ -32,7 +30,6 @@ class MyThread7 extends Thread{
 		}
 	}
 }
-
 
 public class Test7 {
 
@@ -45,7 +42,6 @@ public class Test7 {
 		t1.setNext(t2);
 		t2.setNext(t3);
 		t3.setNext(t1);
-		
 		
 		t1.start();
 		t2.start(); 

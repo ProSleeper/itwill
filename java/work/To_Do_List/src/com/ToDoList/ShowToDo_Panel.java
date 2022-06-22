@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,12 +14,12 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 
-//Áö±İ ÀÌ Å¬·¡½º¸¸ À¯ÀÏÇÏ°Ô JPanel 2°³À» °¡Áö°í ÀÖ´Ù.
-//ShowToDo_PanelÀÌ ±âº»ÀûÀ¸·Î ºÙ¾î ÀÖ´Â ÆĞ³ÎÀÌ°í
-//scrollPanelÀº ½ºÅ©·ÑÀ» ±¸ÇöÇÑ ÆĞ³ÎÀÌ´Ù.
+//ì§€ê¸ˆ ì´ í´ë˜ìŠ¤ë§Œ ìœ ì¼í•˜ê²Œ JPanel 2ê°œì„ ê°€ì§€ê³  ìˆë‹¤.
+//ShowToDo_Panelì´ ê¸°ë³¸ì ìœ¼ë¡œ ë¶™ì–´ ìˆëŠ” íŒ¨ë„ì´ê³ 
+//scrollPanelì€ ìŠ¤í¬ë¡¤ì„ êµ¬í˜„í•œ íŒ¨ë„ì´ë‹¤.
 
-//ÀÌÀ¯´Â ShowToDo_Panel¿¡ ½ºÅ©·ÑÀÌ ÇÊ¿äÇÑµ¥
-//±¸Çö¹æ¹ıÀÌ scrollPanel¿¡ ½ºÅ©·ÑÀ» ¸¸µç ÈÄ ShowToDo_Panel¿¡ Ãß°¡ ½ÃÄÑ¼­ ¸¸µç´Ù.
+//ì´ìœ ëŠ” ShowToDo_Panelì— ìŠ¤í¬ë¡¤ì´ í•„ìš”í•œë°
+//êµ¬í˜„ë°©ë²•ì´ scrollPanelì— ìŠ¤í¬ë¡¤ì„ ë§Œë“  í›„ ShowToDo_Panelì— ì¶”ê°€ ì‹œì¼œì„œ ë§Œë“ ë‹¤.
 
 public class ShowToDo_Panel extends JPanel {
 
@@ -26,7 +27,7 @@ public class ShowToDo_Panel extends JPanel {
 	private final int iotdScrollSize = 38;
 	private int arraySize = 0;
 	
-	// Ã¼Å©¹Ú½º¿Í ¹öÆ°À» ÇÏ³ªÀÇ ÆĞ³Î·Î
+	// ì²´í¬ë°•ìŠ¤ì™€ ë²„íŠ¼ì„ í•˜ë‚˜ì˜ íŒ¨ë„ë¡œ
 	public ShowToDo_Panel() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		scrollPanelCreate();
@@ -35,19 +36,23 @@ public class ShowToDo_Panel extends JPanel {
 	private void scrollPanelCreate(){
 		
 		scrollPanel = new JPanel();
-		scrollPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 3, 5));
-//		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));	//boxlayoutÀ¸·Î ¼¼·Î·Î 1°³¾¿ Á¤·ÄÇÏ°í ½ÍÀºµ¥ Å©±â °íÁ¤ÇÏ´Â °É ¸ğ¸£°Ú´Ù...
+//		scrollPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 3, 5));
+		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));	//boxlayoutìœ¼ë¡œ ì„¸ë¡œë¡œ 1ê°œì”© ì •ë ¬í•˜ê³  ì‹¶ì€ë° í¬ê¸° ê³ ì •í•˜ëŠ” ê±¸ ëª¨ë¥´ê² ë‹¤...
+		
+		
 		JScrollPane scrollFrame = new JScrollPane(scrollPanel);
 		scrollFrame.getVerticalScrollBar().setUnitIncrement(16);
 		scrollFrame.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollFrame.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPanel.setAutoscrolls(true);
+		
+		scrollFrame.add(Box.createHorizontalStrut(1000));
 		this.add(scrollFrame);
 	}
 
-	//ÀÌ ¸Ş¼­µå´Â todolistÇÑ°³ ui¸¦ »ı¼ºÇØÁÖ´Â ºÎºĞ(¾ÆÁ÷ µ¥ÀÌÅÍ¸¦ ³Ö´Â ºÎºĞÀº ¾ø´Ù.)
-	//ÀÌ°Íµµ ÆÑÅä¸®ÆĞÅÏÀ¸·Î ¸¸µé¸é ÁÁÀ» °Í °°±äÇÑµ¥, µü ÇÏ³ªÀÇ ui¸¸ Á¸ÀçÇØ¼­ ÇöÀç´Â
-	//ÆÑÅä¸®ÆĞÅÏÀ» ¾²´Â °ÍÀº º°·Î °°´Ù.
+	//ì´ ë©”ì„œë“œëŠ” todolistí•œê°œ uië¥¼ ìƒì„±í•´ì£¼ëŠ” ë¶€ë¶„(ì•„ì§ ë°ì´í„°ë¥¼ ë„£ëŠ” ë¶€ë¶„ì€ ì—†ë‹¤.)
+	//ì´ê²ƒë„ íŒ©í† ë¦¬íŒ¨í„´ìœ¼ë¡œ ë§Œë“¤ë©´ ì¢‹ì„ ê²ƒ ê°™ê¸´í•œë°, ë”± í•˜ë‚˜ì˜ uië§Œ ì¡´ì¬í•´ì„œ í˜„ì¬ëŠ”
+	//íŒ©í† ë¦¬íŒ¨í„´ì„ ì“°ëŠ” ê²ƒì€ ë³„ë¡œ ê°™ë‹¤.
 //	public void addToDoList(ToDoList_Object tdo)
 //	{
 //		IndicateOneToDo_Panel local_iotdp = new IndicateOneToDo_Panel();
@@ -76,7 +81,7 @@ public class ShowToDo_Panel extends JPanel {
 	}
 	
 	
-	//»èÁ¦ ÄÚµå ÃßÈÄ¿¡
+	//ì‚­ì œ ì½”ë“œ ì¶”í›„ì—
 //	public void DeleteToDoList(ToDoList_Object tdo)
 //	{
 //		System.out.println(tdo.getCheckBox().getText());

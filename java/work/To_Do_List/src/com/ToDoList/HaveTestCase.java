@@ -7,7 +7,7 @@ public class HaveTestCase {
 	public static void test_ListCreate()
 	{
 		final int LIST_SIZE = 15;
-		String testToDoWord = "get the support ÃßÃµ6 champion scoring Terrestrial exclusive negotiation ¿Ü°èÀÎ ºñÃßÃµ2 ¿µ¾î»çÀü 2022-06-10 twin flight µæÁ¡¿Õ problem Æú¶óÆ÷³¶ ³í¸®ÀûÀÎ Extra";
+		String testToDoWord = "get the support ì¶”ì²œ6 champion scoring Terrestrial exclusive negotiation ì™¸ê³„ì¸ ë¹„ì¶”ì²œ2 ì˜ì–´ì‚¬ì „ 2022-06-10 twin flight ë“ì ì™• problem í´ë¼í¬ë‚­ ë…¼ë¦¬ì ì¸ Extra";
 		String[] wordArray = testToDoWord.split(" ");
 		String todoText = "";
 		Random rd = new Random();

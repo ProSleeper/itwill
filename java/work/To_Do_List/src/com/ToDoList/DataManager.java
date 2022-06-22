@@ -2,15 +2,17 @@ package com.ToDoList;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
-//¸ğµç µ¥ÀÌÅÍ °ü¸®
+//ëª¨ë“  ë°ì´í„° ê´€ë¦¬
 public class DataManager {
 	private static DataManager dm = null;
 	ArrayList<ToDoList_Object> tdloList = null;
+	HashMap<String, ArrayList<ToDoList_Object>> allListMap = null;
 
 	private DataManager() {
 		tdloList = new ArrayList<>();
-//		setCalendar(); ³ªÁß¿¡ ´Ş·Â Á¤º¸¸¦ °¡Áö°í ¿Ã ºÎºĞ
+		allListMap = new HashMap<>();	//keyëŠ” ë‚ ì§œ valueëŠ” í•´ë‹¹ ë‚ ì§œê°€ ê°€ì§€ê³  ìˆëŠ” todolist ArrayList
 	}
 	
 	public static DataManager getInstance() {
@@ -28,17 +30,17 @@ public class DataManager {
 		
 	}
 
-	//¸®½ºÆ® »ı¼º ÀÌº¥Æ®°¡ ¹ß»ıÇßÀ» ¶§ ÀÌ ¸Ş¼­µå¸¦ ½ÇÇàÇØ¼­ »ı¼ºÇØÁÜ
-	//¿ø·¡´Â ToDoListFactory ¿¡¼­ »ı¼ºÀ» ÇØÁÖ°Ô ÇØ¾ßÇÏ´Âµ¥ ÇöÀç´Â »ı¼ººÎºĞÀÌ ³Ê¹« ÀÛ¾Æ¼­ ¿©±â¼­ »ı¼º
-	//ÃßÈÄ ¼öÁ¤
+	//ë¦¬ìŠ¤íŠ¸ ìƒì„± ì´ë²¤íŠ¸ê°€ ë°œìƒí–ˆì„ ë•Œ ì´ ë©”ì„œë“œë¥¼ ì‹¤í–‰í•´ì„œ ìƒì„±í•´ì¤Œ
+	//ì›ë˜ëŠ” ToDoListFactory ì—ì„œ ìƒì„±ì„ í•´ì£¼ê²Œ í•´ì•¼í•˜ëŠ”ë° í˜„ì¬ëŠ” ìƒì„±ë¶€ë¶„ì´ ë„ˆë¬´ ì‘ì•„ì„œ ì—¬ê¸°ì„œ ìƒì„±
+	//ì¶”í›„ ìˆ˜ì •
 	public void createData(String toDoText) {
 		tdloList.add(new ToDoList_Object(toDoText));
 	}
 	
-//	µ¥ÀÌÅÍ¸¦ Á÷Á¢ ³Ñ°ÜÁÖ´Â °Ô ¸Â´Â °ÇÁö ¾Æ´Ï¸é
-//  ÀÌ DataManager¿¡¼­ µ¥ÀÌÅÍ¸¦ °¡Áö°í UIManager¿¡ Á¢±ÙÇØ¼­ µ¥ÀÌÅÍ¸¦ »Ñ·ÁÁÖ´Â °Ô ¸Â´Â°ÇÁö ¾ÆÁ÷ ¸ğ¸£°Ú´Ù.
-//	ÀÏ´Ü ³»°¡ ³»¸° °á·ĞÀº, ÃßÈÄ¿¡ ¾î¶² °æ¿ì¿¡µµ °á±¹ DB´Â µû·Î ÀúÀåÇØ¼­ °¡Á®¿ÃÅ×´Ï±î
-//	¿©±â¼­´Â ÀÌ DataManager°¡ DB ¶ó°í »ı°¢ÇÏ°í DB¸¦ UIManager°¡ ºÒ·¯¿Í¼­ Ãâ·ÂÇØÁÖ´Â ¹æ½ÄÀ¸·Î ÇÏÀÚ.
+//	ë°ì´í„°ë¥¼ ì§ì ‘ ë„˜ê²¨ì£¼ëŠ” ê²Œ ë§ëŠ” ê±´ì§€ ì•„ë‹ˆë©´
+//  ì´ DataManagerì—ì„œ ë°ì´í„°ë¥¼ ê°€ì§€ê³  UIManagerì— ì ‘ê·¼í•´ì„œ ë°ì´í„°ë¥¼ ë¿Œë ¤ì£¼ëŠ” ê²Œ ë§ëŠ”ê±´ì§€ ì•„ì§ ëª¨ë¥´ê² ë‹¤.
+//	ì¼ë‹¨ ë‚´ê°€ ë‚´ë¦° ê²°ë¡ ì€, ì¶”í›„ì— ì–´ë–¤ ê²½ìš°ì—ë„ ê²°êµ­ DBëŠ” ë”°ë¡œ ì €ì¥í•´ì„œ ê°€ì ¸ì˜¬í…Œë‹ˆê¹Œ
+//	ì—¬ê¸°ì„œëŠ” ì´ DataManagerê°€ DB ë¼ê³  ìƒê°í•˜ê³  DBë¥¼ UIManagerê°€ ë¶ˆëŸ¬ì™€ì„œ ì¶œë ¥í•´ì£¼ëŠ” ë°©ì‹ìœ¼ë¡œ í•˜ì.
 	public ArrayList<ToDoList_Object> getData(){
 		return tdloList;
 	}

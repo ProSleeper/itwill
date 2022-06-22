@@ -9,31 +9,31 @@ public class ScoreMain {
 		Score ob = new ScoreImpl();
 
 
-		String ÇĞ¹ø = "1¹ø";
-		String ¹®ÀÚ¿­ÀÌ¸§ = "±è¿µ¿î";
+		String í•™ë²ˆ = "1ë²ˆ";
+		String ë¬¸ìì—´ì´ë¦„ = "ê¹€ì˜ìš´";
 		
-		char charÀÌ¸§ = ¹®ÀÚ¿­ÀÌ¸§.charAt(0);
+		char charì´ë¦„ = ë¬¸ìì—´ì´ë¦„.charAt(0);
 		
-		char ±â¿ª = '°¡';
+		char ê¸°ì—­ = 'ê°€';
 		
-		int intÀÌ¸§ = charÀÌ¸§;
-		int int±â¿ª = ±â¿ª +1;
-		char ´Ù½ÃÂ÷±â¿ª = (char)int±â¿ª;
-		int int´ÏÀº = ±â¿ª - 1;
+		int intì´ë¦„ = charì´ë¦„;
+		int intê¸°ì—­ = ê¸°ì—­ +1;
+		char ë‹¤ì‹œì°¨ê¸°ì—­ = (char)intê¸°ì—­;
+		int intë‹ˆì€ = ê¸°ì—­ - 1;
 		
-		int Á¤¼öÇĞ¹ø = 0;
+		int ì •ìˆ˜í•™ë²ˆ = 0;
 		try {
-			Á¤¼öÇĞ¹ø = Integer.parseInt(ÇĞ¹ø);
+			ì •ìˆ˜í•™ë²ˆ = Integer.parseInt(í•™ë²ˆ);
 		} catch (Exception NumberFormatException) {
-			System.out.println("º¯È¯ ¿À·ù");
+			System.out.println("ë³€í™˜ ì˜¤ë¥˜");
 		}
 		
-		System.out.println(Á¤¼öÇĞ¹ø);
+		System.out.println(ì •ìˆ˜í•™ë²ˆ);
 
 		int ch;
 		while(true) {
 			do {
-				System.out.print("1. ÀÔ·Â 2. Ãâ·Â 3. ÇĞ¹ø¿À¸§Â÷¼øÁ¤·Ä 4. ÃÑÁ¡³»¸²Â÷¼øÁ¤·Ä 5. ÇĞ¹ø»èÁ¦ 6. ÀÌ¸§»èÁ¦ 7. Á¾·á: ");
+				System.out.print("1. ì…ë ¥ 2. ì¶œë ¥ 3. í•™ë²ˆì˜¤ë¦„ì°¨ìˆœì •ë ¬ 4. ì´ì ë‚´ë¦¼ì°¨ìˆœì •ë ¬ 5. í•™ë²ˆì‚­ì œ 6. ì´ë¦„ì‚­ì œ 7. ì¢…ë£Œ: ");
 				ch = sc.nextInt();
 			}while(ch<1);
 			switch(ch) {

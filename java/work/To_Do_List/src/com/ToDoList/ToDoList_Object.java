@@ -15,9 +15,9 @@ public class ToDoList_Object {
 		text = toDoText;
 		isCheck = false;
 		date = new int[3];
-//		type = xx; ÀÌ ºÎºĞµµ ±¸ÇöÇØ¾ß ÇÏ´Âµ¥ ±×°Ç Â÷ÈÄ¿¡
+//		type = xx; ì´ ë¶€ë¶„ë„ êµ¬í˜„í•´ì•¼ í•˜ëŠ”ë° ê·¸ê±´ ì°¨í›„ì—
 		
-		// ÇöÀç ³¯Â¥ ±¸ÇÏ±â        
+		// í˜„ì¬ ë‚ ì§œ êµ¬í•˜ê¸°        
 		LocalDate now = LocalDate.now();
 		date[0] = now.getYear();
 		date[1] = now.getMonthValue();

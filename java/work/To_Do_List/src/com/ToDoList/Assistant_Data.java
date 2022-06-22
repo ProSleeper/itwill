@@ -19,7 +19,7 @@ public class Assistant_Data {
 }
 
 
-//±Û¾¾ Áß°£¿¡ ÁÙ ±ß´Â ÆùÆ® ¸¸µå´Â ¹æ¹ı
+//ê¸€ì”¨ ì¤‘ê°„ì— ì¤„ ê¸‹ëŠ” í°íŠ¸ ë§Œë“œëŠ” ë°©ë²•
 //Font font = new Font("helvetica", Font.PLAIN, 12);
 //Map  attributes = font.getAttributes();
 //attributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);

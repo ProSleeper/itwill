@@ -16,22 +16,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
+import javax.swing.plaf.ColorUIResource;
 
 import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.omg.PortableServer.ThreadPolicy;
-
-
-
 
 public class Calendar_Panel extends JPanel {
 
 	private final int BORDERSIZE 	= 20;
 	private final int GRID_SIZE		= 7;
-	
-	
-	
-	
-	
 	
 	String[] week = {"일", "월", "화", "수", "목", "금", "토"};
 	String[] arrow = {"<<", ">>"};
@@ -70,11 +63,11 @@ public class Calendar_Panel extends JPanel {
 		
 		this.add(new JLabel());
 		
-		yearLabel = new JLabel("2022년");
+		yearLabel = new JLabel(Calendar_Info.getCurYear() + "년");
 		yearLabel.setFont(new Font("helvetica", Font.BOLD, 17));
 		this.add(yearLabel);
 
-		monthLabel = new JLabel("6월");
+		monthLabel = new JLabel(Calendar_Info.getCurMonth() + "월");
 		monthLabel.setFont(new Font("helvetica", Font.BOLD, 17));
 		this.add(monthLabel);
 		
@@ -85,7 +78,6 @@ public class Calendar_Panel extends JPanel {
 		rightArrow = addButton(arrow[1]);
 		
 		//무식해도 차라리 이게 더 직관적이고 수정하기 편할듯
-
 		
 		for (int i = 0; i < GRID_SIZE; i++) {
 			addLabel(week[i]);
@@ -95,7 +87,6 @@ public class Calendar_Panel extends JPanel {
 		int startDayOfMonth = Calendar_Info.getCurDayOfWeek();
 		int countDay = 1;
 
-		
 		boolean buttonActive = true;
 		for (int i = 0; i < GRID_SIZE * (GRID_SIZE - 1); i++) {
 		
@@ -110,8 +101,16 @@ public class Calendar_Panel extends JPanel {
 			
 			JButton temp = addButton(viewDay);
 			temp.setEnabled(buttonActive);
+			
+			if(viewDay.equals(String.valueOf((Calendar_Info.getCurDay())))) {
+				temp.setOpaque(true);
+				temp.setBackground(Color.MAGENTA);
+			}
+			else {
+				temp.setOpaque(false);
+			}
+		
 			buttonArr.add(temp);
-
 		}
 	}
 
@@ -135,9 +134,18 @@ public class Calendar_Panel extends JPanel {
 				viewDay = "";
 				buttonActive = false;
 			}
+			
+			if((Calendar_Info.getSetYear() == Calendar_Info.getCurYear()) && (Calendar_Info.getSetMonth() == Calendar_Info.getCurMonth()) && viewDay.equals(String.valueOf((Calendar_Info.getCurDay())))) {
+				buttonArr.get(i).setOpaque(true);
+				buttonArr.get(i).setBackground(Color.MAGENTA);
+			}
+			else {
+				buttonArr.get(i).setBackground(new JButton().getBackground());
+				buttonArr.get(i).setOpaque(false);
+			}
+			
 			buttonArr.get(i).setEnabled(buttonActive);
 			buttonArr.get(i).setText(viewDay);;
-
 		}
 	}
 
@@ -176,7 +184,6 @@ public class Calendar_Panel extends JPanel {
 		rightArrow.addMouseListener(new MouseAdapter() { //클래스 이름없이 어뎁터 클래스 생성
 			public void mousePressed(MouseEvent e) {
 				if(e.getButton() == MouseEvent.BUTTON1) {
-					
 					if(isMoveMonth) {
 						Calendar_Info.nextMonth();
 					}

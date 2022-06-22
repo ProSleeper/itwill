@@ -1,7 +1,6 @@
 package com.ToDoList;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -9,10 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.font.TextAttribute;
-import java.util.Map;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
@@ -20,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-//iotd ÇÑÁÙ¾¿À» °¡Áö°í ÀÖÀ» ÆĞ³Î
+//iotd í•œì¤„ì”©ì„ ê°€ì§€ê³  ìˆì„ íŒ¨ë„
 public class IndicateOneToDo_Panel extends JPanel{
 
 	private JCheckBox jcb = null;
@@ -54,7 +50,7 @@ public class IndicateOneToDo_Panel extends JPanel{
 	}
 
 	public void setEditCheckBoxText() {
-		Object todoText = JOptionPane.showInputDialog(null, "¼öÁ¤ ÇØÁÖ¼¼¿ä", "¼öÁ¤", JOptionPane.YES_NO_CANCEL_OPTION, null, null, jcb.getText());
+		Object todoText = JOptionPane.showInputDialog(null, "ìˆ˜ì • í•´ì£¼ì„¸ìš”", "ìˆ˜ì •", JOptionPane.YES_NO_CANCEL_OPTION, null, null, jcb.getText());
 		
 		if(todoText != null) {
 			if(!todoText.equals("")) {
@@ -64,14 +60,14 @@ public class IndicateOneToDo_Panel extends JPanel{
 	}
 	
 	public void setButtonAddListener() {
-		jb.addMouseListener(new MouseAdapter() { //Å¬·¡½º ÀÌ¸§¾øÀÌ ¾îµªÅÍ Å¬·¡½º »ı¼º
+		jb.addMouseListener(new MouseAdapter() { //í´ë˜ìŠ¤ ì´ë¦„ì—†ì´ ì–´ëí„° í´ë˜ìŠ¤ ìƒì„±
 			public void mousePressed(MouseEvent e) {
 				if(e.getButton() == MouseEvent.BUTTON1) {
 					setButtonClick();
 				}
 				else if(e.getButton() == MouseEvent.BUTTON3) {
 					if(e.getClickCount() == 2) {
-						System.out.println("¿À¸¥ÂÊ ´õºíÅ¬¸¯");
+						System.out.println("ì˜¤ë¥¸ìª½ ë”ë¸”í´ë¦­");
 					}
 				}
 			}
@@ -79,15 +75,15 @@ public class IndicateOneToDo_Panel extends JPanel{
 	}
 	
 	public void setButtonClick() {
-		String[] buttons = {"¼öÁ¤", "»èÁ¦"};
-		int select = JOptionPane.showOptionDialog(null, "½ÇÇàÇÒ ÀÛ¾÷À» ´­·¯ÁÖ¼¼¿ä..", "¼öÁ¤, »èÁ¦",
+		String[] buttons = {"ìˆ˜ì •", "ì‚­ì œ"};
+		int select = JOptionPane.showOptionDialog(null, "ì‹¤í–‰í•  ì‘ì—…ì„ ëˆŒëŸ¬ì£¼ì„¸ìš”..", "ìˆ˜ì •, ì‚­ì œ",
 				JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, buttons, null);
 
 		if(select == 0) {
 			setEditCheckBoxText();
 		}
 		else if(select == 1) {
-			//			System.out.println("»èÁ¦");
+			//			System.out.println("ì‚­ì œ");
 			UIManager.getInstance().deleteToDoPanel(this);
 			//			
 			//			this.remove(btn);
@@ -97,7 +93,7 @@ public class IndicateOneToDo_Panel extends JPanel{
 	}
 
 	private void setCheckBoxAddListner() {
-		jcb.addActionListener(new ActionListener(){ //ÀÍ¸íÅ¬·¡½º·Î ¸®½º³Ê ÀÛ¼º
+		jcb.addActionListener(new ActionListener(){ //ìµëª…í´ë˜ìŠ¤ë¡œ ë¦¬ìŠ¤ë„ˆ ì‘ì„±
 			public void actionPerformed(ActionEvent e){
 
 				if(jcb.isSelected()) {

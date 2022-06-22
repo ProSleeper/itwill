@@ -1,7 +1,7 @@
 package com.ToDoList;
 
 
-//ToDoList¸¦ »ı¼ºÇØÁÖ´Â ºÎºĞ
+//ToDoListë¥¼ ìƒì„±í•´ì£¼ëŠ” ë¶€ë¶„
 public class ToDoUIFactory {
 	
 	public ToDoUIFactory() {
@@ -10,7 +10,7 @@ public class ToDoUIFactory {
 		
 	}
 
-	//ÇöÀç´Â ¾Æ¹«°Íµµ ¾øÁö¸¸ ÃßÈÄ¿¡ ´Ù¸¥ listObject Á¾·ù¸¦ ¸¸µç´Ù°í ÇÑ´Ù¸é »ó¼ÓÀ» ÅëÇØ¼­ ¸¸µé¸é µÇ°Ú´Ù.
+	//í˜„ì¬ëŠ” ì•„ë¬´ê²ƒë„ ì—†ì§€ë§Œ ì¶”í›„ì— ë‹¤ë¥¸ listObject ì¢…ë¥˜ë¥¼ ë§Œë“ ë‹¤ê³  í•œë‹¤ë©´ ìƒì†ì„ í†µí•´ì„œ ë§Œë“¤ë©´ ë˜ê² ë‹¤.
 	IndicateOneToDo_Panel createToDoList(String toDoText) {
 //		 return new ToDoList_Object(toDoText);
 		return new IndicateOneToDo_Panel(toDoText);

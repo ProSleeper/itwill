@@ -1,37 +1,30 @@
 package com.ToDoList;
 
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.ToolTipManager;
 
 
-//ÀÌ Main_FrameÀ» ½Ì±ÛÅÏÈ­ ½ÃÄÑ¼­ »ç¿ëÇÏ¸é ±»ÀÌ UIManager°°Àº°Å ¾È¸¸µé¾îµµ µÇ°ÚÁö¸¸.
-//ÀÌ·± Çü½ÄÀÌ ¸Â´Â °Ç°¡ÀÇ ÀÇ¹®Àº °è¼Ó Á¸ÀçÇÑ´Ù.
+//ì´ Main_Frameì„ ì‹±ê¸€í„´í™” ì‹œì¼œì„œ ì‚¬ìš©í•˜ë©´ êµ³ì´ UIManagerê°™ì€ê±° ì•ˆë§Œë“¤ì–´ë„ ë˜ê² ì§€ë§Œ.
+//ì´ëŸ° í˜•ì‹ì´ ë§ëŠ” ê±´ê°€ì˜ ì˜ë¬¸ì€ ê³„ì† ì¡´ì¬í•œë‹¤.
 public class Main_Frame extends JFrame{
 
 	private Calendar_Panel cp;
 	private ShowToDo_Panel sp;
 
 
-	//¸ŞÀÎÇÁ·¹ÀÓ
+	//ë©”ì¸í”„ë ˆì„
 	public Main_Frame() {
 		SetUI();
 		createMenu();
-		setTitle("¿©±â¸¦ µå·¡±×ÇÏ¸é Ã¢À» ÀÌµ¿ÇÒ ¼ö ÀÖ½À´Ï´Ù.");
-		setLayout(new GridLayout(1, 1));	//±×¸®µå·¹ÀÌ¾Æ¿ôÀº µüÈ÷ ¼³Á¤ÀÇ Á¦ÇÑÀÌ °­·ÂÇÏÁö ¾ÊÀº°¡º¸´Ù. ´ëÃæ panelºÙ¿©µµ ´Ù ºÙ¿©Áö³×
+		setTitle("ì—¬ê¸°ë¥¼ ë“œë˜ê·¸í•˜ë©´ ì°½ì„ ì´ë™í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
+		setLayout(new GridLayout(1, 1));	//ê·¸ë¦¬ë“œë ˆì´ì•„ì›ƒì€ ë”±íˆ ì„¤ì •ì˜ ì œí•œì´ ê°•ë ¥í•˜ì§€ ì•Šì€ê°€ë³´ë‹¤. ëŒ€ì¶© panelë¶™ì—¬ë„ ë‹¤ ë¶™ì—¬ì§€ë„¤
 		setVisible(true);
 		setSize(960, 540);
 		setResizable(false);
@@ -67,10 +60,10 @@ public class Main_Frame extends JFrame{
 		setJMenuBar(mb);
 
 
-		item.addActionListener(new ActionListener(){ //ÀÍ¸íÅ¬·¡½º·Î ¸®½º³Ê ÀÛ¼º
+		item.addActionListener(new ActionListener(){ //ìµëª…í´ë˜ìŠ¤ë¡œ ë¦¬ìŠ¤ë„ˆ ì‘ì„±
 			public void actionPerformed(ActionEvent e){
 
-				String todoText = JOptionPane.showInputDialog("ÇÒÀÏÀ» ÀÔ·ÂÇÏ¼¼¿ä");
+				String todoText = JOptionPane.showInputDialog("í• ì¼ì„ ì…ë ¥í•˜ì„¸ìš”");
 
 				if(todoText != null && !todoText.equals("")) {
 					DataManager.getInstance().createData(todoText);

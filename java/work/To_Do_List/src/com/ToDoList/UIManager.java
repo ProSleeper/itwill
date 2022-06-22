@@ -5,29 +5,29 @@ import java.util.ArrayList;
 
 import javax.swing.ToolTipManager;
 
-//È­¸é¿¡ »Ñ·ÁÁÖ´Â ¸ğµç °ÍÀ» °ü¸®
+//í™”ë©´ì— ë¿Œë ¤ì£¼ëŠ” ëª¨ë“  ê²ƒì„ ê´€ë¦¬
 public class UIManager {
 	private static UIManager um = null;
 	
-	//UIManager°¡ °¡Áö°í ÀÖ¾î¾ß ÇÒ ÆĞ³Î
-	//À¯ÀÏÇÏ°Ô ÀÖ¾î¾ß ÇÒ ÆĞ³Î: main, home, calender
-	//list·Î °¡Áö°í ÀÖÀ» ÆĞ³Î: iotd, cb, eb
-	//¿©±â¼­ cb¿Í eb´Â iotd°¡ °¡Áö°í ÀÖÀ¸´Ï±î list´Â iotd¸¸ ÀÖÀ¸¸é µÉµí
+	//UIManagerê°€ ê°€ì§€ê³  ìˆì–´ì•¼ í•  íŒ¨ë„
+	//ìœ ì¼í•˜ê²Œ ìˆì–´ì•¼ í•  íŒ¨ë„: main, home, calender
+	//listë¡œ ê°€ì§€ê³  ìˆì„ íŒ¨ë„: iotd, cb, eb
+	//ì—¬ê¸°ì„œ cbì™€ ebëŠ” iotdê°€ ê°€ì§€ê³  ìˆìœ¼ë‹ˆê¹Œ listëŠ” iotdë§Œ ìˆìœ¼ë©´ ë ë“¯
 	private static Main_Frame mainFrame = null;
 	
-	private ToDoUIFactory tduf = null;	//ÆÑÅä¸®¸Ş¼­µå »ç¿ë(µü ÇÏ³ª¸¸ »ı¼ºÀÌ¶ó¼­ ÀÇ¹Ì°¡ ÀÖ³ª ½Í´Ù.)
+	private ToDoUIFactory tduf = null;	//íŒ©í† ë¦¬ë©”ì„œë“œ ì‚¬ìš©(ë”± í•˜ë‚˜ë§Œ ìƒì„±ì´ë¼ì„œ ì˜ë¯¸ê°€ ìˆë‚˜ ì‹¶ë‹¤.)
 	private ArrayList<IndicateOneToDo_Panel> iotd = null;
 	private ArrayList<ToDoList_Object> tdlo = null;
 	
-	//ÀÌ ¸ğµç ÆĞ³ÎµéÀ» ´Ù °¡Áö°í ÀÖ´Â °Ô ¸Â³ª?
-	//¸ŞÀÎ ÇÏ³ª¸¸ °¡Áö°í ÀÖ°í ³ª¸ÓÁö´Â ÇÏÀ§·Î Ã³¸®ÇÏµµ·Ï µÎ´Â °Ô ³ªÀ¸·Á³ª?
+	//ì´ ëª¨ë“  íŒ¨ë„ë“¤ì„ ë‹¤ ê°€ì§€ê³  ìˆëŠ” ê²Œ ë§ë‚˜?
+	//ë©”ì¸ í•˜ë‚˜ë§Œ ê°€ì§€ê³  ìˆê³  ë‚˜ë¨¸ì§€ëŠ” í•˜ìœ„ë¡œ ì²˜ë¦¬í•˜ë„ë¡ ë‘ëŠ” ê²Œ ë‚˜ìœ¼ë ¤ë‚˜?
 
 	private UIManager(){
 		iotd = new ArrayList<>();
 		tduf = new ToDoUIFactory();
-		tdlo = DataManager.getInstance().getData();	//µ¥ÀÌÅÍ°¡ µé¾îÀÖ´Â ARRAYLIST°¡Á®¿È.
+		tdlo = DataManager.getInstance().getData();	//ë°ì´í„°ê°€ ë“¤ì–´ìˆëŠ” ARRAYLISTê°€ì ¸ì˜´.
 		TooltipSetting();
-		//¿©±â¼­ arraylist¸¦ callValue ÀÎÁö callRefÀÎÁö È®ÀÎÀÌ ÇÊ¿äÇÔ.
+		//ì—¬ê¸°ì„œ arraylistë¥¼ callValue ì¸ì§€ callRefì¸ì§€ í™•ì¸ì´ í•„ìš”í•¨.
 	}
 	
 	public static UIManager getInstance() {
@@ -42,7 +42,7 @@ public class UIManager {
 		HaveTestCase.test_ListCreate();
 	}
 	
-	//dataList¿¡ ´ã±ä µ¥ÀÌÅÍ¸¦ panelList¿¡ »Ñ·ÁÁÖ´Â ºÎºĞÀ» ¸¸µé¸é µÉµí
+	//dataListì— ë‹´ê¸´ ë°ì´í„°ë¥¼ panelListì— ë¿Œë ¤ì£¼ëŠ” ë¶€ë¶„ì„ ë§Œë“¤ë©´ ë ë“¯
 	public void setData(){
 
 	}
@@ -63,7 +63,7 @@ public class UIManager {
 	
 	
 	public void createToDoPanel(){
-		//¸¸µé¶§ ½ºÅ©·ÑÀ» °¡Àå ¾Æ·¡·Î ³»·Á¼­ ÃÖ½ÅÀ¸·Î ¸¸µé¾î Áø todolist¸¦ º¸µµ·Ï Â÷ÈÄ ¼öÁ¤
+		//ë§Œë“¤ë•Œ ìŠ¤í¬ë¡¤ì„ ê°€ì¥ ì•„ë˜ë¡œ ë‚´ë ¤ì„œ ìµœì‹ ìœ¼ë¡œ ë§Œë“¤ì–´ ì§„ todolistë¥¼ ë³´ë„ë¡ ì°¨í›„ ìˆ˜ì •
 		IndicateOneToDo_Panel localTDL = tduf.createToDoList(tdlo.get(tdlo.size() - 1).getText()); 
 		iotd.add(localTDL);
 		mainFrame.getSp().setDrawToDoList(localTDL);
@@ -72,20 +72,20 @@ public class UIManager {
 	}
 	
 	public void deleteToDoPanel(IndicateOneToDo_Panel delObj) {
-		//»èÁ¦ ¹öÆ°À» ´­·¶À» ¶§ ½ÇÇàµÉ ºÎºĞ
-		//½Ç»óÀº Ãß»óÀÌ³ª ÀÎÅÍÆäÀÌ½º¸¦ ¾´ Äİ¹éÀº ¾Æ´ÏÁö¸¸
-		//´À³¦Àº Äİ¹é´À³¦
+		//ì‚­ì œ ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ ì‹¤í–‰ë  ë¶€ë¶„
+		//ì‹¤ìƒì€ ì¶”ìƒì´ë‚˜ ì¸í„°í˜ì´ìŠ¤ë¥¼ ì“´ ì½œë°±ì€ ì•„ë‹ˆì§€ë§Œ
+		//ëŠë‚Œì€ ì½œë°±ëŠë‚Œ
 		
 		for (int i = 0; i < iotd.size(); i++) {
 			if(iotd.get(i) == delObj) {
 			
-				//ÇöÀç ºÙ¾î ÀÖ´Â ÆĞ³ÎÀÌ scrollÆĞ³ÎÀÌ¶ó¼­ °Å±â¼­ Áö¿ò
+				//í˜„ì¬ ë¶™ì–´ ìˆëŠ” íŒ¨ë„ì´ scrollíŒ¨ë„ì´ë¼ì„œ ê±°ê¸°ì„œ ì§€ì›€
 				mainFrame.getSp().getScrollPanel().remove(iotd.get(i));
 				
 				iotd.remove(i);
 				tdlo.remove(i);
 			
-				//½ºÅ©·Ñ ÆÇÁ¤ ºÎºĞÀ» ¼öÁ¤ÇØ¾ß »èÁ¦ÇÏ¸é ½ºÅ©·ÑÀÌ ÁÙ¾îµë
+				//ìŠ¤í¬ë¡¤ íŒì • ë¶€ë¶„ì„ ìˆ˜ì •í•´ì•¼ ì‚­ì œí•˜ë©´ ìŠ¤í¬ë¡¤ì´ ì¤„ì–´ë“¬
 				
 				mainFrame.getSp().setScrollEdit();
 				mainFrame.getSp().getScrollPanel().revalidate();

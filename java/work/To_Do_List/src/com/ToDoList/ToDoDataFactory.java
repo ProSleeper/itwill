@@ -8,11 +8,11 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.ToolTipManager;
 
-//»ı¼ºÇÒ ¹«¾ğ°¡°¡ ¸¹À¸¸é ÀÌ factory¸¦ ¾²´Â ÀÌÀ¯°¡ ÀÖÀ» °Å °°Àºµ¥
-//Áö±İ µü 1°³ »ı¼ºÀÌ¶ó¼­ ±×³É DataManager¿¡¼­ Ã³¸®ÇÏÀÚ.
+//ìƒì„±í•  ë¬´ì–¸ê°€ê°€ ë§ìœ¼ë©´ ì´ factoryë¥¼ ì“°ëŠ” ì´ìœ ê°€ ìˆì„ ê±° ê°™ì€ë°
+//ì§€ê¸ˆ ë”± 1ê°œ ìƒì„±ì´ë¼ì„œ ê·¸ëƒ¥ DataManagerì—ì„œ ì²˜ë¦¬í•˜ì.
 
 
-//ToDoList¸¦ »ı¼ºÇØÁÖ´Â ºÎºĞ
+//ToDoListë¥¼ ìƒì„±í•´ì£¼ëŠ” ë¶€ë¶„
 public class ToDoDataFactory {
 	
 	public ToDoDataFactory() {
