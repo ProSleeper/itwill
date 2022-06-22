@@ -2,6 +2,7 @@ package com.ToDoList;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.ToolTipManager;
 
@@ -17,7 +18,7 @@ public class UIManager {
 	
 	private ToDoUIFactory tduf = null;	//팩토리메서드 사용(딱 하나만 생성이라서 의미가 있나 싶다.)
 	private ArrayList<IndicateOneToDo_Panel> iotd = null;
-	private ArrayList<ToDoList_Object> tdlo = null;
+	HashMap<String, ArrayList<ToDoList_Object>> tdlo = null;
 	
 	//이 모든 패널들을 다 가지고 있는 게 맞나?
 	//메인 하나만 가지고 있고 나머지는 하위로 처리하도록 두는 게 나으려나?
@@ -39,7 +40,7 @@ public class UIManager {
 	
 	public static void main(String[] args) {
 		mainFrame = new Main_Frame();
-		HaveTestCase.test_ListCreate();
+//		HaveTestCase.test_ListCreate();	//테스트 생성코드
 	}
 	
 	//dataList에 담긴 데이터를 panelList에 뿌려주는 부분을 만들면 될듯
@@ -64,9 +65,13 @@ public class UIManager {
 	
 	public void createToDoPanel(){
 		//만들때 스크롤을 가장 아래로 내려서 최신으로 만들어 진 todolist를 보도록 차후 수정
-		IndicateOneToDo_Panel localTDL = tduf.createToDoList(tdlo.get(tdlo.size() - 1).getText()); 
-		iotd.add(localTDL);
-		mainFrame.getSp().setDrawToDoList(localTDL);
+		
+		for (ToDoList_Object todo_info : tdlo.get(Calendar_Info.getClickDate())) {
+			IndicateOneToDo_Panel localTDL = tduf.createToDoList(todo_info.getText()); 
+			iotd.add(localTDL);
+			mainFrame.getSp().setDrawToDoList(localTDL);
+			
+		}
 		mainFrame.getSp().revalidate();
 		mainFrame.getSp().repaint();
 	}

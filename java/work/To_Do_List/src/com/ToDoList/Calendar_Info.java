@@ -19,7 +19,9 @@ public class Calendar_Info {
 	static private boolean 	setIsLeaf = false;	
 	static private int 		setMonth = 0;		
 	static private int 		setDayOfWeek = 0;	
-	static private int 		setDay = 0;			
+	static private int 		setDay = 0;		
+	
+	static private String clickDate = null;
 
 	private Calendar_Info(){
 		initializeCalendar();
@@ -98,6 +100,8 @@ public class Calendar_Info {
 		setMonth = curMonth;			//	월 (기본값은 이번 달)
 		setDayOfWeek = curDayOfWeek;	//	현재 적용된 월의 1일의 요일
 		setDay = curDay;				//	날 (기본값은 오늘)
+		
+		setClickDate(String.valueOf(curDay));
 	}
 
 
@@ -187,8 +191,16 @@ public class Calendar_Info {
 		if (nYear < 1970) {
 			nYear = 1970;
 		}
-		
 		setCalendar(nYear, getSetMonth());
+	}
+	
+	public static void setClickDate(String pDate){
+		clickDate = String.format("%d-%02d-%s", getSetYear(), getSetMonth(), pDate); 
+	}
+	
+	public static String getClickDate(){
+		
+		return clickDate;
 	}
 
 	public static String monthOfMaxDay(int pMonth, int pDay)

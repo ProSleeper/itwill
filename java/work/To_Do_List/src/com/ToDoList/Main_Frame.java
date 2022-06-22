@@ -59,7 +59,8 @@ public class Main_Frame extends JFrame{
 		//		mb.add(new JMenu("Run"));
 		setJMenuBar(mb);
 
-
+		
+		//메뉴에서 Add버튼 누르면 생성시키는 팝업 띄우는 코드
 		item.addActionListener(new ActionListener(){ //익명클래스로 리스너 작성
 			public void actionPerformed(ActionEvent e){
 

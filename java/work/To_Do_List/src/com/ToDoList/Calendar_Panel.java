@@ -145,7 +145,7 @@ public class Calendar_Panel extends JPanel {
 			}
 			
 			buttonArr.get(i).setEnabled(buttonActive);
-			buttonArr.get(i).setText(viewDay);;
+			buttonArr.get(i).setText(viewDay);
 		}
 	}
 
@@ -211,12 +211,32 @@ public class Calendar_Panel extends JPanel {
 			}
 		});
 	}
-
+	
+	//기존 버튼 이벤트 등록
+//	public JButton addButton(String pName) {
+//		JButton jb = new JButton(pName);
+//		jb.setFont(new Font("helvetica", Font.BOLD, 17));
+//		this.setBorder(BorderFactory.createEmptyBorder(BORDERSIZE, BORDERSIZE, BORDERSIZE, BORDERSIZE));
+//		this.add(jb);
+//		return jb;
+//	}
+	
 	public JButton addButton(String pName) {
 		JButton jb = new JButton(pName);
 		jb.setFont(new Font("helvetica", Font.BOLD, 17));
 		this.setBorder(BorderFactory.createEmptyBorder(BORDERSIZE, BORDERSIZE, BORDERSIZE, BORDERSIZE));
 		this.add(jb);
+		
+		
+		jb.addMouseListener(new MouseAdapter() { //클래스 이름없이 어뎁터 클래스 생성
+			public void mousePressed(MouseEvent e) {
+				if(e.getButton() == MouseEvent.BUTTON1) {
+					Calendar_Info.setClickDate(jb.getText());
+					System.out.println(Calendar_Info.getClickDate());
+				}
+			}
+		});
+		
 		return jb;
 	}
 	
