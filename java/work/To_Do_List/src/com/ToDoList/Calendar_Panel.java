@@ -17,22 +17,23 @@ import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
 
+//2022-6-23일에 학원에서 배운 listener 이용하면 코드를 줄이거나 좀 더 효율적으로 짤 수 있을 듯
 class MyFocuseListener implements FocusListener {
 
     @Override
     public void focusGained(FocusEvent e) {
         //System.out.println(e.getSource().getClass().getName());
-        System.out.println("MyFocuseListener.focusGained()");
+        //System.out.println("MyFocuseListener.focusGained()");
     }
 
     @Override
     public void focusLost(FocusEvent e) {
     	JButton aa = (JButton)e.getComponent();
-    	System.out.println(aa.getText());
-    	aa.setBackground(Color.black);
-    	aa.setOpaque(true);
+    	//System.out.println(aa.getText());
+    	//aa.setBackground(Color.black);
+    	//aa.setOpaque(true);
         //System.out.println(e.getSource().getClass().getName());
-        System.out.println("MyFocuseListener.focusLost()");
+        //System.out.println("MyFocuseListener.focusLost()");
     }
 }
 

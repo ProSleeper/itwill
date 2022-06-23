@@ -5,6 +5,11 @@ import java.awt.FontMetrics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -15,7 +20,7 @@ import javax.swing.JOptionPane;
 
 //이 Main_Frame을 싱글턴화 시켜서 사용하면 굳이 UIManager같은거 안만들어도 되겠지만.
 //이런 형식이 맞는 건가의 의문은 계속 존재한다.
-public class Main_Frame extends JFrame{
+public class Main_Frame extends JFrame implements ActionListener{
 
 	private Calendar_Panel cp;
 	private ShowToDo_Panel sp;
@@ -34,7 +39,20 @@ public class Main_Frame extends JFrame{
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				//파일 저장부분
+				DataManager.getInstance().saveData();
+				System.exit(0);
+			}
+		});
+		
+		
 	}
+	
+	
 	
 	private void SetUI() {
 		sp = new ShowToDo_Panel();
@@ -93,6 +111,11 @@ public class Main_Frame extends JFrame{
 		this.sp = sp;
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 

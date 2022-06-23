@@ -38,6 +38,7 @@ public class UIManager {
 
 	public static void main(String[] args) {
 		mainFrame = new Main_Frame();
+		DataManager.getInstance();
 		//		HaveTestCase.test_ListCreate();	//테스트 생성코드
 	}
 
@@ -89,6 +90,38 @@ public class UIManager {
 		mainFrame.getSp().revalidate();
 		mainFrame.getSp().repaint();
 	}
+	
+	public void synchronizeDataToDoPanel(String pKey, ToDoList_Object pAddTDL){
+		//만들때 스크롤을 가장 아래로 내려서 최신으로 만들어 진 todolist를 보도록 차후 수정
+
+		//이 반복문으로 생성해주는 것은 맞는데
+		//add를 눌러서 직접 생성할때는 하나만 추가 해야 되는데
+		//현재는 리스트에 있는 모든 오브젝트를 다시 추가해주어서
+		//1개를 넣으면 총 1개, 1개 추가시 총 3개, 1개 추가시 6개, 1개 추가시 12개
+		//이렇게 늘어난다. 피보나치였나 이게?
+
+
+		//결국 여기는 날짜 버튼을 클리시에는 당연히 전부 추가시켜서 보여줘야하고
+		//그 상태에서 add버튼은 딱 한개만 추가해야하는 코드로 변경 해야한다.
+
+		IndicateOneToDo_Panel localTDL = tduf.createToDoList(pAddTDL.getText()); 
+		
+		if(infoPanel.containsKey(pKey)) {
+			infoPanel.get(pKey).add(localTDL);
+		}
+		else {
+			ArrayList<IndicateOneToDo_Panel> tdloList = new ArrayList<>();
+			tdloList.add(localTDL);
+			infoPanel.put(pKey, tdloList);
+		}
+		
+		if(pKey.equals(Calendar_Info.getClickDate())) {
+			mainFrame.getSp().setDrawToDoList(localTDL);
+		}
+		
+		mainFrame.getSp().revalidate();
+		mainFrame.getSp().repaint();
+	}
 
 	public void reDrawToDoPanel(){
 
@@ -137,12 +170,14 @@ public class UIManager {
 		
 		if(infoPanel.get(Calendar_Info.getClickDate()).size() == 0) {
 			infoPanel.remove(Calendar_Info.getClickDate());
+			DataManager.getInstance().getData().remove(Calendar_Info.getClickDate());
 		}
 		
 		
 		mainFrame.getSp().revalidate();
-		mainFrame.getSp().repaint();
-		
-		
+		mainFrame.getSp().repaint();	
 	}
+	
+	
+	
 }

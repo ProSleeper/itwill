@@ -1,18 +1,29 @@
 package com.ToDoList;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
+
 //모든 데이터 관리
-public class DataManager {
+public class DataManager  {
 	private static DataManager dm = null;
 	
 	HashMap<String, ArrayList<ToDoList_Object>> InfoDate = null;
 
+	String path = null;
+	File f = null;
+	
 	private DataManager() {
-		
-		InfoDate = new HashMap<>();	//key는 날짜 value는 해당 날짜가 가지고 있는 todolist ArrayList
+		path = System.getProperty("user.dir");
+		f = new File("todolistData.db");
+		loadData();
+		synchronizeData();
+		//InfoDate = new HashMap<>();	//key는 날짜 value는 해당 날짜가 가지고 있는 todolist ArrayList
 	}
 	
 	public static DataManager getInstance() {
@@ -20,6 +31,48 @@ public class DataManager {
 			dm = new DataManager();
 		}
 		return dm;
+	}
+	
+	public void loadData() {
+		try {
+			if(!f.exists()) {
+				InfoDate = new HashMap<>();
+				return;
+			}
+			
+			FileInputStream fis = new FileInputStream(path + "\\" + f);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			
+			InfoDate = (HashMap)ois.readObject();
+
+			ois.close();
+			fis.close();
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			InfoDate = new HashMap<>();
+//			System.out.println("불러오기 실패!!");
+		}
+//		System.out.println("불러오기 성공!!");
+	}
+	
+	public void saveData() {
+		try {
+			
+			//System.out.println(path + "\\" + f);
+			
+			FileOutputStream fos = new FileOutputStream(path + "\\" + f);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			
+			oos.writeObject(InfoDate);
+		
+			oos.close();
+			fos.close();
+			
+		} catch (Exception e) {
+//			System.out.println("저장 실패!!");
+		}
+//		System.out.println("저장 완료!!");
 	}
 	
 	public void setUIManager(UIManager dataManager) {
@@ -51,6 +104,17 @@ public class DataManager {
 		}
 		
 		UIManager.getInstance().createToDoPanel(tempTDL);
+	}
+	
+	public void synchronizeData() {
+		
+		if(InfoDate.size() == 0) {
+			return;
+		}
+		
+		for (String iterable_element : InfoDate.keySet()) {
+			InfoDate.get(iterable_element).forEach((tdl) -> UIManager.getInstance().synchronizeDataToDoPanel(iterable_element, tdl));
+		}
 	}
 	
 	public String CheckData(String pMove) {

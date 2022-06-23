@@ -158,7 +158,7 @@ public class Calendar_Info {
 		
 		if(DataManager.getInstance().CheckData("next") != null) {
 			clickDate = String.format("%d-%02d-%s", getSetYear(), getSetMonth(), DataManager.getInstance().CheckData("next"));
-			System.out.println(clickDate + "  선택");
+			//System.out.println(clickDate + "  선택");
 			return;
 		}
 		
@@ -184,7 +184,7 @@ public class Calendar_Info {
 		
 		if(DataManager.getInstance().CheckData("prev") != null) {
 			clickDate = String.format("%d-%02d-%s", getSetYear(), getSetMonth(), DataManager.getInstance().CheckData("prev")); 
-			System.out.println(clickDate + "  선택");
+			//System.out.println(clickDate + "  선택");
 			return;
 		}
 		setClickDate(String.valueOf(MonthCount[setMonth - 1]));
@@ -199,7 +199,7 @@ public class Calendar_Info {
 		
 		if(DataManager.getInstance().CheckData("next") != null) {
 			clickDate = String.format("%d-%02d-%s", getSetYear(), getSetMonth(), DataManager.getInstance().CheckData("next"));
-			System.out.println(clickDate + "  선택");
+			//System.out.println(clickDate + "  선택");
 			return;
 		}
 		
@@ -218,7 +218,7 @@ public class Calendar_Info {
 		
 		if(DataManager.getInstance().CheckData("prev") != null) {
 			clickDate = String.format("%d-%02d-%s", getSetYear(), getSetMonth(), DataManager.getInstance().CheckData("prev"));
-			System.out.println(clickDate + "  선택");
+			//System.out.println(clickDate + "  선택");
 			return;
 		}
 		
