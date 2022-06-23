@@ -1,5 +1,7 @@
 package com.ToDoList;
 
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +25,9 @@ public class Main_Frame extends JFrame{
 	public Main_Frame() {
 		SetUI();
 		createMenu();
-		setTitle("여기를 드래그하면 창을 이동할 수 있습니다.");
+		setTitle("                                           "
+				+ "                                                              " + "TodoList");
+
 		setLayout(new GridLayout(1, 1));	//그리드레이아웃은 딱히 설정의 제한이 강력하지 않은가보다. 대충 panel붙여도 다 붙여지네
 		setVisible(true);
 		setSize(960, 540);
@@ -31,7 +35,7 @@ public class Main_Frame extends JFrame{
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
-
+	
 	private void SetUI() {
 		sp = new ShowToDo_Panel();
 		cp = new Calendar_Panel();
@@ -68,7 +72,6 @@ public class Main_Frame extends JFrame{
 
 				if(todoText != null && !todoText.equals("")) {
 					DataManager.getInstance().createData(todoText);
-					UIManager.getInstance().createToDoPanel();
 				}
 			}
 		});

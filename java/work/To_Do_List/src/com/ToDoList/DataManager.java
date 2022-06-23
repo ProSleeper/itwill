@@ -8,11 +8,11 @@ import java.util.HashMap;
 public class DataManager {
 	private static DataManager dm = null;
 	
-	HashMap<String, ArrayList<ToDoList_Object>> InforBDate = null;
+	HashMap<String, ArrayList<ToDoList_Object>> InfoDate = null;
 
 	private DataManager() {
 		
-		InforBDate = new HashMap<>();	//key는 날짜 value는 해당 날짜가 가지고 있는 todolist ArrayList
+		InfoDate = new HashMap<>();	//key는 날짜 value는 해당 날짜가 가지고 있는 todolist ArrayList
 	}
 	
 	public static DataManager getInstance() {
@@ -35,14 +35,52 @@ public class DataManager {
 	//추후 수정
 	public void createData(String toDoText) {
 		
-		System.out.println(Calendar_Info.getClickDate());
-		if(InforBDate.containsKey(Calendar_Info.getClickDate())) {
-			InforBDate.get(Calendar_Info.getClickDate()).add(new ToDoList_Object(toDoText));
+		ToDoList_Object tempTDL = null;
+		
+		//System.out.println("생성");
+		//System.out.println(Calendar_Info.getClickDate());
+		if(InfoDate.containsKey(Calendar_Info.getClickDate())) {
+			tempTDL = new ToDoList_Object(toDoText);
+			InfoDate.get(Calendar_Info.getClickDate()).add(tempTDL);
 		}
 		else {
 			ArrayList<ToDoList_Object> tdloList = new ArrayList<>();
-			tdloList.add(new ToDoList_Object(toDoText));
-			InforBDate.put(Calendar_Info.getClickDate(), tdloList);
+			tempTDL = new ToDoList_Object(toDoText);
+			tdloList.add(tempTDL);
+			InfoDate.put(Calendar_Info.getClickDate(), tdloList);
+		}
+		
+		UIManager.getInstance().createToDoPanel(tempTDL);
+	}
+	
+	public String CheckData(String pMove) {
+		
+		int max = Integer.parseInt(Calendar_Info.setMonthOfMaxDay(Calendar_Info.getSetMonth(), 31));
+		
+		
+		int min = 0;
+		
+		for (int i = 1; i <= 31; i++) {
+			String temp = String.format("%d-%02d-%d", Calendar_Info.getSetYear(), Calendar_Info.getSetMonth(), i);
+			
+			if(InfoDate.containsKey(temp)) {
+				
+				if(min < 1) {
+					min = i;
+				}
+				max = i;
+			}
+		}
+		
+		if(pMove.equals("next")) {
+			if(min < 1) {
+				min = 1;
+			}
+			
+			return String.valueOf(min);
+		}
+		else {
+			return String.valueOf(max);
 		}
 	}
 	
@@ -51,7 +89,7 @@ public class DataManager {
 //	일단 내가 내린 결론은, 추후에 어떤 경우에도 결국 DB는 따로 저장해서 가져올테니까
 //	여기서는 이 DataManager가 DB 라고 생각하고 DB를 UIManager가 불러와서 출력해주는 방식으로 하자.
 	public HashMap<String, ArrayList<ToDoList_Object>> getData(){
-		return InforBDate;
+		return InfoDate;
 	}
 	
 }

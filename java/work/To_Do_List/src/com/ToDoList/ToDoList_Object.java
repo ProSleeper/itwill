@@ -1,7 +1,8 @@
 package com.ToDoList;
 
+import java.io.Serializable;
 
-public class ToDoList_Object {
+public class ToDoList_Object implements Serializable {
 	
 	private String text;
 	private boolean isCheck;

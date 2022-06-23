@@ -26,7 +26,7 @@ public class ShowToDo_Panel extends JPanel {
 	private JPanel scrollPanel = null;
 	private final int iotdScrollSize = 38;
 	private int arraySize = 0;
-	
+
 	// 체크박스와 버튼을 하나의 패널로
 	public ShowToDo_Panel() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -62,23 +62,39 @@ public class ShowToDo_Panel extends JPanel {
 //		this.revalidate();
 //	}
 	
-	public void setDrawToDoList(IndicateOneToDo_Panel iotdp)
-	{
+	public void setDrawToDoList(IndicateOneToDo_Panel iotdp){
+		System.out.println("스크롤 패널 추가");
 		this.arraySize++;
 		scrollPanel.add(iotdp);
 		scrollPanel.setPreferredSize(new Dimension( 437,30 + this.arraySize * iotdScrollSize));
 	}
 	
-	public void setScrollEdit()
-	{
+	public void reDrawToDoList(IndicateOneToDo_Panel iotdp){
+		System.out.println("패널 재출력 추가");
+		
+		
+		this.arraySize++;
+		scrollPanel.add(iotdp);
+		scrollPanel.setPreferredSize(new Dimension( 437,30 + this.arraySize * iotdScrollSize));
+	}
+	
+	public void setScrollEdit(){
 		this.arraySize--;
 		scrollPanel.setPreferredSize(new Dimension( 437,30 + this.arraySize * iotdScrollSize));
 	}
 	
-	public JPanel getScrollPanel()
-	{
+	public JPanel getScrollPanel(){
 		return scrollPanel;
 	}
+	
+	public int getArraySize() {
+		return arraySize;
+	}
+
+	public void setArraySize(int arraySize) {
+		this.arraySize = arraySize;
+	}
+	
 	
 	
 	//삭제 코드 추후에

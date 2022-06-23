@@ -4,6 +4,8 @@ import java.util.Random;
 
 public class HaveTestCase {
 	
+	
+	//테스트 생성 케이스
 	public static void test_ListCreate()
 	{
 		final int LIST_SIZE = 15;
@@ -24,7 +26,7 @@ public class HaveTestCase {
 			}
 			
 			DataManager.getInstance().createData(todoText);
-			UIManager.getInstance().createToDoPanel();
+			//UIManager.getInstance().createToDoPanel();
 			todoText = "";
 			
 		}

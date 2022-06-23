@@ -155,6 +155,14 @@ public class Calendar_Info {
 		}
 
 		setCalendar(nYear, nMonth);
+		
+		if(DataManager.getInstance().CheckData("next") != null) {
+			clickDate = String.format("%d-%02d-%s", getSetYear(), getSetMonth(), DataManager.getInstance().CheckData("next"));
+			System.out.println(clickDate + "  선택");
+			return;
+		}
+		
+		setClickDate(String.valueOf(1));
 	}
 
 	public static void prevMonth(){
@@ -173,6 +181,13 @@ public class Calendar_Info {
 		}
 		
 		setCalendar(nYear, nMonth);
+		
+		if(DataManager.getInstance().CheckData("prev") != null) {
+			clickDate = String.format("%d-%02d-%s", getSetYear(), getSetMonth(), DataManager.getInstance().CheckData("prev")); 
+			System.out.println(clickDate + "  선택");
+			return;
+		}
+		setClickDate(String.valueOf(MonthCount[setMonth - 1]));
 	}
 
 	
@@ -181,6 +196,14 @@ public class Calendar_Info {
 		nYear += 1;
 
 		setCalendar(nYear, getSetMonth());
+		
+		if(DataManager.getInstance().CheckData("next") != null) {
+			clickDate = String.format("%d-%02d-%s", getSetYear(), getSetMonth(), DataManager.getInstance().CheckData("next"));
+			System.out.println(clickDate + "  선택");
+			return;
+		}
+		
+		setClickDate(String.valueOf(1));
 	}
 
 	public static void prevYear(){
@@ -192,9 +215,18 @@ public class Calendar_Info {
 			nYear = 1970;
 		}
 		setCalendar(nYear, getSetMonth());
+		
+		if(DataManager.getInstance().CheckData("prev") != null) {
+			clickDate = String.format("%d-%02d-%s", getSetYear(), getSetMonth(), DataManager.getInstance().CheckData("prev"));
+			System.out.println(clickDate + "  선택");
+			return;
+		}
+		
+		setClickDate(String.valueOf(MonthCount[setMonth - 1]));
 	}
 	
 	public static void setClickDate(String pDate){
+		
 		clickDate = String.format("%d-%02d-%s", getSetYear(), getSetMonth(), pDate); 
 	}
 	
@@ -203,17 +235,28 @@ public class Calendar_Info {
 		return clickDate;
 	}
 
-	public static String monthOfMaxDay(int pMonth, int pDay)
+	public static String curMonthOfMaxDay(int pMonth, int pDay)
 	{
-		if((curIsLeaf || setIsLeaf) && pMonth == 2 && pDay == 29) {
+		if(curIsLeaf  && pMonth == 2 && pDay > 28) {
 			return "29";
 		}
-
 		if (MonthCount[pMonth - 1] < pDay) {
 			return String.valueOf(MonthCount[pMonth - 1]);
 		} 
 		return String.valueOf(pDay);
 	}
+	
+	public static String setMonthOfMaxDay(int pMonth, int pDay)
+	{
+		if(setIsLeaf && pMonth == 2 && pDay > 28) {
+			return "29";
+		}
+		if (MonthCount[pMonth - 1] < pDay) {
+			return String.valueOf(MonthCount[pMonth - 1]);
+		} 
+		return String.valueOf(pDay);
+	}
+
 
 	public static int getCurYear() {
 		return curYear;

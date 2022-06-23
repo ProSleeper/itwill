@@ -9,12 +9,13 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="Color" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="color"/>
 			<item value="focus"/>
 			<item value="WEEK_OF_YEAR"/>
 			<item value="inputVO"/>
@@ -29,7 +30,6 @@
 			<item value="j2"/>
 			<item value="D:\\Eclipse\\Java\\그림파일\\"/>
 			<item value="long"/>
-			<item value="color"/>
 		</list>
 		<list key="replacehistory">
 			<item value="inputStr"/>
