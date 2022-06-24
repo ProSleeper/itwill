@@ -116,7 +116,4 @@ public class Main_Frame extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
 }

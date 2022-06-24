@@ -41,7 +41,7 @@ public class ShowToDo_Panel extends JPanel {
 		
 		
 		JScrollPane scrollFrame = new JScrollPane(scrollPanel);
-		//scrollFrame.getVerticalScrollBar().setUnitIncrement(16);
+		scrollFrame.getVerticalScrollBar().setUnitIncrement(16);
 		scrollFrame.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollFrame.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPanel.setAutoscrolls(true);
@@ -64,6 +64,7 @@ public class ShowToDo_Panel extends JPanel {
 	
 	public void setDrawToDoList(IndicateOneToDo_Panel iotdp){
 		//System.out.println("스크롤 패널 추가");
+		//System.out.println(this.arraySize);
 		this.arraySize++;
 		scrollPanel.add(iotdp);
 		scrollPanel.setPreferredSize(new Dimension( 437,30 + this.arraySize * iotdScrollSize));
@@ -71,8 +72,7 @@ public class ShowToDo_Panel extends JPanel {
 	
 	public void reDrawToDoList(IndicateOneToDo_Panel iotdp){
 		//System.out.println("패널 재출력 추가");
-		
-		
+		//System.out.println(this.arraySize);
 		this.arraySize++;
 		scrollPanel.add(iotdp);
 		scrollPanel.setPreferredSize(new Dimension( 437,30 + this.arraySize * iotdScrollSize));
@@ -80,6 +80,12 @@ public class ShowToDo_Panel extends JPanel {
 	
 	public void setScrollEdit(){
 		this.arraySize--;
+		//System.out.println(this.arraySize);
+		scrollPanel.setPreferredSize(new Dimension( 437,30 + this.arraySize * iotdScrollSize));
+	}
+	
+	public void initScroll(int arraySize) {
+		this.arraySize = arraySize;
 		scrollPanel.setPreferredSize(new Dimension( 437,30 + this.arraySize * iotdScrollSize));
 	}
 	

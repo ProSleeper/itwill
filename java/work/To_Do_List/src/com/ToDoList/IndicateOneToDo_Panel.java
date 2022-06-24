@@ -21,7 +21,8 @@ public class IndicateOneToDo_Panel extends JPanel{
 
 	private JCheckBox jcb = null;
 	private JButton jb = null;
-
+	private String doText = null;
+	
 	private Font activeFont;
 	private Font completedFont;
 
@@ -29,7 +30,8 @@ public class IndicateOneToDo_Panel extends JPanel{
 		this.setLayout(new BorderLayout());
 		//		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		this.setBorder(new TitledBorder(new LineBorder(Color.black)));
-
+		
+		setDoText(toDoText);
 		jcb = new JCheckBox();
 		jb = new JButton("...");
 		
@@ -55,6 +57,7 @@ public class IndicateOneToDo_Panel extends JPanel{
 		if(todoText != null) {
 			if(!todoText.equals("")) {
 				jcb.setText(todoText.toString());
+				setDoText(todoText.toString());
 			}
 		}
 	}
@@ -106,5 +109,13 @@ public class IndicateOneToDo_Panel extends JPanel{
 				}
 			}
 		});
+	}
+
+	public String getDoText() {
+		return doText;
+	}
+
+	public void setDoText(String doText) {
+		this.doText = doText;
 	}
 }

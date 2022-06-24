@@ -76,7 +76,7 @@ public class UIManager {
 		//그 상태에서 add버튼은 딱 한개만 추가해야하는 코드로 변경 해야한다.
 
 		IndicateOneToDo_Panel localTDL = tduf.createToDoList(pAddTDL.getText()); 
-		
+
 		if(infoPanel.containsKey(Calendar_Info.getClickDate())) {
 			infoPanel.get(Calendar_Info.getClickDate()).add(localTDL);
 		}
@@ -85,12 +85,12 @@ public class UIManager {
 			tdloList.add(localTDL);
 			infoPanel.put(Calendar_Info.getClickDate(), tdloList);
 		}
-		
+
 		mainFrame.getSp().setDrawToDoList(localTDL);
 		mainFrame.getSp().revalidate();
 		mainFrame.getSp().repaint();
 	}
-	
+
 	public void synchronizeDataToDoPanel(String pKey, ToDoList_Object pAddTDL){
 		//만들때 스크롤을 가장 아래로 내려서 최신으로 만들어 진 todolist를 보도록 차후 수정
 
@@ -105,7 +105,7 @@ public class UIManager {
 		//그 상태에서 add버튼은 딱 한개만 추가해야하는 코드로 변경 해야한다.
 
 		IndicateOneToDo_Panel localTDL = tduf.createToDoList(pAddTDL.getText()); 
-		
+
 		if(infoPanel.containsKey(pKey)) {
 			infoPanel.get(pKey).add(localTDL);
 		}
@@ -114,27 +114,25 @@ public class UIManager {
 			tdloList.add(localTDL);
 			infoPanel.put(pKey, tdloList);
 		}
-		
+
 		if(pKey.equals(Calendar_Info.getClickDate())) {
 			mainFrame.getSp().setDrawToDoList(localTDL);
 		}
-		
+
 		mainFrame.getSp().revalidate();
 		mainFrame.getSp().repaint();
 	}
 
 	public void reDrawToDoPanel(){
-
 		mainFrame.getSp().getScrollPanel().removeAll();
-		mainFrame.getSp().setArraySize(0);
+		mainFrame.getSp().initScroll(0);
 		mainFrame.getSp().revalidate();
 		mainFrame.getSp().repaint();
-		
+
 		if(infoPanel.get(Calendar_Info.getClickDate()) == null) {
-			
 			return;
 		}
-		
+
 		for (IndicateOneToDo_Panel todo_info : infoPanel.get(Calendar_Info.getClickDate())) {
 			mainFrame.getSp().reDrawToDoList(todo_info);
 		}
@@ -146,38 +144,50 @@ public class UIManager {
 		//삭제 버튼을 눌렀을 때 실행될 부분
 		//실상은 추상이나 인터페이스를 쓴 콜백은 아니지만
 		//느낌은 콜백느낌
+
+		Iterator<ToDoList_Object> data = DataManager.getInstance().getData().get(Calendar_Info.getClickDate()).iterator();
+
+		while (data.hasNext()) {
+			
+			if(delObj.getDoText().equals(data.next().getText())) {
+				data.remove();
+			}
+		}
 		
 		Iterator<IndicateOneToDo_Panel> iter = infoPanel.get(Calendar_Info.getClickDate()).iterator();
-		
-		
+
 		while (iter.hasNext()) {
 			IndicateOneToDo_Panel toDoList_Object = (IndicateOneToDo_Panel) iter.next();
 			
 			
 			if(toDoList_Object == delObj) {
 
+				//DataManager.getInstance().getData().get(Calendar_Info.getClickDate())delObj.
 				//현재 붙어 있는 패널이 scroll패널이라서 거기서 지움
 				//mainFrame.getSp().getScrollPanel().remove(iter);
-
+				
 				iter.remove();
-
+				
 				//스크롤 판정 부분을 수정해야 삭제하면 스크롤이 줄어듬
+
+
+				//현재 패널은 삭제가 되는데 데이터가 삭제 안되고 있음.
 
 				mainFrame.getSp().setScrollEdit();
 				mainFrame.getSp().getScrollPanel().remove(delObj);
 			}
 		}
-		
+
 		if(infoPanel.get(Calendar_Info.getClickDate()).size() == 0) {
 			infoPanel.remove(Calendar_Info.getClickDate());
 			DataManager.getInstance().getData().remove(Calendar_Info.getClickDate());
 		}
-		
-		
+
+
 		mainFrame.getSp().revalidate();
 		mainFrame.getSp().repaint();	
 	}
-	
-	
-	
+
+
+
 }

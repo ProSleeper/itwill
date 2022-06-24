@@ -21,30 +21,24 @@ public class ToDoList_Object implements Serializable {
 		return text;
 	}
 
-
 	public void setText(String text) {
 		this.text = text;
 	}
-
 
 	public boolean isCheck() {
 		return isCheck;
 	}
 
-
 	public void setCheck(boolean isCheck) {
 		this.isCheck = isCheck;
 	}
-
 
 	public int getType() {
 		return type;
 	}
 
-
 	public void setType(int type) {
 		this.type = type;
 	}
-	
-	
+		
 }
