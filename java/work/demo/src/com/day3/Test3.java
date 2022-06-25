@@ -9,11 +9,11 @@ public class Test3 {
 		char result = ' ';
 		
 		ch = 'a';
-		//ch = '°¡';
+		//ch = 'ï¿½ï¿½';
 		
 		//System.out.println(Integer.toString(ch));
 		
-		System.out.println("ÇÑ°³ÀÇ ¹®ÀÚ?");
+		System.out.println("ï¿½Ñ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½?");
 		ch = (char)System.in.read();
 		
 		

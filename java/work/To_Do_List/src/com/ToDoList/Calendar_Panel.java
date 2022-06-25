@@ -23,15 +23,15 @@ class MyFocuseListener implements FocusListener {
 
     @Override
     public void focusGained(FocusEvent e) {
-    	JButton aa = (JButton)e.getComponent();
+    	//JButton aa = (JButton)e.getComponent();
         //System.out.println(e.getSource().getClass().getName());
         //System.out.println("MyFocuseListener.focusGained()");
-        System.out.println(aa.getText());
+        //System.out.println(aa.getText());
     }
 
     @Override
     public void focusLost(FocusEvent e) {
-    	JButton aa = (JButton)e.getComponent();
+    	//JButton aa = (JButton)e.getComponent();
     	//System.out.println(aa.getText());
 //    	//aa.setBackground(Color.black);
 //    	aa.setOpaque(true);

@@ -26,7 +26,7 @@ public class ClientTest extends JFrame implements ActionListener, Runnable  {
 	private Socket sc = null;
 	private int port = 7777;
 	
-	static final String myIP = "192.168.16.0";
+	static final String myIP = "localhost";
 
 	public ClientTest() {
 		add(ta, BorderLayout.CENTER);
