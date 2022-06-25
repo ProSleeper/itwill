@@ -20,6 +20,8 @@ public class DataManager  {
 	
 	private DataManager() {
 		path = System.getProperty("user.dir");
+//		System.out.println(path);
+		
 		f = new File("todolistData.db");
 		loadData();
 		synchronizeData();
@@ -51,15 +53,15 @@ public class DataManager  {
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			InfoDate = new HashMap<>();
-//			System.out.println("불러오기 실패!!");
+			System.out.println("불러오기 실패!!");
 		}
-//		System.out.println("불러오기 성공!!");
+		System.out.println("불러오기 성공!!");
 	}
 	
 	public void saveData() {
 		try {
 			
-			//System.out.println(path + "\\" + f);
+			System.out.println(path + "\\" + f);
 			
 			FileOutputStream fos = new FileOutputStream(path + "\\" + f);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -70,9 +72,9 @@ public class DataManager  {
 			fos.close();
 			
 		} catch (Exception e) {
-//			System.out.println("저장 실패!!");
+			System.out.println("저장 실패!!");
 		}
-//		System.out.println("저장 완료!!");
+		System.out.println("저장 완료!!");
 	}
 	
 	public void setUIManager(UIManager dataManager) {

@@ -46,9 +46,21 @@ public class IndicateOneToDo_Panel extends JPanel{
 		jcb.setFont(activeFont);
 		jcb.setBackground(Color.WHITE);
 		jcb.setText(toDoText);
-
+		
+//		System.out.println(jcb.getPreferredSize());
+		
+		jcb.setPreferredSize(new Dimension(399, 23));
+		
+		
 		this.add(jcb, BorderLayout.WEST);
 		this.add(jb, BorderLayout.EAST);
+		
+		//ZOrder 세팅인데 위에 preferredSize를 설정해주면 굳이 필요가 없어보인다.
+//		this.setComponentZOrder(jb, 0);
+//		this.setComponentZOrder(jcb, 1);
+		
+		
+		
 	}
 
 	public void setEditCheckBoxText() {

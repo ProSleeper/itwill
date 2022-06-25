@@ -30,8 +30,7 @@ public class Main_Frame extends JFrame implements ActionListener{
 	public Main_Frame() {
 		SetUI();
 		createMenu();
-		setTitle("                                           "
-				+ "                                                              " + "TodoList");
+		setTitle("                                                              " + "TodoList");
 
 		setLayout(new GridLayout(1, 1));	//그리드레이아웃은 딱히 설정의 제한이 강력하지 않은가보다. 대충 panel붙여도 다 붙여지네
 		setVisible(true);
@@ -39,6 +38,9 @@ public class Main_Frame extends JFrame implements ActionListener{
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		//위 코드는 윈도우에서는 x를 눌러서 닫아도, alt+f4로 닫아도 작동하지만
+		//mac에서는 따로 코드를 작성해줘야지 command+q를 해주는 이벤트를 캐치 할 수 있을 것 같다.
+		
 		addWindowListener(new WindowAdapter() {
 
 			@Override
@@ -48,12 +50,12 @@ public class Main_Frame extends JFrame implements ActionListener{
 				System.exit(0);
 			}
 		});
-		
-		
+
+
 	}
-	
-	
-	
+
+
+
 	private void SetUI() {
 		sp = new ShowToDo_Panel();
 		cp = new Calendar_Panel();
@@ -81,7 +83,7 @@ public class Main_Frame extends JFrame implements ActionListener{
 		//		mb.add(new JMenu("Run"));
 		setJMenuBar(mb);
 
-		
+
 		//메뉴에서 Add버튼 누르면 생성시키는 팝업 띄우는 코드
 		item.addActionListener(new ActionListener(){ //익명클래스로 리스너 작성
 			public void actionPerformed(ActionEvent e){
@@ -114,6 +116,6 @@ public class Main_Frame extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

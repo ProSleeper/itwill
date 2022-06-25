@@ -2,8 +2,11 @@ package com.ToDoList;
 
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -24,6 +27,10 @@ import javax.swing.ScrollPaneConstants;
 public class ShowToDo_Panel extends JPanel {
 
 	private JPanel scrollPanel = null;
+	private GridBagLayout gBag;
+	private GridBagConstraints gbc;
+	
+	
 	private final int iotdScrollSize = 38;
 	private int arraySize = 0;
 
@@ -36,8 +43,18 @@ public class ShowToDo_Panel extends JPanel {
 	private void scrollPanelCreate(){
 		
 		scrollPanel = new JPanel();
+		gBag = new GridBagLayout(); 
+		
+		scrollPanel.setLayout(gBag);
+		gbc = new GridBagConstraints();
+		
+		
+		
+		
+		
+		
 //		scrollPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 3, 5));
-		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));	//boxlayout으로 세로로 1개씩 정렬하고 싶은데 크기 고정하는 걸 모르겠다...
+		//scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));	//boxlayout으로 세로로 1개씩 정렬하고 싶은데 크기 고정하는 걸 모르겠다...
 		
 		
 		JScrollPane scrollFrame = new JScrollPane(scrollPanel);
@@ -46,7 +63,7 @@ public class ShowToDo_Panel extends JPanel {
 		scrollFrame.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPanel.setAutoscrolls(true);
 		
-		scrollFrame.add(Box.createHorizontalStrut(1000));
+		//scrollFrame.add(Box.createHorizontalStrut(1000));
 		this.add(scrollFrame);
 	}
 
@@ -66,7 +83,8 @@ public class ShowToDo_Panel extends JPanel {
 		//System.out.println("스크롤 패널 추가");
 		//System.out.println(this.arraySize);
 		this.arraySize++;
-		scrollPanel.add(iotdp);
+//		scrollPanel.add(iotdp);
+		scrollPanel_Add(iotdp);
 		scrollPanel.setPreferredSize(new Dimension( 437,30 + this.arraySize * iotdScrollSize));
 	}
 	
@@ -74,7 +92,8 @@ public class ShowToDo_Panel extends JPanel {
 		//System.out.println("패널 재출력 추가");
 		//System.out.println(this.arraySize);
 		this.arraySize++;
-		scrollPanel.add(iotdp);
+//		scrollPanel.add(iotdp);
+		scrollPanel_Add(iotdp);
 		scrollPanel.setPreferredSize(new Dimension( 437,30 + this.arraySize * iotdScrollSize));
 	}
 	
@@ -99,6 +118,25 @@ public class ShowToDo_Panel extends JPanel {
 
 	public void setArraySize(int arraySize) {
 		this.arraySize = arraySize;
+	}
+	
+	private void scrollPanel_Add(Component pComp) {
+		//현재 한 화면에 15개의 todolist가 들어감.
+		
+		//System.out.println("몇번 오지?");
+        gbc.fill= GridBagConstraints.HORIZONTAL;
+        
+        
+        System.out.println(arraySize);
+//        gbc.gridx = 0;
+        gbc.gridy = arraySize;	//세로로 한칸씩 늘
+        //gbc.gridwidth = 2;
+        //gbc.gridheight = 1;
+        gbc.weightx = 1;		//컴포넌트의 가로 비율 0이 아닌 값을 넣으면 가로를 전부 채운다.
+//        gbc.weighty = 2;		//컴포넌트의 세로 비율, 가로와 설정은 같지만 fill이 현재 horizontal이라서 가로만 채운다.
+        gbc.anchor = GridBagConstraints.NORTH;
+        scrollPanel.add(pComp,gbc);
+        //scrollPanel.add(pComp);
 	}
 	
 	

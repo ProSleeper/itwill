@@ -14,6 +14,14 @@ public class UIManager {
 	//유일하게 있어야 할 패널: main, home, calender
 	//list로 가지고 있을 패널: iotd, cb, eb
 	//여기서 cb와 eb는 iotd가 가지고 있으니까 list는 iotd만 있으면 될듯
+	
+	//2022-06-25일 추가 변경 명
+	//달력 구현 전에는 list로 데이터를 구현했으나 달력을 만들 파일 저장을 위해서는 map이 필요해서
+	//모든 데이터를 가지고 있을 맵을 2개 만들었다. UIManager에서 패널을 가지고 있을 map 1개
+	//DataManager에서 저장될 데이터를 가지고 있을 map 1개. 둘은 키는 동일하게 가지고 있지만
+	//실제 파일로 저장을 위해서는 DataManager의 데이터가 필요하고 패널은 이 값을 가지고 뿌려주는 것만 하기 때문에
+	//map을 2개로 구현했다.
+	
 	private static Main_Frame mainFrame = null;
 
 	private ToDoUIFactory tduf = null;	//팩토리메서드 사용(딱 하나만 생성이라서 의미가 있나 싶다.)
@@ -40,19 +48,6 @@ public class UIManager {
 		mainFrame = new Main_Frame();
 		DataManager.getInstance();
 		//		HaveTestCase.test_ListCreate();	//테스트 생성코드
-	}
-
-	//dataList에 담긴 데이터를 panelList에 뿌려주는 부분을 만들면 될듯
-	public void setData(){
-
-	}
-
-	public void setMainFrame(Main_Frame mainFrame) {
-
-	}
-
-	public void setDataManager(DataManager dataManager) {
-
 	}
 
 	private void TooltipSetting(){
@@ -182,8 +177,6 @@ public class UIManager {
 			infoPanel.remove(Calendar_Info.getClickDate());
 			DataManager.getInstance().getData().remove(Calendar_Info.getClickDate());
 		}
-
-
 		mainFrame.getSp().revalidate();
 		mainFrame.getSp().repaint();	
 	}
