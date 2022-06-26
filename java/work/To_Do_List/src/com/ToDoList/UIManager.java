@@ -70,7 +70,7 @@ public class UIManager {
 		//결국 여기는 날짜 버튼을 클리시에는 당연히 전부 추가시켜서 보여줘야하고
 		//그 상태에서 add버튼은 딱 한개만 추가해야하는 코드로 변경 해야한다.
 
-		IndicateOneToDo_Panel localTDL = tduf.createToDoList(pAddTDL.getText()); 
+		IndicateOneToDo_Panel localTDL = tduf.createToDoList(pAddTDL.getText(), false); 
 
 		if(infoPanel.containsKey(Calendar_Info.getClickDate())) {
 			infoPanel.get(Calendar_Info.getClickDate()).add(localTDL);
@@ -99,7 +99,7 @@ public class UIManager {
 		//결국 여기는 날짜 버튼을 클리시에는 당연히 전부 추가시켜서 보여줘야하고
 		//그 상태에서 add버튼은 딱 한개만 추가해야하는 코드로 변경 해야한다.
 
-		IndicateOneToDo_Panel localTDL = tduf.createToDoList(pAddTDL.getText()); 
+		IndicateOneToDo_Panel localTDL = tduf.createToDoList(pAddTDL.getText(), pAddTDL.isCheck()); 
 
 		if(infoPanel.containsKey(pKey)) {
 			infoPanel.get(pKey).add(localTDL);
@@ -129,10 +129,31 @@ public class UIManager {
 		}
 
 		for (IndicateOneToDo_Panel todo_info : infoPanel.get(Calendar_Info.getClickDate())) {
+			//todo_info.setCheckButton(todo_info);
 			mainFrame.getSp().reDrawToDoList(todo_info);
 		}
 		mainFrame.getSp().revalidate();
 		mainFrame.getSp().repaint();
+	}
+	
+	//일단은 todolist의 내용을 가지고 찾아서 체크인지 아닌지 확인하지만 내용은 중복이 가능하기 때문에 차후에 수정하자.
+	//아마 이걸 피하고 반복문을 최대한 피하려면 index 방식을 사용해야 할 것 같다.
+	public void doneCheckList(IndicateOneToDo_Panel doneObj, boolean pCheck) {
+		//삭제 버튼을 눌렀을 때 실행될 부분
+		//실상은 추상이나 인터페이스를 쓴 콜백은 아니지만
+		//느낌은 콜백느낌
+
+		Iterator<ToDoList_Object> data = DataManager.getInstance().getData().get(Calendar_Info.getClickDate()).iterator();
+
+		while (data.hasNext()) {
+			
+			ToDoList_Object temp = data.next();
+			//********************* 완전히 같은 내용을 가진 경우 체크를 확인하는 부분이 제대로 동작하지 않음
+			if(doneObj.getDoText().equals(temp.getText())) {
+				temp.setCheck(pCheck);
+				return;
+			}
+		}
 	}
 
 	public void deleteToDoPanel(IndicateOneToDo_Panel delObj) {
@@ -144,6 +165,8 @@ public class UIManager {
 
 		while (data.hasNext()) {
 			
+			
+			//이렇게 검사를 하면 todolist 패널의 내용은 중복이 가능하기 때문에 같은 todolist가 있다면 오류가 나게 된다.
 			if(delObj.getDoText().equals(data.next().getText())) {
 				data.remove();
 			}

@@ -31,7 +31,7 @@ public class ShowToDo_Panel extends JPanel {
 	private GridBagConstraints gbc;
 	
 	
-	private final int iotdScrollSize = 38;
+	private final int iotdScrollSize = 28;
 	private int arraySize = 0;
 
 	// 체크박스와 버튼을 하나의 패널로
@@ -47,11 +47,6 @@ public class ShowToDo_Panel extends JPanel {
 		
 		scrollPanel.setLayout(gBag);
 		gbc = new GridBagConstraints();
-		
-		
-		
-		
-		
 		
 //		scrollPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 3, 5));
 		//scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));	//boxlayout으로 세로로 1개씩 정렬하고 싶은데 크기 고정하는 걸 모르겠다...
@@ -93,6 +88,7 @@ public class ShowToDo_Panel extends JPanel {
 		//System.out.println(this.arraySize);
 		this.arraySize++;
 //		scrollPanel.add(iotdp);
+		
 		scrollPanel_Add(iotdp);
 		scrollPanel.setPreferredSize(new Dimension( 437,30 + this.arraySize * iotdScrollSize));
 	}
@@ -125,9 +121,6 @@ public class ShowToDo_Panel extends JPanel {
 		
 		//System.out.println("몇번 오지?");
         gbc.fill= GridBagConstraints.HORIZONTAL;
-        
-        
-        System.out.println(arraySize);
 //        gbc.gridx = 0;
         gbc.gridy = arraySize;	//세로로 한칸씩 늘
         //gbc.gridwidth = 2;

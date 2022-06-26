@@ -53,9 +53,9 @@ public class DataManager  {
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			InfoDate = new HashMap<>();
-			System.out.println("불러오기 실패!!");
+			//System.out.println("불러오기 실패!!");
 		}
-		System.out.println("불러오기 성공!!");
+		//System.out.println("불러오기 성공!!");
 	}
 	
 	public void saveData() {
@@ -72,9 +72,9 @@ public class DataManager  {
 			fos.close();
 			
 		} catch (Exception e) {
-			System.out.println("저장 실패!!");
+			//System.out.println("저장 실패!!");
 		}
-		System.out.println("저장 완료!!");
+		//System.out.println("저장 완료!!");
 	}
 	
 	public void setUIManager(UIManager dataManager) {
