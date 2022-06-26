@@ -14,14 +14,14 @@ public class UIManager {
 	//유일하게 있어야 할 패널: main, home, calender
 	//list로 가지고 있을 패널: iotd, cb, eb
 	//여기서 cb와 eb는 iotd가 가지고 있으니까 list는 iotd만 있으면 될듯
-	
+
 	//2022-06-25일 추가 변경 명
 	//달력 구현 전에는 list로 데이터를 구현했으나 달력을 만들 파일 저장을 위해서는 map이 필요해서
 	//모든 데이터를 가지고 있을 맵을 2개 만들었다. UIManager에서 패널을 가지고 있을 map 1개
 	//DataManager에서 저장될 데이터를 가지고 있을 map 1개. 둘은 키는 동일하게 가지고 있지만
 	//실제 파일로 저장을 위해서는 DataManager의 데이터가 필요하고 패널은 이 값을 가지고 뿌려주는 것만 하기 때문에
 	//map을 2개로 구현했다.
-	
+
 	private static Main_Frame mainFrame = null;
 
 	private ToDoUIFactory tduf = null;	//팩토리메서드 사용(딱 하나만 생성이라서 의미가 있나 싶다.)
@@ -123,6 +123,8 @@ public class UIManager {
 		mainFrame.getSp().initScroll(0);
 		mainFrame.getSp().revalidate();
 		mainFrame.getSp().repaint();
+		
+		//System.out.println(Calendar_Info.getClickDate());
 
 		if(infoPanel.get(Calendar_Info.getClickDate()) == null) {
 			return;
@@ -135,7 +137,7 @@ public class UIManager {
 		mainFrame.getSp().revalidate();
 		mainFrame.getSp().repaint();
 	}
-	
+
 	//일단은 todolist의 내용을 가지고 찾아서 체크인지 아닌지 확인하지만 내용은 중복이 가능하기 때문에 차후에 수정하자.
 	//아마 이걸 피하고 반복문을 최대한 피하려면 index 방식을 사용해야 할 것 같다.
 	public void doneCheckList(IndicateOneToDo_Panel doneObj, boolean pCheck) {
@@ -143,14 +145,13 @@ public class UIManager {
 		//실상은 추상이나 인터페이스를 쓴 콜백은 아니지만
 		//느낌은 콜백느낌
 
-		Iterator<ToDoList_Object> data = DataManager.getInstance().getData().get(Calendar_Info.getClickDate()).iterator();
+		ArrayList<IndicateOneToDo_Panel> panelData = infoPanel.get(Calendar_Info.getClickDate());
 
-		while (data.hasNext()) {
-			
-			ToDoList_Object temp = data.next();
-			//********************* 완전히 같은 내용을 가진 경우 체크를 확인하는 부분이 제대로 동작하지 않음
-			if(doneObj.getDoText().equals(temp.getText())) {
-				temp.setCheck(pCheck);
+		for (int i = 0; i < panelData.size(); i++) {
+			if(doneObj.equals(panelData.get(i))) {
+
+				DataManager.getInstance().getData()
+				.get(Calendar_Info.getClickDate()).get(i).setCheck(pCheck);
 				return;
 			}
 		}
@@ -161,40 +162,57 @@ public class UIManager {
 		//실상은 추상이나 인터페이스를 쓴 콜백은 아니지만
 		//느낌은 콜백느낌
 
-		Iterator<ToDoList_Object> data = DataManager.getInstance().getData().get(Calendar_Info.getClickDate()).iterator();
+//		Iterator<ToDoList_Object> data = DataManager.getInstance().getData().get(Calendar_Info.getClickDate()).iterator();
+//
+//		while (data.hasNext()) {
+//
+//
+//			//이렇게 검사를 하면 todolist 패널의 내용은 중복이 가능하기 때문에 같은 todolist가 있다면 오류가 나게 된다.
+//			if(delObj.getDoText().equals(data.next().getText())) {
+//				data.remove();
+//			}
+//		}
+		
+		ArrayList<IndicateOneToDo_Panel> panelData = infoPanel.get(Calendar_Info.getClickDate());
 
-		while (data.hasNext()) {
-			
-			
-			//이렇게 검사를 하면 todolist 패널의 내용은 중복이 가능하기 때문에 같은 todolist가 있다면 오류가 나게 된다.
-			if(delObj.getDoText().equals(data.next().getText())) {
-				data.remove();
+		for (int i = 0; i < panelData.size(); i++) {
+			if(delObj.equals(panelData.get(i))) {
+
+				DataManager.getInstance().getData().get(Calendar_Info.getClickDate()).remove(i);
+				panelData.remove(i);
+
+				
+				mainFrame.getSp().getScrollPanel().remove(delObj);
+				mainFrame.getSp().setScrollEdit();
+				break;
 			}
 		}
 		
-		Iterator<IndicateOneToDo_Panel> iter = infoPanel.get(Calendar_Info.getClickDate()).iterator();
+		
 
-		while (iter.hasNext()) {
-			IndicateOneToDo_Panel toDoList_Object = (IndicateOneToDo_Panel) iter.next();
-			
-			
-			if(toDoList_Object == delObj) {
-
-				//DataManager.getInstance().getData().get(Calendar_Info.getClickDate())delObj.
-				//현재 붙어 있는 패널이 scroll패널이라서 거기서 지움
-				//mainFrame.getSp().getScrollPanel().remove(iter);
-				
-				iter.remove();
-				
-				//스크롤 판정 부분을 수정해야 삭제하면 스크롤이 줄어듬
-
-
-				//현재 패널은 삭제가 되는데 데이터가 삭제 안되고 있음.
-
-				mainFrame.getSp().setScrollEdit();
-				mainFrame.getSp().getScrollPanel().remove(delObj);
-			}
-		}
+//		Iterator<IndicateOneToDo_Panel> iter = infoPanel.get(Calendar_Info.getClickDate()).iterator();
+//
+//		while (iter.hasNext()) {
+//			IndicateOneToDo_Panel toDoList_Object = (IndicateOneToDo_Panel) iter.next();
+//
+//
+//			if(toDoList_Object == delObj) {
+//
+//				//DataManager.getInstance().getData().get(Calendar_Info.getClickDate())delObj.
+//				//현재 붙어 있는 패널이 scroll패널이라서 거기서 지움
+//				//mainFrame.getSp().getScrollPanel().remove(iter);
+//
+//				iter.remove();
+//
+//				//스크롤 판정 부분을 수정해야 삭제하면 스크롤이 줄어듬
+//
+//
+//				//현재 패널은 삭제가 되는데 데이터가 삭제 안되고 있음.
+//
+//				mainFrame.getSp().setScrollEdit();
+//				mainFrame.getSp().getScrollPanel().remove(delObj);
+//			}
+//		}
 
 		if(infoPanel.get(Calendar_Info.getClickDate()).size() == 0) {
 			infoPanel.remove(Calendar_Info.getClickDate());

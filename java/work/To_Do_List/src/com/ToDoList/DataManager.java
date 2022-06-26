@@ -61,7 +61,7 @@ public class DataManager  {
 	public void saveData() {
 		try {
 			
-			System.out.println(path + "\\" + f);
+			//System.out.println(path + "\\" + f);
 			
 			FileOutputStream fos = new FileOutputStream(path + "\\" + f);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);

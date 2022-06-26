@@ -132,7 +132,7 @@ public class IndicateOneToDo_Panel extends JPanel{
 	}
 	
 	public void setCheckedData(boolean pCheck){
-		System.out.println(pCheck);
+		//System.out.println(pCheck);
 		UIManager.getInstance().doneCheckList(this, pCheck);
 	}
 

@@ -27,11 +27,10 @@ import javax.swing.ScrollPaneConstants;
 public class ShowToDo_Panel extends JPanel {
 
 	private JPanel scrollPanel = null;
-	private GridBagLayout gBag;
 	private GridBagConstraints gbc;
 	
 	
-	private final int iotdScrollSize = 28;
+	private final int iotdScrollSize = 33;
 	private int arraySize = 0;
 
 	// 체크박스와 버튼을 하나의 패널로
@@ -43,10 +42,12 @@ public class ShowToDo_Panel extends JPanel {
 	private void scrollPanelCreate(){
 		
 		scrollPanel = new JPanel();
-		gBag = new GridBagLayout(); 
 		
-		scrollPanel.setLayout(gBag);
+		//System.out.println(scrollPanel.getLayout());
+		//scrollPanel.setLayout(gBag);
 		gbc = new GridBagConstraints();
+		
+		
 		
 //		scrollPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 3, 5));
 		//scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));	//boxlayout으로 세로로 1개씩 정렬하고 싶은데 크기 고정하는 걸 모르겠다...
@@ -76,7 +77,7 @@ public class ShowToDo_Panel extends JPanel {
 	
 	public void setDrawToDoList(IndicateOneToDo_Panel iotdp){
 		//System.out.println("스크롤 패널 추가");
-		//System.out.println(this.arraySize);
+		//System.out.println(iotdp.getPreferredSize());
 		this.arraySize++;
 //		scrollPanel.add(iotdp);
 		scrollPanel_Add(iotdp);
@@ -127,7 +128,7 @@ public class ShowToDo_Panel extends JPanel {
         //gbc.gridheight = 1;
         gbc.weightx = 1;		//컴포넌트의 가로 비율 0이 아닌 값을 넣으면 가로를 전부 채운다.
 //        gbc.weighty = 2;		//컴포넌트의 세로 비율, 가로와 설정은 같지만 fill이 현재 horizontal이라서 가로만 채운다.
-        gbc.anchor = GridBagConstraints.NORTH;
+        //gbc.anchor = GridBagConstraints.PAGE_END;
         scrollPanel.add(pComp,gbc);
         //scrollPanel.add(pComp);
 	}
