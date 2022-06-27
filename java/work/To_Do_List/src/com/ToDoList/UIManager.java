@@ -24,6 +24,14 @@ public class UIManager {
 
 	private static Main_Frame mainFrame = null;
 
+	public static Main_Frame getMainFrame() {
+		return mainFrame;
+	}
+
+	public static void setMainFrame(Main_Frame mainFrame) {
+		UIManager.mainFrame = mainFrame;
+	}
+
 	private ToDoUIFactory tduf = null;	//팩토리메서드 사용(딱 하나만 생성이라서 의미가 있나 싶다.)
 	HashMap<String, ArrayList<IndicateOneToDo_Panel>> infoPanel = null;
 

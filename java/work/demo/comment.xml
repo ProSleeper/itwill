@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lists>
+	<total>4</total>
+	<comment num = "4">
+		<name>이순신</name>
+		<job>장군</job>
+		<birth>2010-11-15</birth>
+	</comment>
+	<comment num = "3">
+		<name>허준</name>
+		<job>의사</job>
+		<birth>2010-06-30</birth>
+	</comment>
+	<comment num = "2">
+		<name>홍길동</name>
+		<job>산적</job>
+		<birth>2019-08-12</birth>
+	</comment>
+	<comment num = "1">
+		<name>리효리</name>
+		<job>연예인</job>
+		<birth>2019-02-11</birth>
+	</comment>
+	
+	
+	
+	
+	
+	
+	
+</lists>
+
+
+
+
+
+

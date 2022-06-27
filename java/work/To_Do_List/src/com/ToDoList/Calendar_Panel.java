@@ -12,9 +12,11 @@ import java.util.ArrayList;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.border.BevelBorder;
 
 
@@ -60,7 +62,13 @@ public class Calendar_Panel extends JPanel {
 
 	boolean isMoveMonth = true;
 
-	public Calendar_Panel() {
+	JButton defaultButton = null;
+	
+
+	Main_Frame mf = null;
+	
+	
+	public Calendar_Panel(Main_Frame mf) {
 		this.setBackground(Color.orange);
 		this.setLayout(new GridLayout(0, 7, 5, 5));
 		initCalendar();
@@ -69,6 +77,9 @@ public class Calendar_Panel extends JPanel {
 		swapYearMonthClick();
 		returnToTodayClick();
 		
+		
+		mf.getRootPane().setDefaultButton(defaultButton);
+		defaultButton.requestFocus();
 	}
 
 	public void buttonClick(){
@@ -82,6 +93,7 @@ public class Calendar_Panel extends JPanel {
 		returnToToday = addButton("⟳");
 		returnToToday.setFont(new Font("helvetica", Font.BOLD, 20));
 		returnToToday.setFocusable(false);
+	
 
 		this.add(new JLabel());
 
@@ -130,7 +142,12 @@ public class Calendar_Panel extends JPanel {
 			if(viewDay.equals(String.valueOf((Calendar_Info.getCurDay())))) {
 				temp.setOpaque(true);
 				temp.setBackground(Color.MAGENTA);
-				temp.requestFocus();		//포커스 얻는 부분이 안됨. 근데 항상 프로그램 시작시 5번째 열 1번째 버튼이 포커스를 가지고 있음(이유가 있을듯) 파악해보자
+				defaultButton = temp;
+				System.out.println("오늘");
+//				Object ob = getRootPane();
+//				
+//				getRootPane().setDefaultButton(temp);
+				//temp.requestFocus();		//포커스 얻는 부분이 안됨. 근데 항상 프로그램 시작시 5번째 열 1번째 버튼이 포커스를 가지고 있음(이유가 있을듯) 파악해보자	
 				
 			}
 			else {
@@ -138,7 +155,7 @@ public class Calendar_Panel extends JPanel {
 			}
 
 			buttonArr.add(temp);
-		}
+		}	
 	}
 
 	public void setCalendar() {

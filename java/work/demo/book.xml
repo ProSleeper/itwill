@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<booklist>
+	<book kind = "컴퓨터">
+		<title>JAVA</title>
+		<author>홍길동</author>
+		<price>1000</price>
+	
+	</book>
+	<book kind = "소설">
+		<title>명량해전</title>
+		<author>이순신</author>
+		<price>2000</price>
+	</book>
+</booklist>

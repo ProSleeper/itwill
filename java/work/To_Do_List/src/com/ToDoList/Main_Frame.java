@@ -54,11 +54,10 @@ public class Main_Frame extends JFrame implements ActionListener{
 
 	}
 
-
-
 	private void SetUI() {
 		sp = new ShowToDo_Panel();
-		cp = new Calendar_Panel();
+		cp = new Calendar_Panel(this);
+		//this.getRootPane()
 
 		this.add(sp);
 		this.add(cp);
