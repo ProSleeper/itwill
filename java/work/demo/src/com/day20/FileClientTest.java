@@ -11,7 +11,8 @@ public class FileClientTest {
 	public static void main(String[] args) {
 		
 		int port = 7777;
-		String host = "192.168.16.4";
+//		String host = "192.168.16.4";
+		String host = "localhost";
 		
 		Socket sc = null;
 		
@@ -89,8 +90,5 @@ public class FileClientTest {
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
-		
-		
 	}
-
 }
