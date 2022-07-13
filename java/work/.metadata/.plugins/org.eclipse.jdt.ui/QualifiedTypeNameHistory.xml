@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="com.day20.ServerTest2.WorkerThread"/>
-<fullyQualifiedTypeName name="java.io.BufferedReader"/>
-<fullyQualifiedTypeName name="java.io.InputStreamReader"/>
-<fullyQualifiedTypeName name="java.io.PrintWriter"/>
-<fullyQualifiedTypeName name="java.lang.Runnable"/>
-<fullyQualifiedTypeName name="java.awt.TextArea"/>
-<fullyQualifiedTypeName name="java.awt.TextField"/>
-<fullyQualifiedTypeName name="javax.swing.JTextArea"/>
-<fullyQualifiedTypeName name="javax.swing.JTextField"/>
-<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
-<fullyQualifiedTypeName name="java.awt.event.WindowAdapter"/>
 <fullyQualifiedTypeName name="com.day20.ChatCS"/>
 <fullyQualifiedTypeName name="java.net.InetAddress"/>
 <fullyQualifiedTypeName name="java.net.MulticastSocket"/>
 <fullyQualifiedTypeName name="java.net.DatagramPacket"/>
-<fullyQualifiedTypeName name="java.util.Iterator"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="javax.swing.Action"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
@@ -52,12 +39,25 @@
 <fullyQualifiedTypeName name="java.sql.DriverManager"/>
 <fullyQualifiedTypeName name="java.net.ConnectException"/>
 <fullyQualifiedTypeName name="java.beans.Statement"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="com.Score6.ScoreDAO"/>
+<fullyQualifiedTypeName name="com.Score6.ScoreImpl"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="com.Score6.ScoreDTO"/>
+<fullyQualifiedTypeName name="java.sql.CallableStatement"/>
+<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+<fullyQualifiedTypeName name="oracle.jdbc.oracore.OracleType"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="oracle.jdbc.OracleTypes"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="com.db.DBConn"/>
 <fullyQualifiedTypeName name="java.sql.Statement"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
-<fullyQualifiedTypeName name="com.db.DBConn"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
-<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="com.guest.GuestRecordDTO"/>
+<fullyQualifiedTypeName name="com.guest.GuestDTO"/>
+<fullyQualifiedTypeName name="com.guest.Guest"/>
+<fullyQualifiedTypeName name="com.guest.GuestCustomDTO"/>
 </qualifiedTypeNameHistroy>

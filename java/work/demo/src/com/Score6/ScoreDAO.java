@@ -1,65 +1,41 @@
 package com.Score6;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.db.DBConn;
 
+import oracle.jdbc.OracleTypes;
+
+//표준 DAO 
 public class ScoreDAO {	//Data Access Ojbect
 
-	//	insert statement방법
-	//		public int insertData(ScoreDTO pDTO) {
-	//			int result = 0;
-	//			
-	//			Connection conn = DBConn.getConnection();
-	//			Statement stmt = null;
-	//			String sql;
-	//			
-	//			try {
-	//				sql = "insert into score (hak, name, kor, eng, mat) ";
-	//				sql += "values ('" + pDTO.getHak() + "', '";
-	//				sql += pDTO.getName() + "', ";
-	//				sql += pDTO.getKor() + ", ";
-	//				sql += pDTO.getEng() + ", ";
-	//				sql += pDTO.getMat() + ")";
-	//				
-	//				System.out.println(sql);
-	//				
-	//				stmt = conn.createStatement();
-	//				result = stmt.executeUpdate(sql);
-	//				stmt.close();
-	//				
-	//			} catch (Exception e) {
-	//				System.out.println(e.toString());
-	//			}
-	//			return result;
-	//		}
-
-
-	//insert PreparedStatement방법
+	//insert CallableStatement
 	public int insertData(ScoreDTO pDTO) {
 		int result = 0;
 
 		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
+		CallableStatement cstmt = null;
 		String sql;
 
 		try {
-			sql = "insert into score (hak, name, kor, eng, mat) ";
-			sql += "values(?, ?, ?, ?, ?)";
+			sql = "{call insertScore(?,?,?,?,?)}";
 
-			pstmt = conn.prepareStatement(sql);
+			cstmt = conn.prepareCall(sql);
 
-			pstmt.setString(1, pDTO.getHak());
-			pstmt.setString(2, pDTO.getName());
-			pstmt.setInt(3, pDTO.getKor());
-			pstmt.setInt(4, pDTO.getEng());
-			pstmt.setInt(5, pDTO.getMat());
+			cstmt.setString(1, pDTO.getHak());
+			cstmt.setString(2, pDTO.getName());
+			cstmt.setInt(3, pDTO.getKor());
+			cstmt.setInt(4, pDTO.getEng());
+			cstmt.setInt(5, pDTO.getMat());
 
-			result = pstmt.executeUpdate();
+			result = cstmt.executeUpdate();
 
-			pstmt.close();
+			cstmt.close();
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -67,28 +43,28 @@ public class ScoreDAO {	//Data Access Ojbect
 		return result;
 	}
 
-	//update PreparedStatement방법
+	//update CallableStatement
 	public int updateData(ScoreDTO pDTO) {
 		int result = 0;
 
 		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
+		CallableStatement cstmt = null;
 		String sql;
 
 		try {
-			sql = "update score set kor = ?, eng = ?, mat = ? ";
-			sql += "where hak = ?";
+			sql = "{call updateScore(?,?,?,?)}";
 
-			pstmt = conn.prepareStatement(sql);
+			cstmt = conn.prepareCall(sql);
+			
+			cstmt.setString(1, pDTO.getHak());
+			cstmt.setInt(2, pDTO.getKor());
+			cstmt.setInt(3, pDTO.getEng());
+			cstmt.setInt(4, pDTO.getMat());
+			
 
-			pstmt.setInt(1, pDTO.getKor());
-			pstmt.setInt(2, pDTO.getEng());
-			pstmt.setInt(3, pDTO.getMat());
-			pstmt.setString(4, pDTO.getHak());
+			result = cstmt.executeUpdate();
 
-			result = pstmt.executeUpdate();
-
-			pstmt.close();
+			cstmt.close();
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -96,30 +72,183 @@ public class ScoreDAO {	//Data Access Ojbect
 		return result;
 	}
 
-	//delete PreparedStatement방법
+	//delete CallableStatement
 	public int deleteData(String pHak) {
 		int result = 0;
 
 		Connection conn = DBConn.getConnection();
-		PreparedStatement pstmt = null;
+		CallableStatement cstmt = null;
 		String sql;
 
 		try {
-			sql = "DELETE score WHERE hak = ?";
+			sql = "{call deleteScore(?)}";
 
-			pstmt = conn.prepareStatement(sql);
+			cstmt = conn.prepareCall(sql);
 
-			pstmt.setString(1, pHak);
+			cstmt.setString(1, pHak);
 
-			result = pstmt.executeUpdate();
+			result = cstmt.executeUpdate();
 
-			pstmt.close();
+			cstmt.close();
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
 		return result;
 	}
+
+
+	//전체 출력
+	public List<ScoreDTO> getList(){
+
+		List<ScoreDTO> dtoList = new ArrayList<>();
+
+		Connection conn = DBConn.getConnection();
+		CallableStatement cstmt = null;
+		ResultSet rs = null;
+		String sql;
+
+		try {
+			sql = "{call selectAllScore(?)}";
+
+			cstmt = conn.prepareCall(sql);
+			
+			//out파라미터의 자료형 설정
+			cstmt.registerOutParameter(1, OracleTypes.CURSOR);
+
+			//프로시져 실행
+			cstmt.executeQuery();
+
+			//out파라미터의 값을 받음
+			rs = (ResultSet)cstmt.getObject(1);
+			
+		
+			while (rs.next()) {
+
+				ScoreDTO dto = new ScoreDTO();
+
+				dto.setHak(rs.getString("hak"));
+				dto.setName(rs.getString("name"));
+				dto.setKor(rs.getInt("kor"));
+				dto.setEng(rs.getInt("eng"));
+				dto.setMat(rs.getInt("mat"));
+				dto.setTot(rs.getInt("tot"));
+				dto.setAvg(rs.getInt("avg"));
+				dto.setRank(rs.getInt("rank"));
+
+
+				dtoList.add(dto);
+			}
+
+			rs.close();
+			cstmt.close();
+
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dtoList;
+	}
+
+
+	//이름 검색
+	public List<ScoreDTO> getList(String pName){
+
+		List<ScoreDTO> dtoList = new ArrayList<>();
+
+		Connection conn = DBConn.getConnection();
+		CallableStatement cstmt = null;
+		ResultSet rs = null;
+		String sql;
+
+		try {
+			sql = "{call selectNameScore(?, ?)}";
+
+			cstmt = conn.prepareCall(sql);
+			
+			//out파라미터의 자료형 설정
+			cstmt.registerOutParameter(1, OracleTypes.CURSOR);
+			cstmt.setString(2, pName);
+			
+			//프로시져 실행
+			
+			cstmt.executeUpdate();
+
+			//out파라미터의 값을 받음
+			rs = (ResultSet)cstmt.getObject(1);
+
+			while (rs.next()) {
+
+				ScoreDTO dto = new ScoreDTO();
+
+				dto.setHak(rs.getString("hak"));
+				dto.setName(rs.getString("name"));
+				dto.setKor(rs.getInt("kor"));
+				dto.setEng(rs.getInt("eng"));
+				dto.setMat(rs.getInt("mat"));
+				dto.setTot(rs.getInt("tot"));
+				dto.setAvg(rs.getInt("avg"));
+
+
+				dtoList.add(dto);
+			}
+
+			rs.close();
+			cstmt.close();
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dtoList;
+	}
+
+	//학번 검색
+	public ScoreDTO getLists(String pHak){
+
+		ScoreDTO dto = null;
+
+		Connection conn = DBConn.getConnection();
+		CallableStatement cstmt = null;
+		ResultSet rs = null;
+		String sql;
+
+		try {
+			sql = "{call selectHakScore(?, ?)}";
+
+			cstmt = conn.prepareCall(sql);
+			
+			//out파라미터의 자료형 설정
+			cstmt.registerOutParameter(1, OracleTypes.CURSOR);
+			cstmt.setString(2, pHak);
+			
+			//프로시져 실행
+			cstmt.executeUpdate();
+			
+			//out파라미터의 값을 받음
+			rs = (ResultSet)cstmt.getObject(1);
+			
+			if(rs.next()) {
+
+				dto = new ScoreDTO();
+
+				dto.setHak(rs.getString("hak"));
+				dto.setName(rs.getString("name"));
+				dto.setKor(rs.getInt("kor"));
+				dto.setEng(rs.getInt("eng"));
+				dto.setMat(rs.getInt("mat"));
+				dto.setTot(rs.getInt("tot"));
+				dto.setAvg(rs.getInt("avg"));
+			}
+
+			rs.close();
+			cstmt.close();
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dto;
+	}
+
 }
 
 
