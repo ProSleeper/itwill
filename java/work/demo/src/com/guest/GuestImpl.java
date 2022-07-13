@@ -51,10 +51,10 @@ public class GuestImpl implements Guest {
 		int result = dao.writeRecord(dto);
 
 		if(result != 0) {
-			System.out.println("추가 성공!!");
+			System.out.println("방명록 추가 성공!!");
 		}
 		else {
-			System.out.println("추가 실패!!");
+			System.out.println("방명록 추가 실패!!");
 		}
 	}
 
