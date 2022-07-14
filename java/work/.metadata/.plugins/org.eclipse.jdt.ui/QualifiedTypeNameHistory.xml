@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.day20.ChatCS"/>
 <fullyQualifiedTypeName name="java.net.InetAddress"/>
 <fullyQualifiedTypeName name="java.net.MulticastSocket"/>
 <fullyQualifiedTypeName name="java.net.DatagramPacket"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="com.guest.GuestDTO"/>
 <fullyQualifiedTypeName name="com.guest.Guest"/>
 <fullyQualifiedTypeName name="com.guest.GuestCustomDTO"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
 </qualifiedTypeNameHistroy>
