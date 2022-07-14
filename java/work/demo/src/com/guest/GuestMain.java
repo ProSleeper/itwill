@@ -13,16 +13,16 @@ public class GuestMain {
 
 		while (true) {
 			do {
-				System.out.println("1.회원가입 2.방명록 입력 3.검색 4.정보수정 5.방명록 수정 6.삭제 7.전체출력 8.로그아웃 9.종료");
+				System.out.println("1.회원가입 2.방명록 입력 3.검색 4.정보수정 5.삭제 6.전체출력 7.종료");
 				ch = sc.nextInt();
-			} while (ch < 1 || ch > 7);
+			} while (ch < 1 || ch > 9);
 
 			switch (ch) {
 				case 1:
 					ob.writeInfo();
 					break;
 				case 2:
-					ob.writeRecord();
+					ob.updateRecord();
 					break;
 				case 3:
 					ob.search();
@@ -31,16 +31,10 @@ public class GuestMain {
 					ob.updateInfo();
 					break;
 				case 5:
-					ob.updateRecord();
-					break;
-				case 6:
 					ob.delete();
 					break;
-				case 7:
+				case 6:
 					ob.print();
-					break;
-				case 8:
-					ob.logout();
 					break;
 				default:
 					DBConn.close();

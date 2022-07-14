@@ -22,8 +22,8 @@ public class GuestRecordDTO extends GuestDTO {
 		
 		String str;
 		
-		str = String.format("%8s %8s %8s ",
-				id, g_content, created);
+		str = String.format("%8s %8s ",
+				g_content, created);
 		
 		return str;
 	}
