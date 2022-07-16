@@ -1,6 +1,7 @@
 /.metadata/
 /.recommenders/
-.class
+*.class
+*.DS_Store
 # Created by https://www.toptal.com/developers/gitignore/api/jspm,java,eclipse,git,oracleforms
 # Edit at https://www.toptal.com/developers/gitignore?templates=jspm,java,eclipse,git,oracleforms
 
