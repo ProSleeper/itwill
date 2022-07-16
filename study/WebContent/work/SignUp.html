@@ -3,9 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>네이버 : 회원가입</title>
-        <link rel="icon" href="./image/naver_favicon.ico2" type="image/x-icon" sizes="16x16" />
+        <link rel="icon" href="./image/naver_favicon.ico" type="image/x-icon" sizes="16x16" />
         <link href="SignUp.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="SignUp.js"></script>
+        <script type="text/javascript" src="SignUp.js">
+            
+
+
+        </script>
+
     </head>
 
     <body style="background-color: #f5f6f7; font-family: Dotum, 돋움, Helvetica, sans-serif">
@@ -70,23 +75,20 @@
                 5.안전: 녹색 자물쇠(자물쇠 왼쪽 "안전" 적힘)
 
 
-                
-
-
             -->
 
                 <input
                     type="password"
-                    value="비번(원래 빈곳)"
+                    value=""
                     maxlength="20"
                     id="inputbox_PW"
-                    oninput="chkPW.isCapsLockOn(this);"
+                    onkeydown="chkPW.isCapsLockOn(event, 'alert_text_PW');"
                     onblur="chkPW.check(this);"
                     style="cursor: pointer; width: 100%; outline: none; border: 1"
                 />
                 <div style="margin-left: 420px; position: absolute; opacity: 0.7">
                     <img src="./image/dot_gray.png" align = "right"; id="icon_PW" style = "cursor:
-                    pointer;margin-bottom:50%;margin-top:50%;width="25px"; height="25px";">
+                    pointer;margin-bottom:50%;margin-top:50%;width:25px"; height="25px";>
                 </div>
 
                 <div style="margin-left: 400px; position: absolute; opacity: 0.7">
@@ -94,8 +96,7 @@
                 </div>
             </div>
             <div class="alertText" style="font-size: 12px">
-                <p id="alert_text_PW" style="display: ; color: red">
-                    5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.
+                <p id="alert_text_PW" style="display: none; color: red">
                 </p>
             </div>
             <div class="borderLable">
@@ -122,20 +123,20 @@
                 <!--  -->
                 <input
                     type="password"
-                    value="비번 재확인(원래 빈곳)"
+                    value=""
                     maxlength="20"
                     id="inputbox_CPW"
-                    onblur="chkPW.reconfirm();"
+                    onkeydown="chkPW.isCapsLockOn(event, 'alert_text_CPW');"
+                    onblur="chkPW.reconfirm(this);"
                     style="cursor: pointer; width: 100%; outline: none; border: 1"
                 />
                 <div style="margin-left: 420px; position: absolute; opacity: 0.7">
                     <img src="./image/check_gray.png" id="icon_CPW" align = "right"; style = "cursor:
-                    pointer;margin-bottom:50%;margin-top:50%;width="25px"; height="25px";">
+                    pointer;margin-bottom:50%;margin-top:50%;width:25px"; height="25px";>
                 </div>
             </div>
             <div class="alertText" style="font-size: 12px">
-                <p id="alert_text_CPW" style="display: ; color: red">
-                    5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.
+                <p id="alert_text_CPW" style="display: none; color: red">
                 </p>
             </div>
             <div class="borderLable" style="margin-top: 40px">
@@ -144,19 +145,18 @@
             <div class="centerinner">
                 <!-- 40칸 -->
                 <!-- 이름에 숫자가 잔뜩들어가도 딱히 뭐라 메세지가 없는 걸 보면 -->
-
                 <!-- 한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가) -->
                 <input
                     type="text"
-                    value="이름(원래 빈곳)"
+                    value=""
                     maxlength="40"
                     id="inputbox_Name"
+                    onblur="checkName(this);"
                     style="cursor: pointer; width: 100%; outline: none; border: 1"
                 />
             </div>
             <div class="alertText" style="font-size: 12px">
-                <p id="alert_text_Name" style="display: ; color: red">
-                    한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)
+                <p id="alert_text_Name" style="display: none; color: red">
                 </p>
             </div>
             <div class="borderLable">
@@ -210,7 +210,7 @@
                 </div>
             </div>
             <div class="alertText" style="font-size: 12px">
-                <p id="alert_text_Birth" style="display: ; color: red">
+                <p id="alert_text_Birth" style="display: none; color: red">
                     한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)
                 </p>
             </div>
@@ -235,7 +235,7 @@
                 <!-- 필수 정보입니다.  -->
             </div>
             <div class="alertText" style="font-size: 12px">
-                <p id="alert_text_Gender" style="display: ; color: red">필수 정보입니다.</p>
+                <p id="alert_text_Gender" style="display: none; color: red">필수 정보입니다.</p>
             </div>
             <div class="borderLable">
                 <!-- 100칸 -->
@@ -255,7 +255,7 @@
                 />
             </div>
             <div class="alertText" style="font-size: 12px">
-                <p id="alert_text_Email" style="display: ; color: red">이메일 주소를 다시 확인해주세요.</p>
+                <p id="alert_text_Email" style="display: none; color: red">이메일 주소를 다시 확인해주세요.</p>
             </div>
             <div class="borderLable" style="margin-top: 40px">
                 <label onclick="setFocus('inputbox_Number');" style="cursor: pointer">휴대전화</label>
@@ -332,10 +332,10 @@
                 <!-- 시간 지나면 인증을 다시 진행해주세요. -->
             </div>
             <div class="alertText" style="font-size: 12px">
-                <p id="alert_text_Number" style="display: ; color: red">필수 정보입니다.</p>
+                <p id="alert_text_Number" style="display: none; color: red">필수 정보입니다.</p>
             </div>
             <div class="alertText" style="font-size: 12px">
-                <p id="alert_text_SendCertificationNumber" style="display: ; color: red">인증이 필요합니다.</p>
+                <p id="alert_text_SendCertificationNumber" style="display: none; color: red">인증이 필요합니다.</p>
             </div>
 
             <div class="centerinner" style="margin-top: 30px">
@@ -359,9 +359,9 @@
             <div
                 class="borderLable"
                 align="center"
-                style="bolder;color:#333333;font-size: 12px;font-weight: normal;margin-top: 40px;"
+                style="color:#333333;font-size: 12px;font-weight: normal;margin-top: 40px;"
             >
-                <label style="cursor: pointer; border">이용약관&nbsp; </label>
+                <label style="cursor: pointer;">이용약관&nbsp; </label>
                 |&nbsp;
                 <label style="cursor: pointer"><strong>개인정보처리방침&nbsp;</strong> </label>
                 |&nbsp;
@@ -372,6 +372,7 @@
             <div
                 class="borderLable"
                 align="center"
+                
                 style="margin-top: 7px; color: #333333; font-size: 10px; font-weight: normal; height: 30px"
             >
                 <img src="./image/bottom_logo.png" width="55px" ; height="11px" ; />
