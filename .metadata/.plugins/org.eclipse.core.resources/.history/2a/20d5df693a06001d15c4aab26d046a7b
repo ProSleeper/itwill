@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type = "text/javascript">
+
+	function sendIt(){
+		var f = document.myForm;
+	}
+
+
+
+</script>
+
+
+
+</head>
+<body>
+
+<form actioin = "gugudan_ok.jsp" method = "post">
+
+
+단 : <input type="text" name = "dan"/><br/>
+<input type="button" value = "결과"/><br/>
+
+
+
+
+
+</form>
+
+
+</body>
+</html>

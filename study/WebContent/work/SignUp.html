@@ -144,21 +144,136 @@
                     style="cursor: pointer; width: 100%; outline: none; border: 1" />
             </div>
             <div class="centerinner">
-                <select name="text" value="" id="select_Birth_Month"
-                    style="cursor: pointer; width: 150px; outline: none; border: 1" onchange="chkBirth.check();">
-                    <option value="">월</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
+                <!-- 40칸 -->
+                <!-- 이름에 숫자가 잔뜩들어가도 딱히 뭐라 메세지가 없는 걸 보면 -->
+                <!-- 한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가) -->
+                <input
+                    type="text"
+                    value=""
+                    maxlength="40"
+                    id="inputbox_Name"
+                    onblur="checkName(this);"
+                    style="cursor: pointer; width: 100%; outline: none; border: 1"
+                />
+            </div>
+            <div class="alertText" style="font-size: 12px">
+                <p id="alert_text_Name" style="display: none; color: red"></p>
+            </div>
+            <div class="borderLable">
+                <label onclick="setFocus('inputbox_Birth_Year');" style="cursor: pointer">생년월일</label>
+            </div>
+            <!-- 생일은 현재를 기준으로 딱 (100년 - 하루)까지는 아무 메세지도 없고(형식이 맞다면) -->
+            <!-- 100년이상이면 정말이세요? 라고 물어봄 -->
+            <!-- 년은  -->
+            <!-- 윤년도 다 따진다. -->
+            <!-- 만 14세 미만 어린이는 보호자 동의가 필요합니다. -->
+            <div style="display: flex; justify-content: space-between">
+                <div style="margin-right: 10px" class="centerinner">
+                    <input
+                        type="text"
+                        value=""
+                        maxlength="4"
+                        id="inputbox_Birth_Year"
+                        onblur="chkBirth.check();"
+                        style="cursor: pointer; width: 100%; outline: none; border: 1"
+                    />
+                </div>
+                <div class="centerinner">
+                    <select
+                        name="text"
+                        value=""
+                        id="select_Birth_Month"
+                        style="cursor: pointer; width: 150px; outline: none; border: 1"
+                        onchange="chkBirth.check();"
+                    >
+                        <option value="">월</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <div style="margin-left: 10px" class="centerinner">
+                    <input
+                        type="text"
+                        value=""
+                        maxlength="2"
+                        id="inputbox_Birth_Day"
+                        onblur="chkBirth.check();"
+                        style="cursor: pointer; width: 100%; outline: none; border: 1"
+                    />
+                </div>
+            </div>
+            <div class="alertText" style="font-size: 12px">
+                <p id="alert_text_Birth" style="display: none; color: red"></p>
+            </div>
+
+            <div class="borderLable">
+                <label onclick="setFocus('select_Gender');" style="cursor: pointer">성별</label>
+            </div>
+            <div class="centerinner">
+                <select
+                    name="text"
+                    id="select_Gender"
+                    value=""
+                    style="cursor: pointer; width: 100%; outline: none; border: 1"
+                    onchange="checkGender(this);"
+                >
+                    <option value="0">성별</option>
+                    <option value="1">남자</option>
+                    <option value="2">여자</option>
+                    <option value="3">선택 안함</option>
+                </select>
+                <!-- 남자, 여자, 선택 안함 -->
+                <!-- 입력안하고 가입누르면  -->
+                <!-- 필수 정보입니다.  -->
+            </div>
+            <div class="alertText" style="font-size: 12px">
+                <p id="alert_text_Gender" style="display: none; color: red"></p>
+            </div>
+            <div class="borderLable">
+                <!-- 100칸 -->
+                <!-- e메일 형식에 맞지 않으면 -->
+                <!-- 이메일 주소를 다시 확인해주세요. -->
+                <!-- 형식만 맞으면 중복이어도 상관없나보다. 선택사항이라서 -->
+                <!-- _____@naver.com 이어도 오류는 안남 -->
+                <label onclick="setFocus('inputbox_Email');" style="cursor: pointer">본인 확인 이메일(선택)</label>
+            </div>
+            <div class="centerinner">
+                <input
+                    type="text"
+                    value=""
+                    maxlength="100"
+                    id="inputbox_Email"
+                    onblur="checkEmail(this);"
+                    style="cursor: pointer; width: 100%; outline: none; border: 1"
+                />
+            </div>
+            <div class="alertText" style="font-size: 12px">
+                <p id="alert_text_Email" style="display: none; color: red"></p>
+            </div>
+            <div class="borderLable" style="margin-top: 40px">
+                <label onclick="setFocus('inputbox_Number');" style="cursor: pointer">휴대전화</label>
+            </div>
+            <div class="centerinner">
+                <select
+                    name="text"
+                    id="select_CellPhone_Country"
+                    style="cursor: pointer; width: 100%; outline: none; border: 1"
+                    onchange="chkPhone.country(this);"
+                >
+                    <option value="1">니카라과 +505</option>
+                    <option value="" selected="selected">대한민국 +82</option>
+                    <option value="2">덴마크 +45</option>
+                    <option value="3">니제르 +222</option>
                 </select>
             </div>
             <div style="margin-left: 10px" class="centerinner">
