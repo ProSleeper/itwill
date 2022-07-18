@@ -94,8 +94,6 @@ let chkBirth = new CheckBirth();
     2. 현재 년도(2022년을 기준으로 -100년까지만 올바른 가입이다.
      -100년, 즉 1922년생까지 가입은 정말이세요? 를 보여줌. 1923년생부터 메세지 안뜸    
      -정말이세요? 
-    
-
 
 */
 
@@ -365,6 +363,7 @@ function checkEmail(pInputEmail) {
 
 function signUpClick() {
     alert("가입하기 버튼");
+    // 모든 입력창 한번 더 체크해야함.
 }
 
 //각 텍스트 클릭시 해당 inputbox로 focus 해줌.
