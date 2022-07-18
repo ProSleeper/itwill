@@ -1,0 +1,48 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	//일반적으로 form양식은 post방식을 씀
+	<form action="" method="post" name="myForm">
+
+		아이디: <input type="text" name="userId" /><br /> 패스워드: <input
+			type="password" name="userPwd" /><br /> 이름: <input type="text"
+			name="userName" /><br /> 성별: <input type="radio" name="gender"
+			value="M" checked="checked" />남자 <input type="radio" name="gender"
+			value="F" /> 전화: <select name="tel1">
+			<option value="">선택</option>
+			<option value="010" selected="selected">010</option>
+			<option value="070">070</option>
+			<option value="011">011</option>
+
+		</select> <input type="text" name="tel2" /> - <input type="text" name="tel3"><br />
+
+		취미: <select multiple="multiple" size="4" name="hobby">
+			<option value="여행">여행</option>
+			<option value="영화">영화</option>
+			<option value="음악">음악</option>
+			<option value="게임">게임</option>
+
+		</select> 동의합니까?<input type="checkbox" name="agreeChk" value="Y"><br />
+
+		메모<br />
+		<textarea rows="5" cols="20" name="memo"></textarea>
+
+		<input type="button" value="회원가입" onclick="" /> <input type="reset"
+			value="다시입력" /> <input type="button" value="취소" />
+
+
+
+
+	</form>
+
+
+
+</body>
+</html>
