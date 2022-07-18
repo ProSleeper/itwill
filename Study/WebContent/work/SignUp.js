@@ -110,7 +110,8 @@ let chkBirth = new CheckBirth();
 class CellPhone {
     constructor() {
         this.selectCountry = null;
-        this.selectMonth = null;
+
+        this.authNumber = null;
         this.inputDay = null;
 
         this.resultYear = null;
@@ -157,13 +158,37 @@ class CellPhone {
         var inputNumber = String(inputPhoneObj.value);
 
         inputNumber = inputNumber.replaceAll("-", "");
+        inputNumber = inputNumber.replaceAll(" ", "");
         inputPhoneObj.value = inputNumber;
 
-        const rand_9999 = Math.floor(Math.random() * 9000 + 1000);
-        console.log(rand_9999);
+        this.authNumber = Math.floor(Math.random() * 9000 + 1000);
 
-        alert("[Web발신]\n[네이버] 인증번호[" + String(rand_9999) + "]를 입력해\n주세요.");
+        const regex = /^01(0[\d]{4}|[16789][\d]{3,4})[\d]{4}$/;
+
+        if (!regex.test(inputNumber)) {
+            infoText.innerText = "형식에 맞지 않는 번호입니다.";
+        } else {
+            //나라하고 맞는지 판단필요.
+            infoText.style = "display: default; color: #08A600";
+            infoText.innerText =
+                "인증번호를 발송했습니다.(유효시간 30분)\n인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여 주세요.\n이미 가입된 번호이거나, 가상전화번호는 인증번호를 받을 수 없습니다.";
+            alert("[Web발신]\n[네이버] 인증번호[" + String(this.authNumber) + "]를 입력해\n주세요.");
+            // authinput.disabled = false;
+
+            //내일 여기서부터 고치면 됨
+            document.getElementById("inputbox_SendCertificationNumber").disabled = false;
+            document.getElementById("inputbox_SendCertificationNumber").style =
+                "background-color: white;  cursor: pointer; width: 100%; outline: none; border: 1";
+            document.getElementById("inputbox_SendCertificationNumber").value = "";
+            // 여기서 자물쇠 부분을 바꿔주면 될듯
+            // 자세한 판단방법은 나도 모르니 그냥 내가 알아서~
+        }
     }
+
+    //  --인증이 가능한 번호라면 아래 메세지가 뜸
+    //         인증번호를 발송했습니다.(유효시간 30분)
+    // 인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여 주세요.
+    // 이미 가입된 번호이거나, 가상전화번호는 인증번호를 받을 수 없습니다.
 
     //01 1,6,7,8,9만 가운데 3자리가 됨
     //010은 가운데 3자리 안됨.
@@ -172,8 +197,26 @@ class CellPhone {
     //검사 안해주는 조건도 있네 맨 앞에 = 하니까 없애주지도 않고 인증도 안됨.
     //모든 -는 없애줌!
 
-    sendCertificationNumber() {
-        alert("인증번호 받기 버튼");
+    sendCertificationNumber(pInputAuthNumber) {
+        alert(this.authNumber);
+
+        /*
+
+        1. 여기는 인증번호 받기 버튼이 제대로 동작을 해야 작성이 가능하다.
+
+
+        2. 인증번호를 받고 썼다가 다 지워서 아무 내용도 없을 시
+            - 인증이 필요합니다.
+            빨간색으로 "불일치 x" 표시 나옴
+
+        3. 불일치시
+            - 인증번호를 다시 확인해주세요.
+            빨간색으로 "불일치 x" 표시 나옴
+
+        4. 인증시
+            - 인증이 성공했습니다.
+            녹색으로 "일치 v" 표시 나옴
+        */
     }
 
     // 전화번호 입력과 입력받기가 하나의 경고메시지 공유
@@ -326,10 +369,10 @@ function checkName(pInputBoxText) {
 //                 <!-- 한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가) -->
 
 function checkGender(selectGender) {
-    console.log(selectGender.value);
     infoText = document.getElementById("alert_text_Gender");
     infoText.style = "display: default; color: red";
-    if (selectGender.value.length == 0) {
+    console.log(typeof selectGender.value);
+    if (selectGender.value == "0") {
         infoText.innerText = "필수 정보입니다.";
     } else {
         infoText.innerText = "";
